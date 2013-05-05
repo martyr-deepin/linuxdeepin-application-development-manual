@@ -38,7 +38,7 @@ Linux Deepin 应用程序开发手册
     *    [Deepin-UI 高级控件使用](#usage-of-advanced-widget)
     *    [Deepin-UI 应用开发实例](#application-development-example)
 	
-*    [控件编写的艺术](#the-art-of-building-widget)
+*    [编写控件的艺术](#the-art-of-building-widget)
     *    [控件的重要性!](#the-importance-of-widget)
     *    [控件编写的基本原理](#the-principle-of-building-widget)
     *    [控件的构思到实现](#from-conception-to-realization)
@@ -47,6 +47,8 @@ Linux Deepin 应用程序开发手册
 * * *
 
 <h2 id="prelude">前言</h2>
+
+<h3 id="for-dream">致战斗在一线的 Linux Deepin 勇士们, 为理想而战！</h3>
 
 <h3 id="why-i-write-this-book">为什么我要写这本书?</h3>
 > Linux 从1991年诞生到现在的20多年已经深入了我们生活的方方面面，
