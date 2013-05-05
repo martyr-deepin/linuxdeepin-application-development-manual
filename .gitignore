@@ -1,0 +1,6 @@
+*.pyc
+nohup.out
+.#*
+*.~
+*.po~
+*.swp
