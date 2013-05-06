@@ -8,7 +8,7 @@ Linux Deepin 应用程序开发手册
 *    [前言](#prelude)
     *    [致战斗在一线的 Linux Deepin 勇士们, 为理想而战！](#for-dream)
     *    [为什么我要写这本书？](#why-i-write-this-book)
-    *    [面向的读者人群及读者应该具有怎样的基础?](#reader-need-to-know)
+    *    [本书面向的读者人群](#reader-need-to-know)
     *    [Linux需要什么样的应用程序？](#what-kind-of-application-is-we-need)
     *    [开发者应该怀着怎样的理念去开发用户喜欢的产品？](#development-concept)
     *    [我们需要怎样的应用开发社区氛围？](#how-to-build-development-community)
@@ -96,7 +96,18 @@ Linux Deepin 应用程序开发手册
 > 我们应该为了完美的用户体验不放过任何一个细节， 不放过哪怕一个像素的误差， 要做就做最好的!  
 > Linux 之所有输了桌面之战， 不是因为我们没有努力， 而是大多数高手以为我们在正确的路上战斗， 我们输在正确认识用户交互体验的理念上了。  
 
-> 我写这本书的目的不光是讲解怎样从技术上实现应用程序， 更希望能在Linux社区建立做产品的正确理念， 激励更多的开发者加入制造Linux高质量应用的行动中去。
+> 这本书的目的不光是讲解怎样从技术上实现应用程序， 更希望能在Linux社区建立做产品的正确理念， 激励更多的开发者加入制造Linux高质量应用的行动中去。
+
+<h3 id="reader-need-to-know">本书面向的读者人群</h3>
+> 这本书不是一本讲解怎样进行初步编程的入门书籍， 本书主要是给有图形编程经验的编程人员提供全方位的方法来构建高质量的应用程序， 所以需要读者至少熟练下面的基本技术：
+>> C语言编程  
+>> Python语言编程  
+>> GTK+编程经验  
+
+> 读者朋友们可以通过系统学习以下书籍来掌握这些基本技术：
+>> 《C程序设计语言》 (The C programming language)  
+>> 《Python核心编程第二版》 (Core Python programming)  
+>> 《GTK+开发基础》(Foundations of GTK+ development)  
 
 <h2 id="deepin-ui">Deepin-UI</h2>
 
