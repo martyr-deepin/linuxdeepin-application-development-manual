@@ -24,11 +24,6 @@ Linux Deepin 应用程序开发手册
     *    [关于 Python/PyGTK+ 的错误认识](#misconceptions-about-python/pygtk)
     *    [Python代码编写规范](#python-coding-specification)
   
-*    [应用开发基础技术](#application-development-technology)
-    *    [GTK+陷阱与技巧](#gtk-trick)
-    *    [编写 Python C 扩展](#build-c-extension)
-    *    [更多技术...](#more-technology)
-	
 *    [Deepin-UI](#deepin-ui)
     *    [Deepin-UI 诞生的故事](#how-deepin-ui-born)
     *    [为什么需要 Deepin-UI?](#why-we-need-deepin-ui)
@@ -37,6 +32,11 @@ Linux Deepin 应用程序开发手册
     *    [Deepin-UI 简单控件使用](#usage-of-simple-widget)
     *    [Deepin-UI 高级控件使用](#usage-of-advanced-widget)
     *    [Deepin-UI 应用开发实例](#application-development-example)
+	
+*    [应用开发基础技术](#application-development-technology)
+    *    [GTK+陷阱与技巧](#gtk-trick)
+    *    [编写 Python C 扩展](#build-c-extension)
+    *    [更多技术...](#more-technology)
 	
 *    [编写控件的艺术](#the-art-of-building-widget)
     *    [控件的重要性!](#the-importance-of-widget)
