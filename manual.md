@@ -20,7 +20,7 @@ Linux Deepin 应用程序开发手册
     *    [编写整洁优雅的代码](#write-clean-code)
     *    [补丁编写的方法](#how-to-write-patch)
     *    [为什么选择 PyGTK+ 作为应用程序开发基础？](#why-choose-pygtk)
-    *    [关于 Python/PyGTK+ 的错误认识](#misconceptions-about-python/pygtk)
+    *    [关于 PyGTK+ 的错误认识](#misconceptions-about-pygtk)
     *    [Python代码编写规范](#python-coding-specification)
   
 *    [Deepin-UI](#deepin-ui)
@@ -422,6 +422,27 @@ Linux桌面以及应用要快速的成长需要的是有一批实干精神的开
 >> 4. GTK+ 有大量的应用程序实现可以提供学习。  
 
 >> 5. GTK+ 结合 Python 可以非常高效的开发应用程序。  
+
+<h3 id="misconceptions-about-pygtk">关于 PyGTK+ 的错误认识</h3>
+
+> 有很多人对 PyGTK+ 有很多错误的认识：  
+>> 1. PyGTK+ 很慢。  
+Python的执行速度虽然比不上C， 但是Python在实践编程中开发效率要远远高于C，  
+你不用做烦人的类型声明和无休止的细节， 你只需要把宝贵的时间放在真正需要解决的问题。  
+而桌面应用开发最讲究的就是开发效率。  
+>>  
+>>     其实 PyGTK+ 对于桌面应用来说性能是完全足够的， 因为大多数真正耗性能的还是GTK+代码，   
+Python 逻辑控制在整个性能的占用都是微乎其微的， 而底层的GTK+仍然是C代码在实际运行，  
+PyGTK+ 只是对 GTK+ C 库进行了一层封装来满足快速开发的需求。  
+>>  
+>>     大家可以做一个简单的性能测试：  
+`python -m cProfile -o output.profile YourProgram.py`   
+你会发现 PyGTK+ 应用程序 95% 以上的性能都消耗在 GTK+ 代码上的调用上，  
+真正的Python逻辑控制代码对性能的影响微乎其微。  
+>> 2. Python 很慢。  
+就像上面说的， 大多数情况， 如果只是用 Python 就行逻辑控制， 用户完全察觉不到性能的差别。  
+如果真的在某些算法上Python执行效率不佳， 依然可以通过编写 C 扩展来提高性能。  
+比如 Deepin-UI 有一个 cairo_blur.c 的模块专门用来处理高斯模糊算法的。   
 
 <h2 id="deepin-ui">Deepin-UI</h2>
 
