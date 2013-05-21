@@ -676,8 +676,8 @@ PyGTK+ 只是对 GTK+ C 库进行了一层封装来满足快速开发的需求�
 
 <p># Copyright (C) 2011 ~ 2013 Wang Yong <br />
 # <br />
-# Author:     Wang Yong <a href="&#109;&#97;&#105;&#108;t&#111;:&#119;a&#110;&#x67;&#121;&#x6F;&#x6E;&#x67;&#64;&#108;in&#x75;&#120;&#x64;&#101;&#101;&#112;&#105;&#x6E;&#x2E;&#x63;&#111;&#109;">&#119;a&#110;&#x67;&#121;&#x6F;&#x6E;&#x67;&#64;&#108;in&#x75;&#120;&#x64;&#101;&#101;&#112;&#105;&#x6E;&#x2E;&#x63;&#111;&#109;</a> <br />
-# Maintainer: Wang Yong <a href="m&#x61;i&#x6C;&#116;&#x6F;:&#119;&#x61;&#110;&#x67;&#121;&#x6F;&#110;&#x67;&#64;&#x6C;&#105;&#110;&#x75;&#120;&#100;&#101;&#101;&#112;&#105;&#x6E;&#x2E;&#x63;&#x6F;&#x6D;">&#119;&#x61;&#110;&#x67;&#121;&#x6F;&#110;&#x67;&#64;&#x6C;&#105;&#110;&#x75;&#120;&#100;&#101;&#101;&#112;&#105;&#x6E;&#x2E;&#x63;&#x6F;&#x6D;</a> <br />
+# Author:     Wang Yong <a href="&#x6D;&#x61;&#x69;&#x6C;t&#111;:w&#x61;&#x6E;&#103;&#121;&#x6F;&#x6E;&#x67;&#64;&#108;&#105;&#110;&#x75;&#120;&#x64;&#x65;&#x65;&#x70;&#105;&#110;&#46;&#99;&#x6F;&#109;">w&#x61;&#x6E;&#103;&#121;&#x6F;&#x6E;&#x67;&#64;&#108;&#105;&#110;&#x75;&#120;&#x64;&#x65;&#x65;&#x70;&#105;&#110;&#46;&#99;&#x6F;&#109;</a> <br />
+# Maintainer: Wang Yong <a href="&#109;&#x61;&#x69;&#x6C;&#x74;&#111;:&#119;a&#110;&#103;&#121;&#x6F;&#x6E;&#103;&#64;&#x6C;i&#x6E;&#117;&#x78;&#x64;&#101;&#101;&#112;&#105;&#x6E;&#46;&#x63;&#x6F;&#109;">&#119;a&#110;&#103;&#121;&#x6F;&#x6E;&#103;&#64;&#x6C;i&#x6E;&#117;&#x78;&#x64;&#101;&#101;&#112;&#105;&#x6E;&#46;&#x63;&#x6F;&#109;</a> <br />
 # <br />
 # This program is free software: you can redistribute it and/or modify <br />
 # it under the terms of the GNU General Public License as published by <br />
@@ -907,6 +907,361 @@ var_long_long_a  = 3
 <p>上面的代码看似漂亮, 但你能保证以后没有更长的变量名? <br />
 更长的变量名添加以后是否要对在一块的代码都要统一加空格呢? 为什么要浪费时间按空格呢?  </p>
 </blockquote>
+
+<ul>
+<li><p><strong>空行</strong>: <br />
+适当的空行有利于增加代码的可读性，加空行可以参考如下几个准则：  </p>
+
+<blockquote>
+  <ol>
+<li>在类、函数的定义间加空行；  </li>
+<li>在 import 不同种类的模块间加工行；  </li>
+<li>在函数中的逻辑段落间加空行，即把相关的代码紧凑写在一起，作为一个逻辑段落，段落间以空行分隔；  </li>
+</ol>
+</blockquote></li>
+<li><p><strong>命名</strong>:   </p>
+
+<blockquote>
+  <p>一致的命名可以给开发人员减少许多麻烦， <br />
+而恰如其分的命名则可以大幅提高代码的可读性，降低维护成本。 <br />
+好的命名可以让代码有自解释性, <br />
+代码中严禁写 var1, var2 这种结合幻数的名字, 一时的偷懒只会让代码更难维护.  </p>
+</blockquote></li>
+</ul>
+
+<blockquote>
+  <ul>
+<li><p><strong>常量</strong> <br />
+常量名所有字母大写，由下划线连接各个单词，如  </p>
+
+<pre lang="python"><code>
+WHITE = 0XFFFFFF
+THIS_IS_A_CONSTANT = 1
+</code></pre></li>
+<li><p><strong>变量</strong> <br />
+变量名全部小写，由下划线连接各个单词，如  </p>
+
+<pre lang="python"><code>
+color = WHITE
+this_is_a_variable = 1
+</code></pre></li>
+</ul>
+
+<blockquote>
+  <p>不论是类成员变量还是全局变量，均不使用 m 或 g 前缀。 <br />
+私有类成员使用单一下划线前缀标识，多定义公开成员，少定义私有成员。 <br />
+变量名不应带有类型信息，因为 Python 是动态类型语言。 <br />
+如 iValue、names<em>list、dict</em>obj 等都是不好的命名。  </p>
+</blockquote>
+
+<ul>
+<li><p><strong>函数</strong> <br />
+函数名的命名规则与变量名相同。  </p></li>
+<li><p><strong>函数参数</strong> <br />
+函数参数的命名规则与变量名相同.  </p></li>
+<li><p><strong>类</strong> <br />
+类名单词首字母大写，不使用下划线连接单词，也不加入 C、T 等前缀。如：  </p>
+
+<pre lang="python"><code>
+class ThisIsAClass(object):
+      passs
+</code></pre></li>
+<li><p><strong>异常名</strong> <br />
+异常的命名规则和类名的规则相同． <br />
+异常名最好在后面跟随 Error:  </p>
+
+<blockquote>
+  <p><strong>Yes</strong>:</p>
+
+<pre lang="python"><code>
+    try:
+       ... bla bla ...
+    except MyError:
+       ... bla bla ...
+</code></pre>
+
+<p><strong>No</strong>:</p>
+
+<pre lang="python"><code>
+    try:
+       ... bla bla ...
+    except my_error:
+       ... bla bla ...
+</code></pre>
+</blockquote></li>
+<li><p><strong>模块</strong> <br />
+模块名全部小写，对于包内使用的模块，可以加一个下划线前缀，如 <br />
+<code>this_is_a_module.py</code> <br />
+<code>_this_is_an_internal_module.py</code>  </p></li>
+<li><p><strong>包</strong> <br />
+包的命名规范与模块相同。  </p></li>
+<li><p><strong>缩写</strong> <br />
+命名应当尽量使用全拼写的单词, 不建议大范围使用缩写, <br />
+除非某些一目了然的缩写, 比如 tmp. <br />
+命名长一点没关系, 但是一个晦涩难懂的缩写会导致维护困难和更难于发现 bug.  </p></li>
+</ul>
+
+<p></blockquote></p>
+
+<ul>
+<li><p><strong>分枝和循环</strong>:  </p>
+
+<blockquote>
+  <p>不要写成一行，如：  </p>
+
+<pre lang="python"><code>
+        if !flg: pass
+</code></pre>
+
+<pre><code>或者
+</code></pre>
+
+<pre lang="python"><code>
+        for i in xrange(10): print i
+</code></pre>
+
+<p>都不是好代码，应写成  </p>
+
+<pre lang="python"><code>
+    if !flg:
+        pass
+</code></pre>
+
+<pre><code>或者
+</code></pre>
+
+<pre lang="python"><code>
+    for i in xrange(10):
+        print i
+</code></pre>
+</blockquote></li>
+<li><p><strong>语句</strong>: <br />
+不推荐在一行里写入多行语句  </p>
+
+<blockquote>
+  <p><strong>Yes</strong>:  </p>
+
+<pre lang="python"><code>
+    if foo == 'blah':
+        do_blah_thing()
+        do_one()
+        do_two()
+        do_three()
+</code></pre>
+
+<p><strong>No</strong>:  </p>
+
+<pre lang="python"><code>
+    if foo == 'blah': do_blah_thing(); do_one(); do_two(); do_three()
+</code></pre>
+</blockquote></li>
+<li><p><strong>注释</strong>:  </p>
+
+<blockquote>
+  <p>注释必须用英文编写, 熟练的英文读写能力是一个合格程序员的基本能力, <br />
+用英文写可以让更多的人阅读你的源代码, 帮你打补丁. <br />
+注释必须是简洁, 清晰易懂的. <br />
+每句注释的首字母要大写.  </p>
+</blockquote></li>
+</ul>
+
+<blockquote>
+  <blockquote>
+  <p><strong>函数注释</strong> <br />
+函数注释以 ”’ 开头, 以 ”’ 结尾, 函数注释另起一行, ”’ <br />
+包围的注释有更强的兼容性, 能在注释中写入引号 ( ” , ‘ ) 而不会有问题.  </p>
+
+<p><strong>Yes</strong>:</p>
+
+<pre lang="python"><code>
+    def foo():
+        '''
+        This is comment line.
+        This is another comment line.
+        '''
+</code></pre>
+
+<p><strong>No</strong>:</p>
+
+<pre lang="python"><code>
+    def foo():
+        "This is comment line. This is another comment line."
+</code></pre>
+
+<p><strong>代码块注释</strong> <br />
+函数中经常存在很多相互独立的代码块, <br />
+为了代码清晰易读, 不但要在代码块之间添加空行, <br />
+最好在代码块起始位置添加一行注释用于说明代码块的作用: <br />
+代码块注释用 #　开头，　在 # 紧跟一个空格开始写注释．  </p>
+
+<p><strong>Yes</strong>:</p>
+
+<pre lang="python"><code>
+    # This is first block comment.
+    var_first = 1
+    ...
+    # This is second block comment.
+    var_second = 2
+    ...
+    # This is third block comment.
+    var_third = 3
+    ...
+</code></pre>
+
+<p><strong>No</strong>:</p>
+
+<pre lang="python"><code>
+   # This is first block comment.
+   var_first = 1
+   ...
+   # This is second block comment.
+   var_second = 2
+   ...
+   # This is third block comment.
+   var_third = 3
+   ...
+</code></pre>
+
+<p><strong>语句尾部注释</strong> <br />
+语句尾部注释用 #　开头，　在 # 紧跟一个空格开始写注释．  </p>
+
+<p><strong>Yes</strong>:</p>
+
+<pre lang="python"><code>
+    var_a = 1 # This is first comment
+</code></pre>
+
+<p><strong>No</strong>:</p>
+
+<pre lang="python"><code>
+    var_a = 1 #this is first comment
+</code></pre>
+</blockquote>
+
+<p></blockquote></p>
+
+<ul>
+<li><strong>字符串</strong>: <br />
+<blockquote>
+  <p>善用　% 符号对字符串进行排版 <br />
+% 可以有效的让动态字符串有更好的阅读性例子，　比如下面的例子：  </li>
+</ul></p>
+
+<blockquote>
+  <blockquote>
+  <p><strong>Yes</strong>:</p>
+
+<pre lang="python"><code>
+      print "First: %s, Second: %s, Third: %s" % ("1", "2", "3")
+</code></pre>
+
+<p><strong>No</strong>:</p>
+
+<pre lang="python"><code>
+      print "First: " + "1, " + "Second: " + "2, " + "Thrid: " + "3"
+</code></pre>
+</blockquote>
+
+<p></blockquote></p>
+
+<ul>
+<li><strong>语言陷阱</strong>: <br />
+<blockquote>
+  <ul>
+<li><strong>判断变量有可能为None时的编程规范</strong> <br />
+一个变量的值有可能为None的时候，　应该以下面的方式来判断： <br />
+<pre lang="python"><code>
+if var != None:
+   pass
+else:
+   pass
+</code></pre>
+而不能是： <br />
+<pre lang="python"><code>
+if var:
+    pass
+else:
+    pass
+</code></pre>
+试想一下当　var 为　0 的时候　if 语句永远不能执行，　 <br />
+所以要写　<code>if var != None</code> 来避免这一类的陷阱 <br />
+<br /></li>
+<li><strong>不要比较布尔值</strong> <br />
+很多时候布尔表达式是不需要比较的，　看一看下面的例子: <br />
+<strong>Yes</strong>:
+<pre lang="python"><code>
+if test:
+   do<em>something()
+</code></pre>
+<strong>No</strong>:
+<pre lang="python"><code>
+if test == True:
+   do</em>something()
+</code></pre>
+<strong>Yes</strong>:
+<pre lang="python"><code>
+def foo():
+    return 1 == 2
+</code></pre>
+<strong>No</strong>:
+<pre lang="python"><code>
+def foo():
+    test = 1 == 2
+    return test == True
+</code></pre>
+<br /></li>
+<li><strong>函数默认参数规则</strong> <br />
+Python 的函数参数是可以支持参数预置值的，　 <br />
+但是有一点，　所有有默认值的函数参数变量必须放在没有预置值的后面． <br />
+<strong>Yes</strong>:
+<pre lang="python"><code>
+def foo(arg1, arg2, arg3=3, arg4=4):
+    ...
+</code></pre>
+<strong>No</strong>:
+<pre lang="python"><code>
+def foo(arg1, arg2=2, arg3, arg4):
+    ...
+</code></pre></li>
+<li><strong>如果类型不继承与任何其他类型，　默认继承object</strong> <br />
+如果类型不继承与任何其他类型，　 <br />
+默认继承object, 这样做的好处是让你的代码和新版python有更好的兼容性． <br />
+<strong>Yes</strong>:
+<pre lang="python"><code>
+class Foo(object):
+      ...
+</code></pre>
+<strong>No</strong>:
+<pre lang="python"><code>
+class Foo():
+     ...
+</code></pre></li>
+<li><strong>不要使用 . 和 .. 来连接文件路径</strong> <br />
+<strong>Yes</strong>:
+<pre lang="python"><code>
+   os.path.join(os.path.dirname(os.path.realpath(<strong>file</strong>)), "foo.py")
+</code></pre>
+<strong>No</strong>:
+<pre lang="python"><code>
+   "." + "/" + "foo.py"
+</code></pre>
+我们要取得当前目录的文件, 一般我们会用 “.” 或 “..” 来进行文件路径连接. <br />
+如果当前文件就是直接执行文件应该是没有问题的, 但是这行代码却充满陷阱, <br />
+因为 “.” 并不代表你源代码定义时的目录, 而是相对于运行时的目录, <br />
+比如有一个其他目录的软链接链接到当前文件, “.” 的意思是软链接的目录, 而不是定义 “.” 源代码所在的目录. <br />
+<br />
+为了避免这个问题, 可以用 __file__ 来代替, __file__ 会在运行前就用当前定义文件的路径给替换掉, <br />
+这样不论是否有软链接,
+<code>os.path.dirname(os.path.realpath(__file__))</code> 都表示的是源文件所在的目录. <br />
+另一个注意的地方是用 <code>os.path.join</code> 替代 <code>“dirname” + “/” + “file.py”</code> 的形式, <br />
+因为非Linux平台(比如Widnows)文件链接符不是 “/”, 而是 “\”, <br />
+用 <code>os.path.join</code> 可以自动使用平台所在的链接符, 代码更具通用性.</li>
+</ul></li>
+</ul>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
 
 <p></blockquote></p>
 

@@ -688,6 +688,295 @@ tab 和空格，但是严禁使用 tab, 在写代码之前请把编辑器中的 
 >>> 上面的代码看似漂亮, 但你能保证以后没有更长的变量名?  
 >>> 更长的变量名添加以后是否要对在一块的代码都要统一加空格呢? 为什么要浪费时间按空格呢?  
 
+>> * **空行**:   
+>> 适当的空行有利于增加代码的可读性，加空行可以参考如下几个准则：  
+>>> 1. 在类、函数的定义间加空行；  
+>>> 2. 在 import 不同种类的模块间加工行；  
+>>> 3. 在函数中的逻辑段落间加空行，即把相关的代码紧凑写在一起，作为一个逻辑段落，段落间以空行分隔；  
+
+>> * **命名**:   
+>>> 一致的命名可以给开发人员减少许多麻烦，  
+而恰如其分的命名则可以大幅提高代码的可读性，降低维护成本。  
+好的命名可以让代码有自解释性,  
+代码中严禁写 var1, var2 这种结合幻数的名字, 一时的偷懒只会让代码更难维护.  
+
+>>> * **常量**  
+>>> 常量名所有字母大写，由下划线连接各个单词，如  
+>>> <pre lang="python"><code>
+>>>     WHITE = 0XFFFFFF
+>>>     THIS_IS_A_CONSTANT = 1
+>>> </code></pre>
+
+>>> * **变量**  
+>>> 变量名全部小写，由下划线连接各个单词，如  
+>>> <pre lang="python"><code>
+>>>     color = WHITE
+>>>     this_is_a_variable = 1
+>>> </code></pre>
+
+>>>> 不论是类成员变量还是全局变量，均不使用 m 或 g 前缀。  
+私有类成员使用单一下划线前缀标识，多定义公开成员，少定义私有成员。  
+变量名不应带有类型信息，因为 Python 是动态类型语言。  
+如 iValue、names_list、dict_obj 等都是不好的命名。  
+
+>>> * **函数**  
+>>> 函数名的命名规则与变量名相同。  
+
+>>> * **函数参数**  
+>>> 函数参数的命名规则与变量名相同.  
+
+>>> * **类**  
+>>> 类名单词首字母大写，不使用下划线连接单词，也不加入 C、T 等前缀。如：  
+>>> <pre lang="python"><code>
+>>>     class ThisIsAClass(object):
+>>>           passs
+>>> </code></pre>
+
+>>> * **异常名**  
+>>> 异常的命名规则和类名的规则相同．  
+异常名最好在后面跟随 Error:  
+>>>> **Yes**:
+>>>> <pre lang="python"><code>
+>>>>     try:
+>>>>        ... bla bla ...
+>>>>     except MyError:
+>>>>        ... bla bla ...
+>>>> </code></pre>
+>>>> **No**:
+>>>> <pre lang="python"><code>
+>>>>     try:
+>>>>        ... bla bla ...
+>>>>     except my_error:
+>>>>        ... bla bla ...
+>>>> </code></pre>
+
+>>> * **模块**  
+>>> 模块名全部小写，对于包内使用的模块，可以加一个下划线前缀，如  
+>>> `this_is_a_module.py`  
+>>> `_this_is_an_internal_module.py`  
+
+>>> * **包**  
+>>> 包的命名规范与模块相同。  
+
+>>> * **缩写**  
+>> 命名应当尽量使用全拼写的单词, 不建议大范围使用缩写,  
+除非某些一目了然的缩写, 比如 tmp.  
+命名长一点没关系, 但是一个晦涩难懂的缩写会导致维护困难和更难于发现 bug.  
+
+>> * **分枝和循环**:  
+>>> 不要写成一行，如：  
+>>> <pre lang="python"><code>
+>>> 		if !flg: pass
+>>> </code></pre>
+>>>
+>>>		或者
+>>>
+>>> <pre lang="python"><code>
+>>>			for i in xrange(10): print i
+>>> </code></pre>
+>>> 都不是好代码，应写成  
+>>> <pre lang="python"><code>
+>>>     if !flg:
+>>>         pass
+>>> </code></pre>
+>>>
+>>>		或者
+>>>
+>>> <pre lang="python"><code>
+>>>     for i in xrange(10):
+>>>         print i
+>>> </code></pre>
+
+>> * **语句**:   
+>> 不推荐在一行里写入多行语句  
+>>> **Yes**:  
+>>> <pre lang="python"><code>
+>>>     if foo == 'blah':
+>>>         do_blah_thing()
+>>>         do_one()
+>>>         do_two()
+>>>         do_three()
+>>> </code></pre>
+>>> **No**:  
+>>> <pre lang="python"><code>
+>>> 	if foo == 'blah': do_blah_thing(); do_one(); do_two(); do_three()
+>>> </code></pre>
+
+>> * **注释**:  
+>>> 注释必须用英文编写, 熟练的英文读写能力是一个合格程序员的基本能力,  
+用英文写可以让更多的人阅读你的源代码, 帮你打补丁.  
+注释必须是简洁, 清晰易懂的.  
+每句注释的首字母要大写.  
+
+>>>> **函数注释**  
+>>>> 函数注释以 ”’ 开头, 以 ”’ 结尾, 函数注释另起一行, ”’  
+包围的注释有更强的兼容性, 能在注释中写入引号 ( ” , ‘ ) 而不会有问题.  
+
+>>>> **Yes**:
+>>>> <pre lang="python"><code>
+>>>>     def foo():
+>>>>         '''
+>>>>         This is comment line.
+>>>>         This is another comment line.
+>>>>         '''
+>>>> </code></pre>
+
+>>>> **No**:
+>>>> <pre lang="python"><code>
+>>>>     def foo():
+>>>>         "This is comment line. This is another comment line."
+>>>> </code></pre>
+
+>>>> **代码块注释**  
+>>>> 函数中经常存在很多相互独立的代码块,  
+为了代码清晰易读, 不但要在代码块之间添加空行,  
+最好在代码块起始位置添加一行注释用于说明代码块的作用:  
+代码块注释用 #　开头，　在 # 紧跟一个空格开始写注释．  
+
+>>>> **Yes**:
+>>>> <pre lang="python"><code>
+>>>>     # This is first block comment.
+>>>>     var_first = 1
+>>>>     ...
+>>>>     # This is second block comment.
+>>>>     var_second = 2
+>>>>     ...
+>>>>     # This is third block comment.
+>>>>     var_third = 3
+>>>>     ...
+>>>> </code></pre>
+
+>>>> **No**:
+>>>> <pre lang="python"><code>
+>>>>    # This is first block comment.
+>>>>    var_first = 1
+>>>>    ...
+>>>>    # This is second block comment.
+>>>>    var_second = 2
+>>>>    ...
+>>>>    # This is third block comment.
+>>>>    var_third = 3
+>>>>    ...
+>>>> </code></pre>
+
+
+>>>> **语句尾部注释**  
+>>>> 语句尾部注释用 #　开头，　在 # 紧跟一个空格开始写注释．  
+
+>>>> **Yes**:
+>>>> <pre lang="python"><code>
+>>>>     var_a = 1 # This is first comment
+>>>> </code></pre>
+
+>>>> **No**:
+>>>> <pre lang="python"><code>
+>>>>     var_a = 1 #this is first comment
+>>>> </code></pre>
+
+>> * **字符串**:   
+>>> 善用　% 符号对字符串进行排版  
+>>> % 可以有效的让动态字符串有更好的阅读性例子，　比如下面的例子：  
+
+>>>>> **Yes**:
+>>>>> <pre lang="python"><code>
+>>>>> 		print "First: %s, Second: %s, Third: %s" % ("1", "2", "3")
+>>>>> </code></pre>
+
+>>>>> **No**:
+>>>>> <pre lang="python"><code>
+>>>>> 		print "First: " + "1, " + "Second: " + "2, " + "Thrid: " + "3"
+>>>>> </code></pre>
+
+>>> * **语言陷阱**:   
+>>>> * **判断变量有可能为None时的编程规范**   
+一个变量的值有可能为None的时候，　应该以下面的方式来判断：  
+>>>> <pre lang="python"><code>
+>>>>     if var != None:
+>>>>        pass
+>>>>     else:
+>>>>        pass
+>>>> </code></pre>
+>>>> 而不能是：  
+>>>> <pre lang="python"><code>
+>>>>     if var:
+>>>>         pass
+>>>>     else:
+>>>>         pass
+>>>> </code></pre>
+>>>> 试想一下当　var 为　0 的时候　if 语句永远不能执行，　  
+>>>> 所以要写　`if var != None` 来避免这一类的陷阱  
+>>>>   
+>>>> * **不要比较布尔值**  
+>>>> 很多时候布尔表达式是不需要比较的，　看一看下面的例子:   
+>>>> **Yes**:
+>>>> <pre lang="python"><code>
+>>>>     if test:
+>>>>        do_something()
+>>>> </code></pre>
+>>>> **No**:
+>>>> <pre lang="python"><code>
+>>>>     if test == True:
+>>>>        do_something()
+>>>> </code></pre>
+>>>> **Yes**:
+>>>> <pre lang="python"><code>
+>>>>     def foo():
+>>>>         return 1 == 2
+>>>> </code></pre>
+>>>> **No**:
+>>>> <pre lang="python"><code>
+>>>>     def foo():
+>>>>         test = 1 == 2
+>>>>         return test == True
+>>>> </code></pre>
+>>>>  
+>>>> * **函数默认参数规则**  
+>>>> Python 的函数参数是可以支持参数预置值的，　  
+>>>> 但是有一点，　所有有默认值的函数参数变量必须放在没有预置值的后面．  
+>>>> **Yes**:
+>>>> <pre lang="python"><code>
+>>>>     def foo(arg1, arg2, arg3=3, arg4=4):
+>>>>         ...
+>>>> </code></pre>
+>>>> **No**:
+>>>> <pre lang="python"><code>
+>>>>     def foo(arg1, arg2=2, arg3, arg4):
+>>>>         ...
+>>>> </code></pre>
+>>>> * **如果类型不继承与任何其他类型，　默认继承object**  
+>>>> 如果类型不继承与任何其他类型，　  
+>>>> 默认继承object, 这样做的好处是让你的代码和新版python有更好的兼容性．  
+>>>> **Yes**:
+>>>> <pre lang="python"><code>
+>>>>     class Foo(object):
+>>>>           ...
+>>>> </code></pre>
+>>>> **No**:
+>>>> <pre lang="python"><code>
+>>>>     class Foo():
+>>>>          ...
+>>>> </code></pre>
+>>>> * **不要使用 . 和 .. 来连接文件路径**  
+>>>> **Yes**:
+>>>> <pre lang="python"><code>
+>>>> 		os.path.join(os.path.dirname(os.path.realpath(__file__)), "foo.py")
+>>>> </code></pre>
+>>>> **No**:
+>>>> <pre lang="python"><code>
+>>>> 		"." + "/" + "foo.py"
+>>>> </code></pre>
+>>>> 我们要取得当前目录的文件, 一般我们会用 “.” 或 “..” 来进行文件路径连接.  
+如果当前文件就是直接执行文件应该是没有问题的, 但是这行代码却充满陷阱,  
+因为 “.” 并不代表你源代码定义时的目录, 而是相对于运行时的目录,  
+比如有一个其他目录的软链接链接到当前文件, “.” 的意思是软链接的目录, 而不是定义 “.” 源代码所在的目录.  
+>>>>   
+>>>> 为了避免这个问题, 可以用 \_\_file\_\_ 来代替, \_\_file\_\_ 会在运行前就用当前定义文件的路径给替换掉,  
+这样不论是否有软链接,
+`os.path.dirname(os.path.realpath(__file__))` 都表示的是源文件所在的目录.  
+另一个注意的地方是用 `os.path.join` 替代 `“dirname” + “/” + “file.py”` 的形式,  
+因为非Linux平台(比如Widnows)文件链接符不是 “/”, 而是 “\”,  
+用 `os.path.join` 可以自动使用平台所在的链接符, 代码更具通用性.
+
 <h2 id="deepin-ui">Deepin-UI</h2>
 
 <h3 id="how-deepin-ui-born">Deepin-UI诞生的故事</h3>
