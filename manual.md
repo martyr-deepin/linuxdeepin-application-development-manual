@@ -459,17 +459,17 @@ PyGTK+ 只是对 GTK+ C 库进行了一层封装来满足快速开发的需求�
 
 >> * **文件开头**:  
 >>    在Python源代码的第一行添加  
-<pre lang="python"><code>
-				#! /usr/bin/env python
-</code></pre>
+>>> <pre lang="python"><code>
+>>>		#! /usr/bin/env python
+>>> </code></pre>
 
 >>    这样可以让系统找到 python 的路径并执行, 而不会因为写死了 python 路径在其他系统上无法运行.  
 
 >> * **编码**:  
 >>    在Python源代码的第二行添加
-<pre lang="python"><code>
-				# -*- coding: utf-8 -*-
-</code></pre>
+>>> <pre lang="python"><code>
+>>>		# -*- coding: utf-8 -*-
+>>> </code></pre>
 
 >>    设置默认编码为 utf-8 格式
 
@@ -500,27 +500,24 @@ import 语句有以下几个原则需要遵守：
 >>> 1. 一行语句 import 一个模块。  
 >>>   
 >>>    **Yes**:  
-<pre lang="python"><code>
-                            import os
-                            import sys
-</code></pre>
->>>   
+>>> <pre lang="python"><code>
+>>>     import os
+>>>     import sys
+>>> </code></pre>
 >>>    **No**:  
-<pre lang="python"><code>
-							import os, sys	
-</code></pre>
+>>> <pre lang="python"><code>
+>>>		import os, sys	
+>>> </code></pre>
 >>> 2. import 从行首开始写, 不要在import前面添加空格.  
 >>> 3. 当从模块中 import 多个对象且超过一行时，使用如下断行法（此语法 py2.5 以上版本才支持）：  
-<pre lang="python"><code>
-                        from module import (obj1, obj2,
-                                            obj3, obj4)
-</code></pre>
+>>> <pre lang="python"><code>
+>>>     from module import (obj1, obj2,
+>>>                         obj3, obj4)
+>>> </code></pre>
 >>> 4. 不要使用  
->>>  
-<pre lang="python"><code>
-						from module import *	
-</code></pre>
->>>  
+>>> <pre lang="python"><code>
+>>>		from module import *	
+>>> </code></pre>
 >>>    除非是 import 常量定义模块或其它你确保不会出现命名空间冲突的模块。    
 >>> 5. 如果从包导入模块, 你需要在包中的每一级目录中创建 \_\_init\_\_.py 文件,  
 \_\_init\_\_.py 文件内容为空.  
@@ -540,21 +537,21 @@ dtk/ 和 dtk/ui/ 目录下都需要建立 \_\_init\_\_.py ,
 >>> 
 >>>    </pre>
 >>> 6. 导入模块的代码规范:  
-<pre lang="python"><code>
-						import foo
-</code></pre>
+>>> <pre lang="python"><code>
+>>>		import foo
+>>> </code></pre>
 >>> 7. 从模块中导入特定对象规范:  
-<pre lang="python"><code>
-						from foo import bar
-</code></pre>
+>>> <pre lang="python"><code>
+>>>		from foo import bar
+>>> </code></pre>
 >>> 8. 从包中导入模块:  
-<pre lang="python"><code>
-						import dtk.ui.application
-</code></pre>
+>>> <pre lang="python"><code>
+>>>		import dtk.ui.application
+>>> </code></pre>
 >>> 9. 从包中导入特定对象规范:  
-<pre lang="python"><code>
-						from foo.bar import hello
-</code></pre>
+>>> <pre lang="python"><code>
+>>>		from foo.bar import hello
+>>> </code></pre>
 
 >> * **缩进**:  
 >> Python 依赖缩进来确定代码块的层次，行首空白符主要有两种：  
@@ -565,22 +562,22 @@ tab 和空格，但是严禁使用 tab, 在写代码之前请把编辑器中的 
 这样既美观又不印象函数层级的阅读, 下面是例子:  
 >>>   
 >>    **Yes**:  
-<pre lang="python"><code>
-						foo = long_function_name(
-						        var_one, var_two,
-						        var_three, var_four)
-						def long_function_name(
-						        var_one, var_two,
-						        var_three, var_four):
-</code></pre>
+>> <pre lang="python"><code>
+>>     foo = long_function_name(
+>>             var_one, var_two,
+>>             var_three, var_four)
+>>     def long_function_name(
+>>             var_one, var_two,
+>>             var_three, var_four):
+>> </code></pre>
 >>>   
->>>>    **No**:  
-<pre lang="python"><code>
-						foo = long_function_name(var_one, var_two,
-						        var_three, var_four)
-						def long_function_name(var_one, var_two,
-						        var_three, var_four):
-</code></pre>
+>>    **No**:  
+>> <pre lang="python"><code>
+>>     foo = long_function_name(var_one, var_two,
+>>             var_three, var_four)
+>>     def long_function_name(var_one, var_two,
+>>             var_three, var_four):
+>> </code></pre>
 
 >> * **空格**:   
 >> 空格在 Python 代码中是有意义的，  
@@ -598,76 +595,95 @@ tab 和空格，但是严禁使用 tab, 在写代码之前请把编辑器中的 
 
 >>> 2. 在一元前缀运算符后不加空格:  
 >>>    **Yes**:     
-<pre lang="python"><code>
-                    if !flg:
-                        pass
-</code></pre>
+>>> <pre lang="python"><code>
+>>>     if !flg:
+>>>         pass
+>>> </code></pre>
 
->>>>    **No**:     
-<pre lang="python"><code>
-                    if ! flg:
-                        pass
-</code></pre>
+>>>    **No**:     
+>>> <pre lang="python"><code>
+>>>     if ! flg:
+>>>         pass
+>>> </code></pre>
 	
 >>> 3. 函数名和括号之间不能有空格:  
 >>>    **Yes**:     
-<pre lang="python"><code>
-                    def foo():
-                        pass
-</code></pre>
+>>> <pre lang="python"><code>
+>>>     def foo():
+>>>         pass
+>>> </code></pre>
 
->>>>    **No**:     
-<pre lang="python"><code>
-                    def foo ():
-                        pass
-</code></pre>
+>>>    **No**:     
+>>> <pre lang="python"><code>
+>>>     def foo ():
+>>>         pass
+>>> </code></pre>
 	
 >>> 4. : 用在行尾时前后皆不加空格，如分枝、循环、函数和类定义语言  
 >>>    **Yes**:     
-if flag:
-    pass
-	
+>>> <pre lang="python"><code>
+>>>     if flag:
+>>>         pass
+>>> </code></pre>
 >>>    **No**:     
-if flag :
-    pass
-	
+>>> <pre lang="python"><code>
+>>>     if flag:
+>>>         pass
+>>> </code></pre>
+
 >>> 5. : 用在非行尾时两端加空格，如 dict 对象的定义:  
 >>>    **Yes**:     
-d = {‘key’ : ’value’}
+>>> <pre lang="python"><code>
+>>>		d = {‘key’ : ’value’}
+>>> </code></pre>
 
 >>>    **No**:     
-d = {'key':'value'}
+>>> <pre lang="python"><code>
+>>>		d = {'key':'value'}
+>>> </code></pre>
 
 >>> 6. 括号（含圆括号、方括号和花括号）前后不加空格:  
 >>>    **Yes**:     
-do_something(arg1, arg2)
+>>> <pre lang="python"><code>
+>>>		do_something(arg1, arg2)
+>>> </code></pre>
 
 >>>    **No**:     
-do_something( arg1, arg2 )
+>>> <pre lang="python"><code>
+>>>		do_something( arg1, arg2 )
+>>> </code></pre>
 
 >>> 7. 逗号后面加一个空格，前面不加空格  
 
 >>> 8. 函数参数的等号两边不添加空格, 比如:  
 >>>    **Yes**:     
-def foo(arg1="hello",
-        arg2="world"):
-    ...
+>>> <pre lang="python"><code>
+>>>     def foo(arg1="hello",
+>>>             arg2="world"):
+>>>         ...
+>>> </code></pre>
 	
 >>>    **No**:     
-def foo(arg1 = "hellow",
-        arg2 = "world"):
-    ...
+>>> <pre lang="python"><code>
+>>>     def foo(arg1 = "hellow",
+>>>             arg2 = "world"):
+>>>         ...
+>>> </code></pre>
 	
 >>> 9. 不要为多行赋值语句添加过多的对齐空格, 快速的修改代码比局部的美观更重要:  
 >>>    **Yes**:     
-var_a = 1
-var_long_a = 2
-var_long_long_a = 3
+>>> <pre lang="python"><code>
+>>>     var_a = 1
+>>>     var_long_a = 2
+>>>     var_long_long_a = 3
+>>> </code></pre>
 
 >>>    **No**:     
-var_a            = 1
-var_long_a       = 2
-var_long_long_a  = 3
+>>> <pre lang="python"><code>
+>>>     var_a            = 1
+>>>     var_long_a       = 2
+>>>     var_long_long_a  = 3
+>>> </code></pre>
 
 >>> 上面的代码看似漂亮, 但你能保证以后没有更长的变量名?  
 >>> 更长的变量名添加以后是否要对在一块的代码都要统一加空格呢? 为什么要浪费时间按空格呢?  

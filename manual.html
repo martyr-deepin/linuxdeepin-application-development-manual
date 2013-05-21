@@ -650,46 +650,34 @@ PyGTK+ 只是对 GTK+ C 库进行了一层封装来满足快速开发的需求�
 
 <blockquote>
   <ul>
-<li><strong>文件开头</strong>: <br />
-在Python源代码的第一行添加  </li>
-</ul>
-</blockquote>
-
-<p></blockquote></p>
-
-<pre lang="python"><code>
-                #! /usr/bin/env python
-</code></pre>
+<li><p><strong>文件开头</strong>: <br />
+在Python源代码的第一行添加  </p>
 
 <blockquote>
-  <blockquote>
-  <p>这样可以让系统找到 python 的路径并执行, 而不会因为写死了 python 路径在其他系统上无法运行.  </p>
-
-<ul>
-<li><strong>编码</strong>: <br />
-在Python源代码的第二行添加</li>
-</ul>
+  <pre lang="python"><code>
+    #! /usr/bin/env python
+</code></pre>
 </blockquote>
 
-<p></blockquote></p>
-
-<pre lang="python"><code>
-                # -*- coding: utf-8 -*-
-</code></pre>
+<p>这样可以让系统找到 python 的路径并执行, 而不会因为写死了 python 路径在其他系统上无法运行.  </p></li>
+<li><p><strong>编码</strong>: <br />
+在Python源代码的第二行添加</p>
 
 <blockquote>
-  <blockquote>
-  <p>设置默认编码为 utf-8 格式</p>
+  <pre lang="python"><code>
+    # -*- coding: utf-8 -*-
+</code></pre>
+</blockquote>
 
-<ul>
+<p>设置默认编码为 utf-8 格式</p></li>
 <li><p><strong>版权申明</strong>: <br />
 下面是一个简单的版权申明模板, 从Python源代码第四行插入(第三行为空行), <br />
 请在拷贝后修改 Copyright, Author, Maintainer 相关的信息:  </p>
 
 <p># Copyright (C) 2011 ~ 2013 Wang Yong <br />
 # <br />
-# Author:     Wang Yong <a href="m&#x61;&#x69;&#108;&#x74;&#x6F;:&#x77;&#97;&#x6E;&#x67;&#x79;&#111;&#110;&#x67;&#64;&#x6C;&#105;&#110;&#117;&#x78;&#x64;e&#x65;p&#105;&#110;&#x2E;&#x63;&#x6F;&#109;">&#x77;&#97;&#x6E;&#x67;&#x79;&#111;&#110;&#x67;&#64;&#x6C;&#105;&#110;&#117;&#x78;&#x64;e&#x65;p&#105;&#110;&#x2E;&#x63;&#x6F;&#109;</a> <br />
-# Maintainer: Wang Yong <a href="&#x6D;&#97;&#105;&#x6C;&#x74;&#111;:&#119;a&#x6E;&#x67;y&#x6F;&#110;g&#64;&#108;&#105;n&#117;&#x78;&#100;&#x65;e&#x70;&#105;&#110;&#x2E;&#99;&#x6F;&#x6D;">&#119;a&#x6E;&#x67;y&#x6F;&#110;g&#64;&#108;&#105;n&#117;&#x78;&#100;&#x65;e&#x70;&#105;&#110;&#x2E;&#99;&#x6F;&#x6D;</a> <br />
+# Author:     Wang Yong <a href="&#109;&#97;&#105;&#108;t&#111;:&#119;a&#110;&#x67;&#121;&#x6F;&#x6E;&#x67;&#64;&#108;in&#x75;&#120;&#x64;&#101;&#101;&#112;&#105;&#x6E;&#x2E;&#x63;&#111;&#109;">&#119;a&#110;&#x67;&#121;&#x6F;&#x6E;&#x67;&#64;&#108;in&#x75;&#120;&#x64;&#101;&#101;&#112;&#105;&#x6E;&#x2E;&#x63;&#111;&#109;</a> <br />
+# Maintainer: Wang Yong <a href="m&#x61;i&#x6C;&#116;&#x6F;:&#119;&#x61;&#110;&#x67;&#121;&#x6F;&#110;&#x67;&#64;&#x6C;&#105;&#110;&#x75;&#120;&#100;&#101;&#101;&#112;&#105;&#x6E;&#x2E;&#x63;&#x6F;&#x6D;">&#119;&#x61;&#110;&#x67;&#121;&#x6F;&#110;&#x67;&#64;&#x6C;&#105;&#110;&#x75;&#120;&#100;&#101;&#101;&#112;&#105;&#x6E;&#x2E;&#x63;&#x6F;&#x6D;</a> <br />
 # <br />
 # This program is free software: you can redistribute it and/or modify <br />
 # it under the terms of the GNU General Public License as published by <br />
@@ -710,150 +698,66 @@ import 语句有以下几个原则需要遵守：  </p>
   <ol>
 <li><p>一行语句 import 一个模块。  </p>
 
-<p><strong>Yes</strong>:  </p></li>
-</ol>
-</blockquote></li>
-</ul>
-</blockquote>
-
-<p></blockquote></p>
+<p><strong>Yes</strong>:  </p>
 
 <pre lang="python"><code>
-                            import os
-                            import sys
+import os
+import sys
 </code></pre>
 
-<blockquote>
-  <blockquote>
-  <blockquote>
-  <p><strong>No</strong>:  </p>
-</blockquote>
-
-<p></blockquote></p>
-
-<p></blockquote></p>
+<p><strong>No</strong>:  </p>
 
 <pre lang="python"><code>
-                            import os, sys  
-</code></pre>
-
-<blockquote>
-  <blockquote>
-  <blockquote>
-  <ol>
+import os, sys  
+</code></pre></li>
 <li>import 从行首开始写, 不要在import前面添加空格.  </li>
-<li>当从模块中 import 多个对象且超过一行时，使用如下断行法（此语法 py2.5 以上版本才支持）：  </li>
-</ol>
-</blockquote>
-
-<p></blockquote></p>
-
-<p></blockquote></p>
-
+<li>当从模块中 import 多个对象且超过一行时，使用如下断行法（此语法 py2.5 以上版本才支持）： <br />
 <pre lang="python"><code>
-                        from module import (obj1, obj2,
-                                            obj3, obj4)
-</code></pre>
-
-<blockquote>
-  <blockquote>
-  <blockquote>
-  <ol>
-<li>不要使用  </li>
-</ol>
-</blockquote>
-
-<p></blockquote></p>
-
-<p></blockquote></p>
-
+from module import (obj1, obj2,
+                    obj3, obj4)
+</code></pre></li>
+<li>不要使用 <br />
 <pre lang="python"><code>
-                        from module import *    
+from module import * <br />
 </code></pre>
-
-<blockquote>
-  <blockquote>
-  <blockquote>
-  <p>除非是 import 常量定义模块或其它你确保不会出现命名空间冲突的模块。 <br />
-5. 如果从包导入模块, 你需要在包中的每一级目录中创建 __init__.py 文件, <br />
+除非是 import 常量定义模块或其它你确保不会出现命名空间冲突的模块。    </li>
+<li><p>如果从包导入模块, 你需要在包中的每一级目录中创建 __init__.py 文件, <br />
 __init__.py 文件内容为空. <br />
 比如 import dtk.ui.application , <br />
 dtk/ 和 dtk/ui/ 目录下都需要建立 __init__.py , <br />
-否则 python 不能发现包中的模块, 下面是对 import dkt.ui.application 的目录结构图: <br />
+否则 python 不能发现包中的模块, 下面是对 import dkt.ui.application 的目录结构图:  </p>
+
 <pre>
 dtk/
 |
-|- __init__.py
+|- \_\_init\_\_.py
 |
 +- ui/
- |
- |- __init__.py
- |
- +- application.py</p>
+|
+|- \_\_init\_\_.py
+|
++- application.py
 
-<p></pre>
-6. 导入模块的代码规范:  </p>
-</blockquote>
 
-<p></blockquote></p>
-
-<p></blockquote></p>
-
+</pre></li>
+<li>导入模块的代码规范: <br />
 <pre lang="python"><code>
-                        import foo
-</code></pre>
-
-<blockquote>
-  <blockquote>
-  <blockquote>
-  <ol>
-<li>从模块中导入特定对象规范:  </li>
+import foo
+</code></pre></li>
+<li>从模块中导入特定对象规范: <br />
+<pre lang="python"><code>
+from foo import bar
+</code></pre></li>
+<li>从包中导入模块: <br />
+<pre lang="python"><code>
+import dtk.ui.application
+</code></pre></li>
+<li>从包中导入特定对象规范: <br />
+<pre lang="python"><code>
+from foo.bar import hello
+</code></pre></li>
 </ol>
-</blockquote>
-
-<p></blockquote></p>
-
-<p></blockquote></p>
-
-<pre lang="python"><code>
-                        from foo import bar
-</code></pre>
-
-<blockquote>
-  <blockquote>
-  <blockquote>
-  <ol>
-<li>从包中导入模块:  </li>
-</ol>
-</blockquote>
-
-<p></blockquote></p>
-
-<p></blockquote></p>
-
-<pre lang="python"><code>
-                        import dtk.ui.application
-</code></pre>
-
-<blockquote>
-  <blockquote>
-  <blockquote>
-  <ol>
-<li>从包中导入特定对象规范:  </li>
-</ol>
-</blockquote>
-
-<p></blockquote></p>
-
-<p></blockquote></p>
-
-<pre lang="python"><code>
-                        from foo.bar import hello
-</code></pre>
-
-<blockquote>
-  <blockquote>
-  <ul>
+</blockquote></li>
 <li><p><strong>缩进</strong>: <br />
 Python 依赖缩进来确定代码块的层次，行首空白符主要有两种： <br />
 tab 和空格，但是严禁使用 tab, 在写代码之前请把编辑器中的 tab 强制转换为 4 个空格.  </p>
@@ -864,49 +768,30 @@ tab 和空格，但是严禁使用 tab, 在写代码之前请把编辑器中的 
 
 <blockquote>
   <p><strong>Yes</strong>:  </p>
+
+<pre lang="python"><code>
+foo = long_function_name(
+        var_one, var_two,
+        var_three, var_four)
+def long_function_name(
+        var_one, var_two,
+        var_three, var_four):
+</code></pre>
+
+<p><strong>No</strong>:  </p>
+
+<pre lang="python"><code>
+foo = long_function_name(var_one, var_two,
+        var_three, var_four)
+def long_function_name(var_one, var_two,
+        var_three, var_four):
+</code></pre>
 </blockquote></li>
-</ul>
-</blockquote>
-
-<p></blockquote></p>
-
-<pre lang="python"><code>
-                        foo = long_function_name(
-                                var_one, var_two,
-                                var_three, var_four)
-                        def long_function_name(
-                                var_one, var_two,
-                                var_three, var_four):
-</code></pre>
-
-<blockquote>
-  <blockquote>
-  <blockquote>
-  <blockquote>
-  <p><strong>No</strong>:  </p>
-</blockquote>
-
-<p></blockquote></p>
-
-<p></blockquote></p>
-
-<p></blockquote></p>
-
-<pre lang="python"><code>
-                        foo = long_function_name(var_one, var_two,
-                                var_three, var_four)
-                        def long_function_name(var_one, var_two,
-                                var_three, var_four):
-</code></pre>
-
-<blockquote>
-  <blockquote>
-  <ul>
-<li><strong>空格</strong>: <br />
+<li><p><strong>空格</strong>: <br />
 空格在 Python 代码中是有意义的， <br />
 因为 Python 的语法依赖于缩进，在行首的空格称为前导空格。 <br />
 在这一节不讨论前导空格相关的内容，只讨论非前导空格。 <br />
-非前导空格在 Python 代码中没有意义，但适当地加入非前导空格可以增进代码的可读性。  </li>
+非前导空格在 Python 代码中没有意义，但适当地加入非前导空格可以增进代码的可读性。  </p></li>
 </ul>
 
 <blockquote>
@@ -919,118 +804,104 @@ tab 和空格，但是严禁使用 tab, 在写代码之前请把编辑器中的 
 <p><strong>No</strong>: <br />
 <code>a=b+c</code></p></li>
 <li><p>在一元前缀运算符后不加空格: <br />
-<strong>Yes</strong>:     </p></li>
-</ol>
-</blockquote>
-
-<p></blockquote></p>
-
-<p></blockquote></p>
+<strong>Yes</strong>:     </p>
 
 <pre lang="python"><code>
-                    if !flg:
-                        pass
+if !flg:
+    pass
 </code></pre>
 
-<blockquote>
-  <blockquote>
-  <blockquote>
-  <blockquote>
-  <p><strong>No</strong>:     </p>
-</blockquote>
-
-<p></blockquote></p>
-
-<p></blockquote></p>
-
-<p></blockquote></p>
+<p><strong>No</strong>:     </p>
 
 <pre lang="python"><code>
-                    if ! flg:
-                        pass
-</code></pre>
-
-<blockquote>
-  <blockquote>
-  <blockquote>
-  <ol>
-<li>函数名和括号之间不能有空格: <br />
-<strong>Yes</strong>:     </li>
-</ol>
-</blockquote>
-
-<p></blockquote></p>
-
-<p></blockquote></p>
+if ! flg:
+    pass
+</code></pre></li>
+<li><p>函数名和括号之间不能有空格: <br />
+<strong>Yes</strong>:     </p>
 
 <pre lang="python"><code>
-                    def foo():
-                        pass
+def foo():
+    pass
 </code></pre>
 
-<blockquote>
-  <blockquote>
-  <blockquote>
-  <blockquote>
-  <p><strong>No</strong>:     </p>
-</blockquote>
-
-<p></blockquote></p>
-
-<p></blockquote></p>
-
-<p></blockquote></p>
+<p><strong>No</strong>:     </p>
 
 <pre lang="python"><code>
-                    def foo ():
-                        pass
-</code></pre>
-
-<blockquote>
-  <blockquote>
-  <blockquote>
-  <ol>
+def foo ():
+    pass
+</code></pre></li>
 <li><p>: 用在行尾时前后皆不加空格，如分枝、循环、函数和类定义语言 <br />
-<strong>Yes</strong>: <br />
+<strong>Yes</strong>:     </p>
+
+<pre lang="python"><code>
 if flag:
-pass</p>
+    pass
+</code></pre>
 
-<p><strong>No</strong>: <br />
-if flag :
-pass</p></li>
+<p><strong>No</strong>:     </p>
+
+<pre lang="python"><code>
+if flag:
+    pass
+</code></pre></li>
 <li><p>: 用在非行尾时两端加空格，如 dict 对象的定义: <br />
-<strong>Yes</strong>: <br />
-d = {‘key’ : ’value’}</p>
+<strong>Yes</strong>:     </p>
 
-<p><strong>No</strong>: <br />
-d = {'key':'value'}</p></li>
+<pre lang="python"><code>
+d = {‘key’ : ’value’}
+</code></pre>
+
+<p><strong>No</strong>:     </p>
+
+<pre lang="python"><code>
+d = {'key':'value'}
+</code></pre></li>
 <li><p>括号（含圆括号、方括号和花括号）前后不加空格: <br />
-<strong>Yes</strong>: <br />
-do_something(arg1, arg2)</p>
+<strong>Yes</strong>:     </p>
 
-<p><strong>No</strong>: <br />
-do_something( arg1, arg2 )</p></li>
+<pre lang="python"><code>
+do_something(arg1, arg2)
+</code></pre>
+
+<p><strong>No</strong>:     </p>
+
+<pre lang="python"><code>
+do_something( arg1, arg2 )
+</code></pre></li>
 <li><p>逗号后面加一个空格，前面不加空格  </p></li>
 <li><p>函数参数的等号两边不添加空格, 比如: <br />
-<strong>Yes</strong>: <br />
+<strong>Yes</strong>:     </p>
+
+<pre lang="python"><code>
 def foo(arg1="hello",
-    arg2="world"):
-...</p>
+        arg2="world"):
+    ...
+</code></pre>
 
-<p><strong>No</strong>: <br />
+<p><strong>No</strong>:     </p>
+
+<pre lang="python"><code>
 def foo(arg1 = "hellow",
-    arg2 = "world"):
-...</p></li>
+        arg2 = "world"):
+    ...
+</code></pre></li>
 <li><p>不要为多行赋值语句添加过多的对齐空格, 快速的修改代码比局部的美观更重要: <br />
-<strong>Yes</strong>: <br />
-var<em>a = 1
-var</em>long<em>a = 2
-var</em>long<em>long</em>a = 3</p>
+<strong>Yes</strong>:     </p>
 
-<p><strong>No</strong>: <br />
-var<em>a            = 1
-var</em>long<em>a       = 2
-var</em>long<em>long</em>a  = 3</p></li>
+<pre lang="python"><code>
+var_a = 1
+var_long_a = 2
+var_long_long_a = 3
+</code></pre>
+
+<p><strong>No</strong>:     </p>
+
+<pre lang="python"><code>
+var_a            = 1
+var_long_a       = 2
+var_long_long_a  = 3
+</code></pre></li>
 </ol>
 
 <p>上面的代码看似漂亮, 但你能保证以后没有更长的变量名? <br />
