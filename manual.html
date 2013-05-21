@@ -40,7 +40,7 @@
 <li><a href="#how-to-write-patch">补丁编写的方法</a></li>
 <li><a href="#why-choose-pygtk">为什么选择 PyGTK+ 作为应用程序开发基础？</a></li>
 <li><a href="#misconceptions-about-pygtk">关于 PyGTK+ 的错误认识</a></li>
-<li><a href="#python-coding-specification">Python代码编写规范</a></li>
+<li><a href="#python-coding-specification">Python编码规范</a></li>
 </ul></li>
 <li><p><a href="#deepin-ui">Deepin-UI</a></p>
 
@@ -450,7 +450,7 @@ UI 测试， 看看控件是否对齐， 字体、颜色等是否看着舒服。
 反复删除自己写的代码， 直到代码的技术少到刚好适合当前项目的需求， <br />
 反复重构自己的代码， 直到代码已经精简到不能再精简位置。  </p>
 
-<p>重构不但是对自己代码的整理， 更是一种心态， 一种自我怀疑， 一种最求完美的心态。 <br />
+<p>重构不但是对自己代码的整理， 更是一种自我怀疑， 一种最求完美的心态。 <br />
 如果一个编程人员能在同一个项目中经历三遍以上的重构， <br />
 我相信不但从编程能能力还是编程心境都会获得极大的提高。 <br />
 技术千变万化， 唯有平静的心境才能在艰苦的编程战役中获得最终的胜利！  </p>
@@ -524,7 +524,7 @@ UI 测试， 看看控件是否对齐， 字体、颜色等是否看着舒服。
 
 <blockquote>
   <p>开源软件和传统的软件工程最大的不同就是开源软件的协同开发者会更多， <br />
-一般都是有核心开发者带领着数十倍以上的协同开发者功能开发。  </p>
+一般都是有核心开发者带领着数十倍以上的协同开发者进行功能开发。  </p>
 
 <p>在Linux世界里大家都通过 Git 这个分布式版本控制来协同开发， <br />
 Git 和其他版本控制最大的不同的大家都可以分布式离线工作编写自己的补丁和维护自己的分支, <br />
@@ -533,7 +533,7 @@ Git 和其他版本控制最大的不同的大家都可以分布式离线工作�
 <p>一般只要不是多个人同时改一处代码， 即使是同一个文件的不同部分， git 都会自动合并这些补丁。 <br />
 当然 Git 不是万能的， 如果遇到大规模的代码冲突， 最终还是需要人工合并的。  </p>
 
-<p>掌握补丁的一些注意事项能大大的促进项目的推进速度, 遵守一些基本准则也是对团队的其他成员的尊重：  </p>
+<p>掌握补丁的一些注意事项能大大的促进项目的推进速度：  </p>
 
 <blockquote>
   <ul>
@@ -630,6 +630,262 @@ PyGTK+ 只是对 GTK+ C 库进行了一层封装来满足快速开发的需求�
 比如 Deepin-UI 有一个 cairo_blur.c 的模块专门用来处理高斯模糊算法的。   </li>
 </ol>
 </blockquote>
+
+<p></blockquote></p>
+
+<h3 id="python-coding-specification">Python编码规范</h3>
+
+<blockquote>
+  <p>很多书都把代码编写规范写在附录中， 其实大多数人都是不看的， <br />
+但是在很多公司的团队协作中代码编写规范都放在第一位。  </p>
+
+<p>很多人不理解， 为什么大家写的代码习惯需要规范？ <br />
+如果所有项目编码规范都是一致的， 大家会有更多的时间专注于核心逻辑的沟通上， <br />
+而不是浪费时间在不同人书写的不同习惯。 <br />
+特别是 Python 这种对缩进非常敏感的语言对编码的规范就要求更高了， <br />
+否则不同缩进的 Python 代码完全没有办法就行有效的互通。  </p>
+
+<p>我希望把Python编码规范写在这里让大家明白好的代码规范对于团队协作的重要性。 <br />
+以下是具体的 Python 编码规范：</p>
+
+<blockquote>
+  <ul>
+<li><p><strong>文件开头</strong>: <br />
+在Python源代码的第一行添加  </p>
+
+<p><code>#! /usr/bin/env python</code>  </p>
+
+<p>这样可以让系统找到 python 的路径并执行, 而不会因为写死了 python 路径在其他系统上无法运行.  </p></li>
+<li><p><strong>编码</strong>: <br />
+在Python源代码的第二行添加</p>
+
+<p><code># -*- coding: utf-8 -*-</code></p>
+
+<p>设置默认编码为 utf-8 格式</p></li>
+<li><p><strong>版权申明</strong>: <br />
+下面是一个简单的版权申明模板, 从Python源代码第四行插入(第三行为空行), <br />
+请在拷贝后修改 Copyright, Author, Maintainer 相关的信息:  </p>
+
+<p># Copyright (C) 2011 ~ 2013 Wang Yong <br />
+# <br />
+# Author:     Wang Yong <a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;:&#119;&#x61;&#110;&#x67;&#x79;&#111;&#110;&#x67;&#64;&#108;&#x69;&#x6E;&#117;&#x78;d&#x65;&#x65;&#x70;&#x69;&#x6E;&#x2E;&#x63;&#x6F;&#x6D;">&#119;&#x61;&#110;&#x67;&#x79;&#111;&#110;&#x67;&#64;&#108;&#x69;&#x6E;&#117;&#x78;d&#x65;&#x65;&#x70;&#x69;&#x6E;&#x2E;&#x63;&#x6F;&#x6D;</a> <br />
+# Maintainer: Wang Yong <a href="m&#x61;&#105;&#108;&#x74;&#x6F;:&#x77;&#x61;&#x6E;g&#x79;&#111;&#110;&#x67;&#64;&#108;i&#x6E;&#117;&#120;&#100;&#101;&#101;p&#105;&#x6E;&#x2E;&#99;&#x6F;&#109;">&#x77;&#x61;&#x6E;g&#x79;&#111;&#110;&#x67;&#64;&#108;i&#x6E;&#117;&#120;&#100;&#101;&#101;p&#105;&#x6E;&#x2E;&#99;&#x6F;&#109;</a> <br />
+# <br />
+# This program is free software: you can redistribute it and/or modify <br />
+# it under the terms of the GNU General Public License as published by <br />
+# the Free Software Foundation, either version 3 of the License, or <br />
+# any later version. <br />
+# <br />
+# This program is distributed in the hope that it will be useful, <br />
+# but WITHOUT ANY WARRANTY; without even the implied warranty of <br />
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the <br />
+# GNU General Public License for more details. <br />
+# <br />
+# You should have received a copy of the GNU General Public License <br />
+# along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.  </p></li>
+<li><p><strong>import 语句</strong>: <br />
+import 语句有以下几个原则需要遵守：  </p>
+
+<blockquote>
+  <ol>
+<li><p>一行语句 import 一个模块。  </p>
+
+<p><strong>Yes</strong>: <br />
+<code>import os</code> <br />
+<code>import sys</code>  </p>
+
+<p><strong>No</strong>: <br />
+<code>import os, sys</code></p></li>
+<li>import 从行首开始写, 不要在import前面添加空格.  </li>
+<li>当从模块中 import 多个对象且超过一行时，使用如下断行法（此语法 py2.5 以上版本才支持）： <br />
+<pre>
+<code>
+from module import (obj1, obj2,
+                    obj3, obj4)
+</code> <br />
+</pre>                  </li>
+<li><p>不要使用  </p>
+
+<p><code>from module import *</code>   </p>
+
+<p>除非是 import 常量定义模块或其它你确保不会出现命名空间冲突的模块。    </p></li>
+<li><p>如果从包导入模块, 你需要在包中的每一级目录中创建 __init__.py 文件, <br />
+__init__.py 文件内容为空. <br />
+比如 import dtk.ui.application , <br />
+dtk/ 和 dtk/ui/ 目录下都需要建立 __init__.py , <br />
+否则 python 不能发现包中的模块, 下面是对 import dkt.ui.application 的目录结构图:  </p>
+
+<pre>
+dtk/
+|
+|- \_\_init\_\_.py
+|
++- ui/
+|
+|- \_\_init\_\_.py
+|
++- application.py
+
+
+</pre></li>
+<li>导入模块的代码规范: <br />
+<pre>
+<code>import foo</code> <br />
+</pre></li>
+<li>从模块中导入特定对象规范: <br />
+<pre>
+<code>from foo import bar</code> <br />
+</pre></li>
+<li>从包中导入模块: <br />
+<pre>
+<code>import dtk.ui.application</code> <br />
+</pre></li>
+<li>从包中导入特定对象规范: <br />
+<pre>
+<code>from foo.bar import hello</code> <br />
+</pre></li>
+</ol>
+</blockquote></li>
+<li><p><strong>缩进</strong>: <br />
+Python 依赖缩进来确定代码块的层次，行首空白符主要有两种： <br />
+tab 和空格，但是严禁使用 tab, 在写代码之前请把编辑器中的 tab 强制转换为 4 个空格.  </p>
+
+<p>名字很长函数的参数缩进 <br />
+有时候一个函数的名字很长,它的参数应该另起一行再缩进, <br />
+这样既美观又不印象函数层级的阅读, 下面是例子:  </p>
+
+<blockquote>
+  <p><strong>Yes</strong>:  </p>
+
+<pre>
+foo = long_function_name(
+     var_one, var_two,
+     var_three, var_four)
+</pre>
+
+<pre>
+def long_function_name(
+     var_one, var_two,
+     var_three, var_four):
+</pre>
+
+<p><strong>No</strong>:  </p>
+
+<pre>
+foo = long_function_name(var_one, var_two,
+     var_three, var_four)
+</pre>
+
+<pre>
+def long_function_name(var_one, var_two,
+     var_three, var_four):
+</pre>
+</blockquote></li>
+<li><p><strong>空格</strong>: <br />
+空格在 Python 代码中是有意义的， <br />
+因为 Python 的语法依赖于缩进，在行首的空格称为前导空格。 <br />
+在这一节不讨论前导空格相关的内容，只讨论非前导空格。 <br />
+非前导空格在 Python 代码中没有意义，但适当地加入非前导空格可以增进代码的可读性。  </p></li>
+</ul>
+
+<blockquote>
+  <ol>
+<li><p>在二元算术、逻辑运算符前后加空格：  </p>
+
+<p><strong>Yes</strong>: <br />
+<code>a = b + c</code></p>
+
+<p><strong>No</strong>: <br />
+<code>a=b+c</code></p></li>
+<li><p>在一元前缀运算符后不加空格: <br />
+<strong>Yes</strong>:     </p></li>
+</ol>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                    if !flg:
+                        pass
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <blockquote>
+  <p><strong>No</strong>:     </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                    if ! flg:
+                        pass
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <blockquote>
+  <ol>
+<li><p>函数名和括号之间不能有空格: <br />
+<strong>Yes</strong>: <br />
+def foo():
+pass</p>
+
+<p><strong>No</strong>: <br />
+def foo ():
+pass</p></li>
+<li><p>: 用在行尾时前后皆不加空格，如分枝、循环、函数和类定义语言 <br />
+<strong>Yes</strong>: <br />
+if flag:
+pass</p>
+
+<p><strong>No</strong>: <br />
+if flag :
+pass</p></li>
+<li><p>: 用在非行尾时两端加空格，如 dict 对象的定义: <br />
+<strong>Yes</strong>: <br />
+d = {‘key’ : ’value’}</p>
+
+<p><strong>No</strong>: <br />
+d = {'key':'value'}</p></li>
+<li><p>括号（含圆括号、方括号和花括号）前后不加空格: <br />
+<strong>Yes</strong>: <br />
+do_something(arg1, arg2)</p>
+
+<p><strong>No</strong>: <br />
+do_something( arg1, arg2 )</p></li>
+<li><p>逗号后面加一个空格，前面不加空格  </p></li>
+<li><p>函数参数的等号两边不添加空格, 比如: <br />
+<strong>Yes</strong>: <br />
+def foo(arg1="hello",
+    arg2="world"):
+...</p>
+
+<p><strong>No</strong>: <br />
+def foo(arg1 = "hellow",
+    arg2 = "world"):
+...</p></li>
+<li><p>不要为多行赋值语句添加过多的对齐空格, 快速的修改代码比局部的美观更重要: <br />
+<strong>Yes</strong>: <br />
+var<em>a = 1
+var</em>long<em>a = 2
+var</em>long<em>long</em>a = 3</p>
+
+<p><strong>No</strong>: <br />
+var<em>a            = 1
+var</em>long<em>a       = 2
+var</em>long<em>long</em>a  = 3</p></li>
+</ol>
+
+<p>上面的代码看似漂亮, 但你能保证以后没有更长的变量名? <br />
+更长的变量名添加以后是否要对在一块的代码都要统一加空格呢? 为什么要浪费时间按空格呢?  </p>
+</blockquote>
+
+<p></blockquote></p>
 
 <p></blockquote></p>
 
