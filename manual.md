@@ -597,13 +597,13 @@ tab 和空格，但是严禁使用 tab, 在写代码之前请把编辑器中的 
 >>> 2. 在一元前缀运算符后不加空格:  
 >>>    **Yes**:     
 <pre lang="python"><code>
-                    if !flg:
-                        pass
+if !flg:
+    pass
 </code></pre>
 >>>    **No**:     
 <pre lang="python"><code>
-                    if ! flg:
-                        pass
+if ! flg:
+    pass
 </code></pre>
 	
 >>> 3. 函数名和括号之间不能有空格:  
