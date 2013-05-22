@@ -527,11 +527,11 @@ dtk/ 和 dtk/ui/ 目录下都需要建立 \_\_init\_\_.py ,
 >>>     <pre>
 >>> dtk/
 >>> |
->>> |- \_\_init\_\_.py
+>>> |- __init__.py
 >>> |
 >>> +- ui/
 >>>    |
->>>    |- \_\_init\_\_.py
+>>>    |- __init__.py
 >>>    |
 >>>    +- application.py
 >>> 
