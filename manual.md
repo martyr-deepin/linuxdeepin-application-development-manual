@@ -30,18 +30,26 @@ Linux Deepin 应用程序开发手册
     *    [Deepin-UI hello world!](#deepin-ui-hello-world)
     *    [Deepin-UI 简单控件使用](#usage-of-simple-widget)
     *    [Deepin-UI 高级控件使用](#usage-of-advanced-widget)
-    *    [Deepin-UI 应用开发实例](#application-development-example)
-	
-*    [应用开发基础技术](#application-development-technology)
-    *    [GTK+陷阱与技巧](#gtk-trick)
-    *    [编写 Python C 扩展](#build-c-extension)
-    *    [更多技术...](#more-technology)
 	
 *    [编写控件的艺术](#the-art-of-building-widget)
     *    [控件的重要性!](#the-importance-of-widget)
     *    [控件编写的基本原理](#the-principle-of-building-widget)
     *    [控件的构思到实现](#from-conception-to-realization)
     *    [控件编写实例](#widget-building-example)
+	
+*    [应用程序开发经验和技巧](#application-development-experience-and-trick)
+    *    [GTK+编程陷阱](#gtk-trick)
+	*    [GTK+编程技巧](#gtk-technology)
+        *    [GTK+Pixbuf的使用方法](#the-usage-of-gtk-pixbuf)
+	*    [Python编程陷阱](#python-trick)
+	*    [Python编程技巧](#python-technology)
+	*    [深刻理解GTK+多线程](#understand-multithread-programming-in-gtk)
+	*    [构建多进程框架的应用](#build-application-with-multi-process-model)
+	*    [多国语言处理](#how-to-handle-i18n)
+    *    [编写 Python C 扩展](#build-c-extension)
+
+*    [Deepin-UI 应用开发实例讲解](#application-development-example)
+	*    [怎样构建Deepin-UI主题](#howto-build-deepin-ui-theme)
 	
 * * *
 
@@ -98,8 +106,10 @@ Mac 早就明白 ”少即是多的设计能赢得大多数用户“ 的道理
 > Linux 之所有输了桌面之战， 不是因为我们没有努力，  
 而是大多数高手以为我们在正确的路上战斗， 我们输在正确认识用户交互体验的理念上了。  
 
-> 这本书的目的不光是讲解怎样从技术上实现应用程序，  
-更希望能在Linux社区建立做产品的正确理念， 激励更多的开发者加入制造Linux高质量应用的行动中去。  
+> 为什么我需要写这本书？  
+>> * 让更多的热爱Linux的开发者能够开发出商业级的应用，从而壮大Linux的应用圈。  
+>> * 在Linux社区建立做产品的正确理念， 激励更多的开发者加入制造Linux高质量应用的行动中去。  
+>> * 向全世界传播Linux开源运动的伟大。
 
 <h3 id="reader-need-to-know">本书面向的读者人群</h3>
 > 这本书不是一本讲解怎样进行初步编程的入门书籍，  
@@ -1009,3 +1019,25 @@ tab 和空格，但是严禁使用 tab, 在写代码之前请把编辑器中的 
 > 事实证明， Deepin-UI 的诞生大大提高了应用程序的开发效率，  
 开发者只用专心做好逻辑， 通过 Deepin-UI 就能轻易做出美观的界面。   
 后续的深度音乐、深度影音、深度截图2.0、深度软件中心3.0、深度系统设置都是通过 Deepin-UI 来构建的。  
+
+<h3 id="why-we-need-deepin-ui">为什么需要 Deepin-UI ?</h3>
+> * 不再局限于 GTK+ 的默认控件外观和布局。  
+设计师完全可以根据自己的想象来设计控件的外观和布局。  
+
+> * 快速方便的主题切换引擎。  
+不用像传统 GTK/QT 程序需要拼图完成主题，  
+通过主题引擎的透明控制，只需要拖一张你喜爱的图片即可达到精彩绝伦的效果。  
+
+> * 内置丰富的自定义控件和外观效果。  
+应用程序所需的控件都可以在 Deepin UI 库中找到。  
+
+> * 内置大量方便的应用程序模块。  
+开发人员不用再为窗口拖动、窗口圆角、高斯模糊、  
+渐变效果、按键识别、互斥窗口、多线程控制、多进程通讯等等这些基础模块浪费时间。  
+
+> * 开发人员只用专注于核心的逻辑。  
+即使开发人员没有任何设计师的帮助也可以做出商业应用的美观程度。  
+
+<h3 id="principle-of-deepin-ui">Deepin-UI 原理</h3>
+> 一图胜千言:  
+<div style="float: right"><img src="image/principle-of-deepin-ui.png" /></div>
