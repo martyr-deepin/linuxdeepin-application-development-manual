@@ -52,14 +52,6 @@
 <li><a href="#usage-of-simple-widget">Deepin-UI 简单控件使用</a></li>
 <li><a href="#usage-of-advanced-widget">Deepin-UI 高级控件使用</a></li>
 </ul></li>
-<li><p><a href="#the-art-of-building-widget">编写控件的艺术</a></p>
-
-<ul>
-<li><a href="#the-importance-of-widget">控件的重要性!</a></li>
-<li><a href="#the-principle-of-building-widget">控件编写的基本原理</a></li>
-<li><a href="#from-conception-to-realization">控件的构思到实现</a></li>
-<li><a href="#widget-building-example">控件编写实例</a></li>
-</ul></li>
 <li><p><a href="#application-development-experience-and-trick">应用程序开发经验和技巧</a></p>
 
 <ul>
@@ -79,6 +71,14 @@
 
 <ul>
 <li><a href="#howto-build-deepin-ui-theme">怎样构建Deepin-UI主题</a></li>
+</ul></li>
+<li><p><a href="#the-art-of-building-widget">编写控件的艺术</a></p>
+
+<ul>
+<li><a href="#the-importance-of-widget">控件的重要性!</a></li>
+<li><a href="#the-principle-of-building-widget">控件编写的基本原理</a></li>
+<li><a href="#from-conception-to-realization">控件的构思到实现</a></li>
+<li><a href="#widget-building-example">控件编写实例</a></li>
 </ul></li>
 </ul>
 
@@ -695,8 +695,8 @@ PyGTK+ 只是对 GTK+ C 库进行了一层封装来满足快速开发的需求�
 
 <p># Copyright (C) 2011 ~ 2013 Wang Yong <br />
 # <br />
-# Author:     Wang Yong <a href="&#109;&#97;i&#x6C;&#x74;&#x6F;:&#x77;&#x61;&#x6E;&#x67;&#121;o&#110;g&#64;&#x6C;&#105;&#110;&#x75;x&#x64;&#101;&#101;&#112;&#x69;&#110;&#46;c&#111;&#109;">&#x77;&#x61;&#x6E;&#x67;&#121;o&#110;g&#64;&#x6C;&#105;&#110;&#x75;x&#x64;&#101;&#101;&#112;&#x69;&#110;&#46;c&#111;&#109;</a> <br />
-# Maintainer: Wang Yong <a href="&#109;&#x61;&#x69;&#x6C;&#116;&#111;:w&#97;&#x6E;&#103;&#x79;&#111;n&#103;&#64;l&#105;&#110;&#x75;x&#x64;&#101;&#x65;p&#x69;&#x6E;.&#99;&#x6F;&#x6D;">w&#97;&#x6E;&#103;&#x79;&#111;n&#103;&#64;l&#105;&#110;&#x75;x&#x64;&#101;&#x65;p&#x69;&#x6E;.&#99;&#x6F;&#x6D;</a> <br />
+# Author:     Wang Yong <a href="m&#x61;&#x69;&#108;&#116;&#x6F;:&#x77;&#97;&#110;&#103;&#x79;&#111;&#x6E;&#103;&#64;&#108;&#105;&#110;&#117;&#120;&#100;&#101;&#x65;&#112;&#x69;&#110;&#46;&#99;&#x6F;&#109;">&#x77;&#97;&#110;&#103;&#x79;&#111;&#x6E;&#103;&#64;&#108;&#105;&#110;&#117;&#120;&#100;&#101;&#x65;&#112;&#x69;&#110;&#46;&#99;&#x6F;&#109;</a> <br />
+# Maintainer: Wang Yong <a href="&#x6D;&#x61;&#x69;&#x6C;&#x74;&#111;:&#x77;&#97;&#x6E;&#103;&#121;o&#110;&#103;&#64;&#108;&#105;&#x6E;ux&#x64;&#x65;&#x65;&#x70;&#x69;&#x6E;&#46;&#x63;&#x6F;&#109;">&#x77;&#97;&#x6E;&#103;&#121;o&#110;&#103;&#64;&#108;&#105;&#x6E;ux&#x64;&#x65;&#x65;&#x70;&#x69;&#x6E;&#46;&#x63;&#x6F;&#109;</a> <br />
 # <br />
 # This program is free software: you can redistribute it and/or modify <br />
 # it under the terms of the GNU General Public License as published by <br />
@@ -1347,7 +1347,40 @@ class Foo():
   <p>一图胜千言:  </p>
 </blockquote>
 
-<div style="float: right"><img src="image/principle-of-deepin-ui.png" /></div>
+<div style="float: top"><img src="image/principle-of-deepin-ui.png" /></div>
+
+<h3 id="deepin-ui-hello-world">Deepin-UI hello world!</h3>
+
+<p>终于到了写代码的时候， 我们用 Deepin-UI 写一个简单的 <a href="example/hello.py">hello world</a> !</p>
+
+<pre lang="python"><code>
+     #! /usr/bin/env python
+     # -*- coding: utf-8 -*-
+
+     import os
+     from deepin_utils.file import get_parent_dir
+     from dtk.ui.init_skin import init_skin
+     app_theme = init_skin(
+         "deepin-ui-example", 
+         "1.0",
+         "glass",
+         os.path.join(get_parent_dir(__file__), "skin"),
+         )
+     from dtk.ui.application import Application
+
+     if __name__ == "__main__":
+         application = Application()
+         application.set_default_size(600, 450)
+         application.add_titlebar(
+             button_mask=["theme", "max", "min", "close"],
+             title="Hello world!"
+             )
+         application.run()
+</code></pre>
+
+<p>效果图如下, 怎么样， 很简单吧？:   </p>
+
+<div style="float: top"><img src="image/hello-screenshot.png" /></div>
 
 </body>
 </html>

@@ -31,12 +31,6 @@ Linux Deepin 应用程序开发手册
     *    [Deepin-UI 简单控件使用](#usage-of-simple-widget)
     *    [Deepin-UI 高级控件使用](#usage-of-advanced-widget)
 	
-*    [编写控件的艺术](#the-art-of-building-widget)
-    *    [控件的重要性!](#the-importance-of-widget)
-    *    [控件编写的基本原理](#the-principle-of-building-widget)
-    *    [控件的构思到实现](#from-conception-to-realization)
-    *    [控件编写实例](#widget-building-example)
-	
 *    [应用程序开发经验和技巧](#application-development-experience-and-trick)
     *    [GTK+编程陷阱](#gtk-trick)
 	*    [GTK+编程技巧](#gtk-technology)
@@ -50,6 +44,12 @@ Linux Deepin 应用程序开发手册
 
 *    [Deepin-UI 应用开发实例讲解](#application-development-example)
 	*    [怎样构建Deepin-UI主题](#howto-build-deepin-ui-theme)
+	
+*    [编写控件的艺术](#the-art-of-building-widget)
+    *    [控件的重要性!](#the-importance-of-widget)
+    *    [控件编写的基本原理](#the-principle-of-building-widget)
+    *    [控件的构思到实现](#from-conception-to-realization)
+    *    [控件编写实例](#widget-building-example)
 	
 * * *
 
@@ -1040,4 +1040,35 @@ tab 和空格，但是严禁使用 tab, 在写代码之前请把编辑器中的 
 
 <h3 id="principle-of-deepin-ui">Deepin-UI 原理</h3>
 > 一图胜千言:  
-<div style="float: right"><img src="image/principle-of-deepin-ui.png" /></div>
+<div style="float: top"><img src="image/principle-of-deepin-ui.png" /></div>
+
+<h3 id="deepin-ui-hello-world">Deepin-UI hello world!</h3>
+终于到了写代码的时候， 我们用 Deepin-UI 写一个简单的 [hello world](example/hello.py) !
+
+<pre lang="python"><code>
+     #! /usr/bin/env python
+     # -*- coding: utf-8 -*-
+     
+     import os
+     from deepin_utils.file import get_parent_dir
+     from dtk.ui.init_skin import init_skin
+     app_theme = init_skin(
+         "deepin-ui-example", 
+         "1.0",
+         "glass",
+         os.path.join(get_parent_dir(__file__), "skin"),
+         )
+     from dtk.ui.application import Application
+     
+     if __name__ == "__main__":
+         application = Application()
+         application.set_default_size(600, 450)
+         application.add_titlebar(
+             button_mask=["theme", "max", "min", "close"],
+             title="Hello world!"
+             )
+         application.run()
+</code></pre>
+
+效果图如下, 怎么样， 很简单吧？:   
+<div style="float: top"><img src="image/hello-screenshot.png" /></div>
