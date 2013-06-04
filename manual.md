@@ -1055,7 +1055,7 @@ tab 和空格，但是严禁使用 tab, 在写代码之前请把编辑器中的 
      app_theme = init_skin(
          "deepin-ui-example", 
          "1.0",
-         "glass",
+         "sky",
          os.path.join(get_parent_dir(__file__), "skin"),
          )
      from dtk.ui.application import Application
@@ -1071,4 +1071,65 @@ tab 和空格，但是严禁使用 tab, 在写代码之前请把编辑器中的 
 </code></pre>
 
 效果图如下, 怎么样， 很简单吧？:   
-<div style="float: top"><img src="image/hello-screenshot.png" /></div>
+<div style="float: top"><img src="image/hello-world.png" /></div>
+
+> 下面我们来讲解一下这个实例的代码:
+
+<pre lang="python"><code>
+		#! /usr/bin/env python
+</code></pre>
+
+> 这段代码用来告诉 py 文件用 python 解释器来启动
+
+<pre lang="python"><code>
+		# -*- coding: utf-8 -*-
+</code></pre>
+
+> 这段代码的用处是告诉文件编辑器用 utf-8 编码， 这在包括中文字符的程序是必备的一行。
+
+<pre lang="python"><code>
+     import os
+     from deepin_utils.file import get_parent_dir
+     from dtk.ui.init_skin import init_skin
+     app_theme = init_skin(
+         "deepin-ui-example", 
+         "1.0",
+         "sky",
+         os.path.join(get_parent_dir(__file__), "skin"),
+         )
+</code></pre>
+
+> 这段代码的用于初始 deepin-ui 的皮肤加载，  
+分别用于设置应用程序的项目名、项目版本号、皮肤名字、皮肤目录。  
+皮肤文件夹具体的格式可以查看 example 目录下的 skin 文件夹。  
+
+<pre lang="python"><code>
+     from dtk.ui.application import Application
+     
+     if __name__ == "__main__":
+         application = Application()
+</code></pre>
+
+> 这段代码用于创建应用程序实例。
+
+<pre lang="python"><code>
+         application.set_default_size(600, 450)
+</code></pre>
+
+> 这段代码用于设置应用程序窗口的初始宽度和初始高度。
+
+<pre lang="python"><code>
+         application.add_titlebar(
+             button_mask=["theme", "max", "min", "close"],
+             title="Hello world!"
+             )
+</code></pre>
+
+> 这段代码用于设置应用程序的按钮和标题，  
+`["theme", "max", "min", "close"]` 表示在标题栏右侧显示主题、最大化、最小化、关闭按钮。  
+
+<pre lang="python"><code>
+         application.run()
+</code></pre>
+
+> 这段代码用于启动应用程序。
