@@ -690,8 +690,8 @@ PyGTK+ 只是对 GTK+ C 库进行了一层封装来满足快速开发的需求�
 
 <p># Copyright (C) 2011 ~ 2013 Wang Yong <br />
 # <br />
-# Author:     Wang Yong <a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;:&#x77;&#97;&#110;&#x67;&#121;&#x6F;n&#x67;&#64;&#108;i&#x6E;&#117;&#120;&#x64;&#x65;&#x65;p&#x69;n&#46;&#x63;&#x6F;&#x6D;">&#x77;&#97;&#110;&#x67;&#121;&#x6F;n&#x67;&#64;&#108;i&#x6E;&#117;&#120;&#x64;&#x65;&#x65;p&#x69;n&#46;&#x63;&#x6F;&#x6D;</a> <br />
-# Maintainer: Wang Yong <a href="&#x6D;&#x61;&#x69;&#108;t&#111;:&#119;&#x61;&#x6E;&#x67;&#121;&#111;&#110;&#103;&#64;&#108;&#105;&#x6E;&#x75;x&#100;&#101;&#x65;&#x70;&#x69;&#110;&#x2E;c&#x6F;&#x6D;">&#119;&#x61;&#x6E;&#x67;&#121;&#111;&#110;&#103;&#64;&#108;&#105;&#x6E;&#x75;x&#100;&#101;&#x65;&#x70;&#x69;&#110;&#x2E;c&#x6F;&#x6D;</a> <br />
+# Author:     Wang Yong <a href="&#x6D;&#97;&#x69;&#x6C;&#x74;&#111;:&#119;&#97;&#x6E;&#x67;&#121;&#111;&#110;&#103;&#64;&#x6C;&#x69;&#110;&#x75;&#x78;&#x64;&#101;&#x65;&#112;&#x69;n&#x2E;c&#x6F;&#x6D;">&#119;&#97;&#x6E;&#x67;&#121;&#111;&#110;&#103;&#64;&#x6C;&#x69;&#110;&#x75;&#x78;&#x64;&#101;&#x65;&#112;&#x69;n&#x2E;c&#x6F;&#x6D;</a> <br />
+# Maintainer: Wang Yong <a href="&#109;&#x61;&#x69;&#x6C;&#116;o:&#x77;&#x61;&#x6E;&#x67;&#121;&#x6F;&#110;&#x67;&#64;l&#105;&#110;&#x75;&#120;d&#x65;&#x65;&#112;&#105;&#110;&#x2E;&#99;&#x6F;&#x6D;">&#x77;&#x61;&#x6E;&#x67;&#121;&#x6F;&#110;&#x67;&#64;l&#105;&#110;&#x75;&#120;d&#x65;&#x65;&#112;&#105;&#110;&#x2E;&#99;&#x6F;&#x6D;</a> <br />
 # <br />
 # This program is free software: you can redistribute it and/or modify <br />
 # it under the terms of the GNU General Public License as published by <br />
@@ -1624,6 +1624,32 @@ PixbufCache 只在大小变化的时候才进行缩放， <br />
             self.layout.reorder_child(target_widget, reoreder_index)    
 
 </code></pre>
+
+<blockquote>
+  <ul>
+<li><strong>利用 RcStyle 来覆盖 GTK+ 默认的设置风格</strong>  </li>
+</ul>
+
+<blockquote>
+  <p>GTK+ 控件有很多属性是只读的, 如果要修改这些属性, <br />
+可以通过自定义 RcStyle 来覆盖的GTK+属性设置, <br />
+比如 GtkPaned 控件的 "handle-size" 属性是只读的, <br />
+我们可以通过添加下面的代码来自定义 "handle-size" 属性:  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+            gtk.rc_parse_string("style 'my_style' {\n    GtkPaned::handle-size = 11\n }\nwidget '*' style 'my_style'")
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <p>注意上面的代码需要在 <code>gtk.gdk.threads_init()</code> <br />
+之前, 任何其他代码之前加入, 否则 RcStyle 不会生效.  </p>
+</blockquote>
+
+<p></blockquote></p>
 
 <h3 id="understand-multithread-programming-in-gtk">深刻理解GTK+多线程</h3>
 

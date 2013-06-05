@@ -1250,6 +1250,20 @@ PixbufCache 只在大小变化的时候才进行缩放，
 
 </code></pre>
 
+> * **利用 RcStyle 来覆盖 GTK+ 默认的设置风格**  
+
+>> GTK+ 控件有很多属性是只读的, 如果要修改这些属性,  
+可以通过自定义 RcStyle 来覆盖的GTK+属性设置,  
+比如 GtkPaned 控件的 "handle-size" 属性是只读的,  
+我们可以通过添加下面的代码来自定义 "handle-size" 属性:  
+
+<pre lang="python"><code>
+			gtk.rc_parse_string("style 'my_style' {\n    GtkPaned::handle-size = 11\n }\nwidget '*' style 'my_style'")
+</code></pre>
+
+>> 注意上面的代码需要在 `gtk.gdk.threads_init()`  
+之前, 任何其他代码之前加入, 否则 RcStyle 不会生效.  
+
 <h3 id="understand-multithread-programming-in-gtk">深刻理解GTK+多线程</h3>
 > 首先, GTK+是不允许两个线程对X Window进行同时绘制,  
 如果你在两个线程同时执行GTK+代码, 一般会得到 "BadWindow" 错误.  
