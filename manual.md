@@ -1264,6 +1264,34 @@ PixbufCache 只在大小变化的时候才进行缩放，
 >> 注意上面的代码需要在 `gtk.gdk.threads_init()`  
 之前, 任何其他代码之前加入, 否则 RcStyle 不会生效.  
 
+<h3 id="python-experience-and-trick">Python编程经验与技巧</h3>
+> * **Python 打印异常的堆栈信息**  
+
+>> 一般我们用下面的代码来捕获异常:  
+
+<pre lang="python"><code>
+            try:  
+                ...
+            except Exception, e:  
+        	    print "Print exception name: %s" % e
+</code></pre>
+
+>> 但是上面的代码只能打印出异常的名字,  
+一般我们通过异常名字猜测出问题所在,  
+但是如果要精确定位具体哪一行代码就需要打印出完成的堆栈信息,  
+在Python中可以用模块 `traceback` 中的 `print_exec` 函数来打印堆栈信息:  
+
+<pre lang="python"><code>
+            import sys
+            import traceback
+            
+            try:  
+                ...
+            except Exception, e:  
+                print "Print exception name: %s" % e
+                traceback.print_exc(file=sys.stdout)
+</code></pre>
+
 <h3 id="understand-multithread-programming-in-gtk">深刻理解GTK+多线程</h3>
 > 首先, GTK+是不允许两个线程对X Window进行同时绘制,  
 如果你在两个线程同时执行GTK+代码, 一般会得到 "BadWindow" 错误.  

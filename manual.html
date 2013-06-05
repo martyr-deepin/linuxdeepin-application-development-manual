@@ -690,8 +690,8 @@ PyGTK+ 只是对 GTK+ C 库进行了一层封装来满足快速开发的需求�
 
 <p># Copyright (C) 2011 ~ 2013 Wang Yong <br />
 # <br />
-# Author:     Wang Yong <a href="&#x6D;&#97;&#x69;&#x6C;&#x74;&#111;:&#119;&#97;&#x6E;&#x67;&#121;&#111;&#110;&#103;&#64;&#x6C;&#x69;&#110;&#x75;&#x78;&#x64;&#101;&#x65;&#112;&#x69;n&#x2E;c&#x6F;&#x6D;">&#119;&#97;&#x6E;&#x67;&#121;&#111;&#110;&#103;&#64;&#x6C;&#x69;&#110;&#x75;&#x78;&#x64;&#101;&#x65;&#112;&#x69;n&#x2E;c&#x6F;&#x6D;</a> <br />
-# Maintainer: Wang Yong <a href="&#109;&#x61;&#x69;&#x6C;&#116;o:&#x77;&#x61;&#x6E;&#x67;&#121;&#x6F;&#110;&#x67;&#64;l&#105;&#110;&#x75;&#120;d&#x65;&#x65;&#112;&#105;&#110;&#x2E;&#99;&#x6F;&#x6D;">&#x77;&#x61;&#x6E;&#x67;&#121;&#x6F;&#110;&#x67;&#64;l&#105;&#110;&#x75;&#120;d&#x65;&#x65;&#112;&#105;&#110;&#x2E;&#99;&#x6F;&#x6D;</a> <br />
+# Author:     Wang Yong <a href="m&#97;&#105;l&#x74;&#x6F;:&#119;&#97;&#110;&#x67;&#121;&#111;&#110;&#x67;&#64;l&#x69;&#110;&#x75;&#120;&#100;&#x65;&#101;&#x70;&#x69;&#110;&#x2E;&#99;&#111;&#109;">&#119;&#97;&#110;&#x67;&#121;&#111;&#110;&#x67;&#64;l&#x69;&#110;&#x75;&#120;&#100;&#x65;&#101;&#x70;&#x69;&#110;&#x2E;&#99;&#111;&#109;</a> <br />
+# Maintainer: Wang Yong <a href="&#109;&#97;&#x69;l&#x74;&#x6F;:&#119;&#x61;&#110;&#103;&#121;&#111;&#x6E;&#103;&#64;&#x6C;&#x69;&#x6E;&#x75;&#x78;&#100;ee&#x70;&#x69;&#110;&#46;&#99;o&#109;">&#119;&#x61;&#110;&#103;&#121;&#111;&#x6E;&#103;&#64;&#x6C;&#x69;&#x6E;&#x75;&#x78;&#100;ee&#x70;&#x69;&#110;&#46;&#99;o&#109;</a> <br />
 # <br />
 # This program is free software: you can redistribute it and/or modify <br />
 # it under the terms of the GNU General Public License as published by <br />
@@ -1650,6 +1650,47 @@ PixbufCache 只在大小变化的时候才进行缩放， <br />
 </blockquote>
 
 <p></blockquote></p>
+
+<h3 id="python-experience-and-trick">Python编程经验与技巧</h3>
+
+<blockquote>
+  <ul>
+<li><strong>Python 打印异常的堆栈信息</strong>  </li>
+</ul>
+
+<blockquote>
+  <p>一般我们用下面的代码来捕获异常:  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+            try:  
+                ...
+            except Exception, e:  
+                print "Print exception name: %s" % e
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <p>但是上面的代码只能打印出异常的名字, <br />
+一般我们通过异常名字猜测出问题所在, <br />
+但是如果要精确定位具体哪一行代码就需要打印出完成的堆栈信息, <br />
+在Python中可以用模块 <code>traceback</code> 中的 <code>print_exec</code> 函数来打印堆栈信息:  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+            import sys
+            import traceback
+
+            try:  
+                ...
+            except Exception, e:  
+                print "Print exception name: %s" % e
+                traceback.print_exc(file=sys.stdout)
+</code></pre>
 
 <h3 id="understand-multithread-programming-in-gtk">深刻理解GTK+多线程</h3>
 
