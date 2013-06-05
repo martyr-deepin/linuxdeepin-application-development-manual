@@ -32,11 +32,8 @@ Linux Deepin 应用程序开发手册
     *    [Deepin-UI 高级控件使用](#usage-of-advanced-widget)
 	
 *    [应用程序开发经验和技巧](#application-development-experience-and-trick)
-    *    [GTK+编程陷阱](#gtk-trick)
-	*    [GTK+编程技巧](#gtk-technology)
-        *    [GTK+Pixbuf的使用方法](#the-usage-of-gtk-pixbuf)
-	*    [Python编程陷阱](#python-trick)
-	*    [Python编程技巧](#python-technology)
+    *    [GTK+编程经验与技巧](#gtk-experience-and-trick)
+	*    [Python编程经验与技巧](#python-experience-and-trick)
 	*    [深刻理解GTK+多线程](#understand-multithread-programming-in-gtk)
 	*    [构建多进程框架的应用](#build-application-with-multi-process-model)
 	*    [多国语言处理](#how-to-handle-i18n)
@@ -1114,3 +1111,104 @@ Deepin-UI 还有皮肤的高级设置， 这个留到后面讲， 这里只需�
 </code></pre>
 
 > 这段代码用于启动应用程序。
+
+<h2 id="application-development-experience-and-trick">应用程序开发经验和技巧</h2>
+
+<h3 id="gtk-experience-and-trick">GTK+编程经验与技巧</h3>
+> * **Gtk+ Pixbuf 的使用方法**  
+
+>> GTK+ Pixbuf 是一个 GObject 对象用以读取、保存、渲染图片信息， 一般的用法是：  
+<pre lang="python"><code>
+            pixbuf = gtk.gdk.pixbuf_new_from_file("/directory/image.png")   # 根据文件路径创建 pixbuf
+            cr.set_source_pixbuf(pixbuf, x, y)                              # 设置pixbuf在 Cairo 中的坐标
+            cr.paint_with_alpha(alpha)                                      # 把 pixbuf 的数据渲染到 cairo 上
+</code></pre>
+
+>> 有时我们需要对图片进行缩放和转换， pixbuf 有很多方便的函数， 比如 `scale_simple` 就可以对图片进行缩放操作生成一个新的 pixbuf， 比如下面代码：
+
+<pre lang="python"><code>
+			new_pixbuf = pixbuf.scale_simple(100, 100, gtk.gdk.INTERP_BILINEAR)   # 根据当前 pixbuf 生成一个新的大小为 100x100 的 new pixbuf
+</code></pre>
+
+>> 这就是 Pixbuf 最常用的两种用法， 但是 Pixbuf 充满了陷阱，  
+Pixbuf 应该是 GTK+ 中对内存占用和性能消耗影响比较大的对象。  
+下面通过两个最常用的陷阱来讲解一下：  
+
+>> 第一个问题：在 `expose-event` 回调函数中创建 pixubf
+
+<pre lang="python"><code>
+            def __init__(self):
+                ...
+                widget.connect("expose-event", expose_widget)
+        
+            def expose_widget(self, widget, event):
+                pixbuf = gtk.gdk.pixbuf_new_from_file("image.png")
+                ...
+                cr.set_source_pixbuf(pixbuf, 0, 0)
+                cr.paint()
+</code></pre>
+
+>> 大家都知道当控件需要重绘的时候会调用 `expose-event` 信号的回调函数，  
+但是在每次重绘的时候都调用 `gtk.gdk.pixbuf_new_from_file` 是非常昂贵的操作，  
+不但会占用内存， 而且会造成性能下降， 特别是 pixbuf 大小非常大的时候。  
+要解决这个问题的关键在于创建控件的时候就必须事先创建好 pixbuf,  
+重绘的时候在调用变量直接用， 看下面的代码：  
+
+<pre lang="python"><code>
+            def __init__(self):
+                ...
+                widget.connect("expose-event", expose_widget)
+                self.pixbuf = gtk.gdk.pixbuf_new_from_file("image.png")  # 在初始化的时候创建
+        
+            def expose_widget(self, widget, event):
+                ...
+                cr.set_source_pixbuf(self.pixbuf, 0, 0)
+                cr.paint()
+</code></pre>
+
+>> Deepin-UI 中只用使用 DynamicPixbuf 就可以了：  
+
+<pre lang="python"><code>
+            def __init__(self):
+                self.dynamic_pixbuf = app_theme.get_pixbuf("sub_dir/image.png")
+    	    
+            def expose_widget(self, widget, event):
+                pixbuf = self.dynamic_pixbuf.get_pixbuf()
+</code></pre>
+
+>> 第二个问题： 在重绘的时候调用 `scale_simple`   
+在大图片时， 在重绘中调用 `scale_simple` 就是性能杀手，  
+下面是一段性能非常糟糕的代码：  
+
+<pre lang="python"><code>
+            def __init__(self):
+                ...
+                widget.connect("expose-event", expose_widget)
+                self.pixbuf = gtk.gdk.pixbuf_new_from_file("image.png")
+        
+            def expose_widget(self, widget, event):
+                ...
+                new_pixbuf = self.pixbuf.scale_simple(1000, 1000, gtk.gdk.INTERP_BILINEAR)   # 非常非常糟糕的性能
+                cr.set_source_pixbuf(self.pixbuf, 0, 0)
+                cr.paint()
+</code></pre>
+
+>> 因为每次重绘都会调用scale_simple会造成大量性能消耗，  
+正确的方法用 deepin-ui 的 PixbufCache，  
+PixbufCache 只在大小变化的时候才进行缩放，  
+下面是使用 PixbufCache 的代码：  
+
+<pre lang="python"><code>
+            def __init__(self):
+                self.dynamic_pixbuf = app_theme.get_pixbuf("sub_dir/image.png")
+                self.pixbuf_cache = PixbufCache()
+             
+            def expose_widget(self, widget, event):
+			    ...
+                self.pixbuf_cache_scale(self.dynamic_pixbuf.get_pixbuf(), scale_width, scale_height)
+                pixbuf = self.pixbuf_cache.get_cache()
+                cr.set_source_pixbuf(pixbuf, 0, 0)
+                cr.paint()
+</code></pre>
+
+

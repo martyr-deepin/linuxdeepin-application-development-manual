@@ -55,13 +55,8 @@
 <li><p><a href="#application-development-experience-and-trick">应用程序开发经验和技巧</a></p>
 
 <ul>
-<li><a href="#gtk-trick">GTK+编程陷阱</a></li>
-<li><a href="#gtk-technology">GTK+编程技巧</a>
-<ul>
-<li><a href="#the-usage-of-gtk-pixbuf">GTK+Pixbuf的使用方法</a></li>
-</ul></li>
-<li><a href="#python-trick">Python编程陷阱</a></li>
-<li><a href="#python-technology">Python编程技巧</a></li>
+<li><a href="#gtk-experience-and-trick">GTK+编程经验与技巧</a></li>
+<li><a href="#python-experience-and-trick">Python编程经验与技巧</a></li>
 <li><a href="#understand-multithread-programming-in-gtk">深刻理解GTK+多线程</a></li>
 <li><a href="#build-application-with-multi-process-model">构建多进程框架的应用</a></li>
 <li><a href="#how-to-handle-i18n">多国语言处理</a></li>
@@ -695,8 +690,8 @@ PyGTK+ 只是对 GTK+ C 库进行了一层封装来满足快速开发的需求�
 
 <p># Copyright (C) 2011 ~ 2013 Wang Yong <br />
 # <br />
-# Author:     Wang Yong <a href="&#109;&#x61;&#x69;&#108;&#x74;o:&#x77;&#x61;&#110;&#x67;&#x79;&#111;&#x6E;&#103;&#64;&#x6C;&#x69;&#110;&#117;&#x78;&#x64;&#x65;&#101;&#x70;&#105;&#x6E;&#x2E;&#99;&#x6F;&#x6D;">&#x77;&#x61;&#110;&#x67;&#x79;&#111;&#x6E;&#103;&#64;&#x6C;&#x69;&#110;&#117;&#x78;&#x64;&#x65;&#101;&#x70;&#105;&#x6E;&#x2E;&#99;&#x6F;&#x6D;</a> <br />
-# Maintainer: Wang Yong <a href="&#x6D;&#x61;&#105;&#108;&#x74;&#111;:&#x77;&#x61;n&#x67;y&#111;&#x6E;&#x67;&#64;&#x6C;&#x69;&#x6E;&#x75;&#120;&#100;&#x65;&#x65;pi&#x6E;&#46;&#x63;&#x6F;&#x6D;">&#x77;&#x61;n&#x67;y&#111;&#x6E;&#x67;&#64;&#x6C;&#x69;&#x6E;&#x75;&#120;&#100;&#x65;&#x65;pi&#x6E;&#46;&#x63;&#x6F;&#x6D;</a> <br />
+# Author:     Wang Yong <a href="&#109;&#97;&#105;&#108;&#x74;&#x6F;:&#119;&#x61;&#x6E;&#x67;&#121;&#111;n&#103;&#64;&#x6C;&#x69;nu&#x78;&#x64;&#x65;&#101;&#112;&#x69;&#110;&#x2E;&#x63;&#x6F;&#x6D;">&#119;&#x61;&#x6E;&#x67;&#121;&#111;n&#103;&#64;&#x6C;&#x69;nu&#x78;&#x64;&#x65;&#101;&#112;&#x69;&#110;&#x2E;&#x63;&#x6F;&#x6D;</a> <br />
+# Maintainer: Wang Yong <a href="&#x6D;&#x61;&#x69;&#x6C;&#x74;&#111;:w&#97;&#110;&#103;&#x79;&#x6F;&#x6E;&#x67;&#64;&#108;&#105;&#110;&#117;&#120;&#x64;e&#101;&#x70;&#x69;&#110;&#46;&#99;&#x6F;&#109;">w&#97;&#110;&#103;&#x79;&#x6F;&#x6E;&#x67;&#64;&#108;&#105;&#110;&#117;&#120;&#x64;e&#101;&#x70;&#x69;&#110;&#46;&#99;&#x6F;&#109;</a> <br />
 # <br />
 # This program is free software: you can redistribute it and/or modify <br />
 # it under the terms of the GNU General Public License as published by <br />
@@ -1440,6 +1435,144 @@ Deepin-UI 还有皮肤的高级设置， 这个留到后面讲， 这里只需�
 <blockquote>
   <p>这段代码用于启动应用程序。</p>
 </blockquote>
+
+<h2 id="application-development-experience-and-trick">应用程序开发经验和技巧</h2>
+
+<h3 id="gtk-experience-and-trick">GTK+编程经验与技巧</h3>
+
+<blockquote>
+  <ul>
+<li><strong>Gtk+ Pixbuf 的使用方法</strong>  </li>
+</ul>
+
+<blockquote>
+  <p>GTK+ Pixbuf 是一个 GObject 对象用以读取、保存、渲染图片信息， 一般的用法是：  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+            pixbuf = gtk.gdk.pixbuf_new_from_file("/directory/image.png")   # 根据文件路径创建 pixbuf
+            cr.set_source_pixbuf(pixbuf, x, y)                              # 设置pixbuf在 Cairo 中的坐标
+            cr.paint_with_alpha(alpha)                                      # 把 pixbuf 的数据渲染到 cairo 上
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <p>有时我们需要对图片进行缩放和转换， pixbuf 有很多方便的函数， 比如 <code>scale_simple</code> 就可以对图片进行缩放操作生成一个新的 pixbuf， 比如下面代码：</p>
+</blockquote>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+            new_pixbuf = pixbuf.scale_simple(100, 100, gtk.gdk.INTERP_BILINEAR)   # 根据当前 pixbuf 生成一个新的大小为 100x100 的 new pixbuf
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <p>这就是 Pixbuf 最常用的两种用法， 但是 Pixbuf 充满了陷阱， <br />
+Pixbuf 应该是 GTK+ 中对内存占用和性能消耗影响比较大的对象。 <br />
+下面通过两个最常用的陷阱来讲解一下：  </p>
+
+<p>第一个问题：在 <code>expose-event</code> 回调函数中创建 pixubf</p>
+</blockquote>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+            def __init__(self):
+                ...
+                widget.connect("expose-event", expose_widget)
+
+            def expose_widget(self, widget, event):
+                pixbuf = gtk.gdk.pixbuf_new_from_file("image.png")
+                ...
+                cr.set_source_pixbuf(pixbuf, 0, 0)
+                cr.paint()
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <p>大家都知道当控件需要重绘的时候会调用 <code>expose-event</code> 信号的回调函数， <br />
+但是在每次重绘的时候都调用 <code>gtk.gdk.pixbuf_new_from_file</code> 是非常昂贵的操作， <br />
+不但会占用内存， 而且会造成性能下降， 特别是 pixbuf 大小非常大的时候。 <br />
+要解决这个问题的关键在于创建控件的时候就必须事先创建好 pixbuf, <br />
+重绘的时候在调用变量直接用， 看下面的代码：  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+            def __init__(self):
+                ...
+                widget.connect("expose-event", expose_widget)
+                self.pixbuf = gtk.gdk.pixbuf_new_from_file("image.png")  # 在初始化的时候创建
+
+            def expose_widget(self, widget, event):
+                ...
+                cr.set_source_pixbuf(self.pixbuf, 0, 0)
+                cr.paint()
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <p>Deepin-UI 中只用使用 DynamicPixbuf 就可以了：  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+            def __init__(self):
+                self.dynamic_pixbuf = app_theme.get_pixbuf("sub_dir/image.png")
+
+            def expose_widget(self, widget, event):
+                pixbuf = self.dynamic_pixbuf.get_pixbuf()
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <p>第二个问题： 在重绘的时候调用 <code>scale_simple</code> <br />
+在大图片时， 在重绘中调用 <code>scale_simple</code> 就是性能杀手， <br />
+下面是一段性能非常糟糕的代码：  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+            def __init__(self):
+                ...
+                widget.connect("expose-event", expose_widget)
+                self.pixbuf = gtk.gdk.pixbuf_new_from_file("image.png")
+
+            def expose_widget(self, widget, event):
+                ...
+                new_pixbuf = self.pixbuf.scale_simple(1000, 1000, gtk.gdk.INTERP_BILINEAR)   # 非常非常糟糕的性能
+                cr.set_source_pixbuf(self.pixbuf, 0, 0)
+                cr.paint()
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <p>因为每次重绘都会调用scale_simple会造成大量性能消耗， <br />
+正确的方法用 deepin-ui 的 PixbufCache， <br />
+PixbufCache 只在大小变化的时候才进行缩放， <br />
+下面是使用 PixbufCache 的代码：  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+            def __init__(self):
+                self.dynamic_pixbuf = app_theme.get_pixbuf("sub_dir/image.png")
+                self.pixbuf_cache = PixbufCache()
+
+            def expose_widget(self, widget, event):
+                ...
+                self.pixbuf_cache_scale(self.dynamic_pixbuf.get_pixbuf(), scale_width, scale_height)
+                pixbuf = self.pixbuf_cache.get_cache()
+                cr.set_source_pixbuf(pixbuf, 0, 0)
+                cr.paint()
+</code></pre>
 
 </body>
 </html>
