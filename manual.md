@@ -1211,4 +1211,41 @@ PixbufCache 只在大小变化的时候才进行缩放，
                 cr.paint()
 </code></pre>
 
+> * **正确使用 gtk.box.reorder_chlid 函数**  
 
+>> 在做 slider.py 控件的时候， 有一个页面切换需求，  
+比如在很多（10+）页面中始终保持向右或向左切换一页，  
+这个时候就先需要用 reorder_child 函数先对控件位置进行移动然后才能进行动画切换。  
+
+>> 首先看一下 reorder_child 函数解释：  
+
+<pre lang="python"><code>
+            def reorder_child(
+                    child,      # the child widget to move
+                    position    # the new position for child in the children list of the box starting from 0. If negative, indicates the end of the list.
+                    )
+</code></pre>
+
+>> 按一般的理解， 如果我们要把当前控件像左移动，  
+只需要 -1, 如果要像右移动， 只需要 +1, 这里面有一个很深的技巧，  
+因为 reoreder_child 关心的 index 是移动以后的位置，  
+而不是移动之前的位置， 所以当控件移动的时候会影响到移动后的位置， 就需要想下面做一下判断了：  
+
+<pre lang="python"><code>
+            active_index = self.layout.get_children().index(self.active_widget)
+            target_index = self.layout.get_children().index(target_widget)
+
+            if active_index > target_index:
+                if direction == "left":
+                    reoreder_index = active_index - 1
+                else:
+                    reoreder_index = active_index
+            else:
+                if direction == "left":
+                    reoreder_index = active_index
+                else:
+                    reoreder_index = active_index + 1
+            
+            self.layout.reorder_child(target_widget, reoreder_index)    
+
+</code></pre>
