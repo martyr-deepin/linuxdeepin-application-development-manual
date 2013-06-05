@@ -1115,6 +1115,240 @@ Deepin-UI 还有皮肤的高级设置， 这个留到后面讲， 这里只需�
 <h2 id="application-development-experience-and-trick">应用程序开发经验和技巧</h2>
 
 <h3 id="gtk-experience-and-trick">GTK+编程经验与技巧</h3>
+> * **为什么整了半天， 多线程都不能工作？**  
+
+>> 如果要开发GTK+多线程程序，　  
+必须在程序的开头添加以下代码进行初始化:  
+
+<pre lang="python"><code>
+			gtk.gdk.threads_init()
+</code></pre>
+
+> * **怎样让非GTK+主线程执行图形绘制代码？**  
+
+>> 因为Ｘ的限制，　GTK+是不允许两个线程同时进行图形绘制的代码，　  
+而且绘制图形界面的代码一定要在主线程中执行。  
+
+>> 开发多线程GTK+程序的关键是要深刻理解动作的分割性，　  
+我们举一个简单的例子，　  
+比如我们在开发一个简单的 mp3 搜索程序，　  
+这个搜索程序分两步：  
+
+>>> 1. 从网络上搜索　mp3
+>>> 2. 用GTK+的方法呈现搜索结果。
+
+>> 这个例子中第一步网络搜索是非常耗时的，　  
+为了不让整个程序卡住，　就必须把网络搜索的相关代码在开启的新线程中执行，　  
+同时网络搜索代码完成之后必须要让绘制结果的代码在主线程中运行，　  
+为了避免多个线程同时访问Ｘ的问题，　  
+我们可以通过　`gtk.gdk.threads_enter()` 和　`gtk.gdk.threads_leave()`  
+函数来强制绘制代码在主线程中执行。  
+下面是一个简单的多线程代码原型：  
+<pre lang="python"><code>
+            import gtk
+            import threading as td
+            
+            class SearchMp3(td.Thread):
+                def __init__(self):
+                    td.Thread.__init__(self)
+                    self.setDaemon(True)
+                
+                def run(self):
+                    # 搜索 mp3
+                    search_mp3()  # 非常耗时的网络搜索代码
+                    
+                    # 强制绘制代码在主线程中执行
+                    gtk.gdk.threads_enter()
+                    render_search_result()　　# 瞬间完成的图形绘制代码
+                    gtk.gdk.threads_leave()
+</code></pre>
+
+>> 注意， `threads_enter` 必须和 `threads_leave` 成对使用，  
+为了避免人为的失误， 建议用以下方式编写多线程代码：  
+
+<pre lang="python"><code>
+            import gtk
+            import threading as td
+            
+            def post_gui(func):
+                '''Post GUI code in main thread.'''
+                def wrap(*a, **kw):
+                    gtk.gdk.threads_enter()
+                    ret = func(*a, **kw)
+                    gtk.gdk.threads_leave()
+                    return ret
+                return wrap
+            
+            class SearchMp3(td.Thread):
+                def __init__(self):
+                    td.Thread.__init__(self)
+                    self.setDaemon(True)
+             
+                @post_gui
+                def render_mp3(self):
+                    print "Write render logic here!"
+                 
+                def run(self):
+                    # 搜索 mp3
+                    search_mp3()  # 非常耗时的网络搜索代码
+                    
+                    self.render_mp3()
+</code></pre>
+
+> * **为什么自绘代码没起作用?**  
+
+>> 一般我们都通过添加信号 `expose-event` 回调来自绘控件，  
+如果所有绘制代码都正确， 请检查一下自绘函数是否返回 True,  
+比如下面代码：  
+
+<pre lang="python"><code>
+            def expose_event_foo(self, widget, event):
+                cr = widget.window.cairo_create()
+            
+                ...
+                draw something
+                ...    
+                   
+                # 返回True表示绘制事件到此结束， 默认的绘制方法不在绘制。
+                # 返回False表示默认的绘制代码会在这段函数执行后再次执行， 如果默认绘制方法的区域大于这段绘制函数，
+                # 就会感觉到这段函数没有起作用， 其实是已经绘制了， 只是被默认绘制方法覆盖而已。
+                return True
+</code></pre>
+
+> * **为什么容器绘制出来了， 但是容器的子控件却没有绘制出来？**  
+
+>> 这种情况一般都是在自绘方法返回 True 的情况下却没有像子控件传递绘制信号，  
+导致子控件的重绘函数没有机会执行。  
+正确的绘制容器的方式是:  
+
+<pre lang="python"><code>
+            def propagate_expose(widget, event):
+                '''Propagate expose to children.'''
+                if "get_child" in dir(widget) and widget.get_child() != None:
+                    widget.propagate_expose(widget.get_child(), event)
+                    
+            def expose_event_container(self, widget, event):
+                cr = widget.window.cairo_create()
+            
+                ...
+                draw something
+                ...    
+                   
+                # 绘制子控件.
+                propagate_expose(widget, event)
+            
+                return True
+</code></pre>
+
+> * **怎么绘制1像素的线条？**  
+
+>> 因为Cairo默认是开启了反锯齿，  
+默认用 stroke 只能画出2像素的线，  
+画1像素的线有以下3种解决方案：  
+
+>> 1 临时关闭反锯齿:  
+
+<pre lang="python"><code>
+                from contextlib import contextmanager 
+                
+                @contextmanager
+                def cairo_disable_antialias(cr):
+                    '''Disable cairo antialias temporary.'''
+                    # Save antialias.
+                    antialias = cr.get_antialias()
+                    
+                    cr.set_antialias(cairo.ANTIALIAS_NONE)
+                    try:  
+                        yield  
+                    except Exception, e:  
+                        print 'with an cairo error %s' % e  
+                    else:  
+                        # Restore antialias.
+                        cr.set_antialias(antialias)
+                
+                def draw_one_pixel_line(cr, x, y, w):
+                    with cairo_disable_antialias(cr):
+                        cr.set_source_rgb(1, 0, 0)
+                        cr.set_line_width(1)
+                        cr.move_to(x, y)
+                		cr.line_to(x + w, y)
+</code></pre>
+
+>> 2 在目标坐标上添加 0.5 像素的偏移量:  
+
+<pre lang="python"><code>
+				def draw_one_pixel_line(cr, x, y, w):
+                    cr.set_source_rgb(1, 0, 0)
+                    cr.set_line_width(1)
+                    cr.move_to(x, y + 0.5)	
+                    cr.line_to(x + w, y + 0.5)	
+</code></pre>
+
+>> 3 用 cr.rectange() 和 cr.fill() 替代 cr.stroke():  
+
+<pre lang="python"><code>
+                def draw_one_pixel_line(cr, x, y, w):
+                    cr.set_source_rgb(1, 0, 0)
+                    cr.rectange(x, y, w, 1)
+                	cr.fill()
+</code></pre>
+
+> * **怎样绘制不规则GTK+窗口?**  
+
+>> 绘制不规则GTK+窗口分以下几个步骤:
+
+<pre lang="python"><code>
+            def shape_window(widget, rect):
+                # 创建像素位图
+                x, y, w, h = rect.x, rect.y, rect.width, rect.height
+                bitmap = gtk.gdk.Pixmap(None, w, h, 1)
+                cr = bitmap.cairo_create()
+                
+                # 清空画布。
+                cr.set_source_rgb(0.0, 0.0, 0.0)
+                cr.set_operator(cairo.OPERATOR_CLEAR)
+                cr.paint()
+                    
+                # 绘制窗口形状, 这里是一个圆， 你可以画任何形状。
+                cr.set_source_rgb(1.0, 1.0, 1.0)
+                cr.set_operator(cairo.OPERATOR_OVER)
+                cr.arc(x + w / 2, y + h / 2, w / 2, 0, 2 * pi)
+                cr.fill()
+            
+                # 窗口根据绘制图形裁剪窗口形状。
+                widget.shape_combine_mask(bitmap, 0, 0)
+            
+            window.connect("size-allocate", shape_window)
+</code></pre>
+
+> * **怎么制作真透明的应用程序窗口？**   
+
+<pre lang="python"><code>
+            window = gtk.Window()
+            
+            # 设置窗口colormap为屏幕的RGBA colormap, 这样就可以实时绘制窗口下面的物体. 
+            window.set_colormap(gtk.gdk.Screen().get_rgba_colormap())
+            
+            window.connect_after("expose-event", expose_window_background)
+            def expose_window_background(widget, event):
+                    # Init.
+                    cr = widget.window.cairo_create()
+                    rect = widget.allocation
+                    
+                    # 清空窗口背景， 使窗口可以透到下面的 Screen colormap.
+                    cr.set_source_rgba(0.0, 0.0, 0.0, 0.0)
+                    cr.set_operator(cairo.OPERATOR_SOURCE)
+                    cr.paint()
+            
+                    # 随意在窗口里面绘制一片不透明的区域。
+            
+                    # Propagate expose.
+                    propagate_expose(widget, event)
+                    
+                    return True
+</code></pre>
+
+
 > * **Gtk+ Pixbuf 的使用方法**  
 
 >> GTK+ Pixbuf 是一个 GObject 对象用以读取、保存、渲染图片信息， 一般的用法是：  
