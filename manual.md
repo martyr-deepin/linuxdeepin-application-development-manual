@@ -1559,6 +1559,164 @@ PixbufCache 只在大小变化的时候才进行缩放，
 
 > 上面的例子主要为讲解多线程原理而简化, 实际应用中需要结合线程池来同时启用多个抓取线程.  
 
+<h3 id="build-application-with-multi-process-model">构建多进程框架的应用</h3>
+> * **多进程画面嵌入技术GTK+实现 (GtkSocket/GtkPlug)**  
+
+>> 大家都应该用过谷歌浏览器, 谷歌浏览器最大的优势在于它的多进程框架,  
+多进程带来的好处就是每个网页都独立于一个操作系统进程,  
+由于受到操作系统进程保护, 即使某个网页因为不可预知的错误而崩溃也不会影响整个浏览器的稳定.  
+
+>> 我们谷歌浏览器是怎么实现的呢? 下面我们用GTK+的 GtkSocket 和 GtkPlug 控件来简单的讲解一下:  
+
+<div style="float: top"><img src="image/socket-and-plug.png" /></div>
+
+>> 可以从上面这张图看到, 谷歌浏览器的主进程只是一个框架,  
+包括标签栏和地址栏, 主进程并不提供网页渲染显示的功能,  
+所有的网页渲染代码都运行在每个网页对应的子进程中.  
+
+>> 我们简单的介绍一下 XEmbedded 协议, 通过XEmbedded协议,  
+可以让一个进程中的X Window画面转绘到另外一个进程,  
+从而实现代码分离而画面集成的效果,  
+在GTK+中对XEmbedded协议的实现主要有GtkSocket和GtkPlug两个控件来完成,  
+GtkSocket控件是一个容器, GtkSocket一般是作为主进程中顶级窗口的子控件,  
+用于显示另外一个进程中通过XEmbedded协议转绘过来的画面,  
+GtkPlug是一个顶级窗口, 一般作为子进程中的顶级窗口,  
+所以在GtkPlug里面的控件都可以通过Xembedded协议传输到对应的GtkSocket所在的进程,  
+GtkSocket做了很多工作, 即使控件在两个进程中, 所有的事件都可以无缝的传到GtkPlug进程中.  
+
+>> 下面简单的 socket.py 和 plug.py 的例子:  
+socket.py  
+
+<pre lang="python"><code>
+            #! /usr/bin/env python
+            # -*- coding: utf-8 -*-
+            
+            from dbus.mainloop.glib import DBusGMainLoop
+            import dbus
+            import dbus.service
+            import gtk
+            import os
+            import subprocess
+            
+            class DBusService(dbus.service.Object):
+                def __init__(self, 
+                             bus_name, 
+                             app_dbus_name, 
+                             app_object_name, 
+                             socket
+                             ):
+                    # Init dbus object.
+                    dbus.service.Object.__init__(self, bus_name, app_object_name)
+            
+                    # Define DBus method.
+                    def receive_plug_id(self, *message):
+                        socket.add_id(message[0])
+                                
+                    # Below code export dbus method dyanmically.
+                    # Don't use @dbus.service.method !
+                    setattr(DBusService, 
+                            'receive_plug_id', 
+                            dbus.service.method(app_dbus_name)(receive_plug_id))
+                    
+            def start_plug_process():
+                subprocess.Popen(
+                    "python %s" % (
+                        os.path.join(os.path.dirname(os.path.realpath(__file__)), 
+                                     "plug.py")),
+                    shell=True)
+                    
+            if __name__ == "__main__":
+                # WARING: only use once in one process
+                DBusGMainLoop(set_as_default=True) 
+                
+                # Build DBus name.
+                app_dbus_name = "com.deepin.xembedded_example"
+                app_object_name = "/com/deepin/xembedded_example"
+                app_bus_name = dbus.service.BusName(app_dbus_name, bus=dbus.SessionBus())
+                
+                # Init threads.
+                gtk.gdk.threads_init()
+                
+                # Init window.
+                window = gtk.Window()
+                window.set_position(gtk.WIN_POS_CENTER_ALWAYS)
+                window.set_default_size(600, 400)
+                
+                # Init widgets.
+                layout_box = gtk.VBox()
+                socket_label = gtk.Label("Below is GtkSocket widget")
+                socket = gtk.Socket()
+            
+                # Connect widgets.
+                layout_box.pack_start(socket_label, False, False)
+                layout_box.pack_start(socket, True, True)
+                window.add(layout_box)
+                
+                # Handle signals.
+                window.connect("destroy", lambda w: gtk.main_quit())
+                window.connect("realize", lambda w: start_plug_process())
+                
+                # Show.
+                window.show_all()
+                
+                # Start dbus service.
+                DBusService(app_bus_name, app_dbus_name, app_object_name, socket)
+                
+                gtk.main()
+</code></pre>
+
+>> plug.py  
+
+<pre lang="python"><code>
+            #! /usr/bin/env python
+            # -*- coding: utf-8 -*-
+            
+            from dbus.mainloop.glib import DBusGMainLoop
+            import dbus
+            import dbus.service
+            import gtk
+            
+            def send_plug_id(plug):
+                if bus.request_name(app_dbus_name) != dbus.bus.REQUEST_NAME_REPLY_PRIMARY_OWNER:
+                    bus_object = bus.get_object(app_dbus_name, app_object_name)
+                    method = bus_object.get_dbus_method("receive_plug_id")
+                    method(plug.get_id())
+                        
+            if __name__ == "__main__":
+                # WARING: only use once in one process
+                DBusGMainLoop(set_as_default=True) 
+                
+                # Init dbus.
+                bus = dbus.SessionBus()
+                app_dbus_name = "com.deepin.xembedded_example"
+                app_object_name = "/com/deepin/xembedded_example"
+                
+                # Init threads.
+                gtk.gdk.threads_init()
+            
+                # Init plug window.
+                plug = gtk.Plug(0)
+                
+                # Connect widgets.
+                plug_label = gtk.Label("This is label widget in GtkPlug")
+                plug_frame = gtk.Frame("GtkSocket widget")
+                plug.add(plug_frame)
+                plug_frame.add(plug_label)
+                
+                # Handle signals.
+                plug.connect("destroy", lambda w: gtk.main_quit())
+                plug.connect("realize", send_plug_id)    
+                
+                # Show.
+                plug.show_all()
+                
+                gtk.main()
+</code></pre>
+
+>> 下面是代码运行的效果图:   
+
+<div style="float: top"><img src="image/multi-process-example.png" /></div>
+
 <h3 id="how-to-handle-i18n">多国语言处理</h3>
 > * **多国语言翻译的原理**  
 
