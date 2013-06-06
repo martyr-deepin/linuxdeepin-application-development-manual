@@ -36,7 +36,6 @@ Linux Deepin 应用程序开发手册
 	*    [Python编程经验与技巧](#python-experience-and-trick)
 	*    [深刻理解GTK+多线程](#understand-multithread-programming-in-gtk)
 	*    [构建多进程框架的应用](#build-application-with-multi-process-model)
-    *    [编写 Python C 扩展](#build-c-extension)
 	*    [多国语言处理](#how-to-handle-i18n)
 
 *    [Deepin-UI 应用开发实例讲解](#application-development-example)
