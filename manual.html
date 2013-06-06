@@ -59,8 +59,8 @@
 <li><a href="#python-experience-and-trick">Python编程经验与技巧</a></li>
 <li><a href="#understand-multithread-programming-in-gtk">深刻理解GTK+多线程</a></li>
 <li><a href="#build-application-with-multi-process-model">构建多进程框架的应用</a></li>
-<li><a href="#how-to-handle-i18n">多国语言处理</a></li>
 <li><a href="#build-c-extension">编写 Python C 扩展</a></li>
+<li><a href="#how-to-handle-i18n">多国语言处理</a></li>
 </ul></li>
 <li><p><a href="#application-development-example">Deepin-UI 应用开发实例讲解</a></p>
 
@@ -249,8 +249,7 @@ UI的美观和细致永远都是高质量应用应该具备的基本条件。  <
 <p>那么应用程序开发者应该怀着怎样的理念去开发用户喜欢的产品呢？</p>
 
 <blockquote>
-  <ol>
-<li><p>开发者本人应该是一个非常热爱生活的人， 善于和普通人沟通的人， <br />
+  <p>1. 开发者本人应该是一个非常热爱生活的人， 善于和普通人沟通的人， <br />
 只有我们真正了解了产品背后的人性心理并深入了解用户的需求后才能做出好用的产品。 <br />
 在现代这个资讯消费的时代， 简单的人性分析就是， 用户都是：</p>
 
@@ -261,12 +260,15 @@ UI的美观和细致永远都是高质量应用应该具备的基本条件。  <
 <li>不爱学习的： 他们更希望能在马桶上的时间就能学到东西， 他们不愿花几个月去思考Linux背后的原理。</li>
 <li>爽比功能更重要： 优秀的应用和普通应用的区别就是， 你的产品用着就是爽！</li>
 </ul>
-</blockquote></li>
-<li><p>开发者要认同， 一个易用的产品不但需要有强大技术基础， <br />
-还要有优秀的设计和体验细节， 光是技术做出的产品都太逻辑化了， 没有感染用户的生命力。  </p></li>
-<li><p>开发者要时刻提醒自己： 到底谁才是我们的目标用户？ <br />
-做到这一点很难， 很多开发者都是以自我来代表用户的需求了  </p></li>
-<li><p>开发者要有底线： 不是每一个用户的需求都要添加的， <br />
+</blockquote>
+
+<p>2. 开发者要认同， 一个易用的产品不但需要有强大技术基础， <br />
+还要有优秀的设计和体验细节， 光是技术做出的产品都太逻辑化了， 没有感染用户的生命力。  </p>
+
+<p>3. 开发者要时刻提醒自己： 到底谁才是我们的目标用户？ <br />
+做到这一点很难， 很多开发者都是以自我来代表用户的需求了  </p>
+
+<p>4. 开发者要有底线： 不是每一个用户的需求都要添加的， <br />
 开发者要懂的：  </p>
 
 <blockquote>
@@ -276,11 +278,12 @@ UI的美观和细致永远都是高质量应用应该具备的基本条件。  <
 <li>要学会把核心功能放在显眼的位置， 非核心功能放在不显眼的角落， 砍掉看似有用但是用户不会用的功能。  </li>
 <li>我们的产品应该是恰大好处的自信， 无限制的加功能源于不自信， 止步于臃肿没落。  </li>
 </ul>
-</blockquote></li>
-<li><p>开发者要有一颗坚强的心和抗吐槽的能力， <br />
-用户批评你那是喜欢你的程序， 如果你开发的应用他用都不想用， 他更加懒得吐槽你  </p></li>
-</ol>
 </blockquote>
+
+<p>5. 开发者要有一颗坚强的心和抗吐槽的能力， <br />
+用户批评你那是喜欢你的程序， 如果你开发的应用他用都不想用， 他更加懒得吐槽你  </p>
+
+<p></blockquote></p>
 
 <p></blockquote></p>
 
@@ -304,31 +307,33 @@ UI的美观和细致永远都是高质量应用应该具备的基本条件。  <
 <p>那么一个良好的开发社区应该具有具体怎么做才能形成正能量呢？</p>
 
 <blockquote>
-  <ol>
-<li><p>开发者和用户要有良好的沟通， 开发者在保证功能稳定的前提下应提前发布一些预览版让用户尝鲜， <br />
-很多设计之初没有考虑到的问题在这个阶段能够充分的暴露出来， 以供后续版本改进。  </p></li>
-<li><p>开发者之间要相互合作， 互相学习对方的优势技术做出自己产品的特色来， <br />
+  <p>1. 开发者和用户要有良好的沟通， 开发者在保证功能稳定的前提下应提前发布一些预览版让用户尝鲜， <br />
+很多设计之初没有考虑到的问题在这个阶段能够充分的暴露出来， 以供后续版本改进。  </p>
+
+<p>2. 开发者之间要相互合作， 互相学习对方的优势技术做出自己产品的特色来， <br />
 千万不要像很多Linux开源社区， 都认为自己是最好的， 其他的都是垃圾， <br />
-这个世界上没有最好的产品， 只有最适合用户的产品。  </p></li>
-<li><p>用户要对开发者要有足够的耐心， 不要一味的吐槽狂喷， <br />
+这个世界上没有最好的产品， 只有最适合用户的产品。  </p>
+
+<p>3. 用户要对开发者要有足够的耐心， 不要一味的吐槽狂喷， <br />
 开源软件一般都是免费使用的， 一个软件投入了作者和制作团队巨大的艰辛和努力， <br />
 作为产品使用的伸手党我们该对开发者有更多的包容心， 即使他们当前做的不好， <br />
 只要他们充满一腔热情在演进产品， 我们就应该多多鼓励他们， 而不是各种神吐槽， <br />
-Fcitx原作者放弃开发这种悲剧不要再重演。  </p></li>
-<li><p>开发者也要从用户的角度考虑问题， 不要什么都是技术至上, <br />
+Fcitx原作者放弃开发这种悲剧不要再重演。  </p>
+
+<p>4. 开发者也要从用户的角度考虑问题， 不要什么都是技术至上, <br />
 很多Linux开发者有一股非常强势的技术优先思路， 超强的技术是基础， 但不是全部 <br />
 做应用软件能否做的好用的最关键点在于开发者是否能够深入到用户的需求中，完善每一个交互细节。 <br />
 简单易用的用户体验不一定需要软件的核心原创性多强， 即使原理和其他同类软件都是一样的 <br />
 但是你的产品中的每一个细节（UI细致， 控件细节， 交互细节等）都做的很好， 最终照样可以做出完美体验的产品。 <br />
-中国大陆的 QQ 聊天工具就是一个最好的例子， 他的原理并不是什么颠覆性的， 但是他的每一个细节都是精雕细作打磨而来的。  </p></li>
-<li><p>Talk is cheap, show me the product! <br />
+中国大陆的 QQ 聊天工具就是一个最好的例子， 他的原理并不是什么颠覆性的， 但是他的每一个细节都是精雕细作打磨而来的。  </p>
+
+<p>5. Talk is cheap, show me the product! <br />
 如果 Linus 的 "Talk is cheap, show me the code!" 强调内核开发社区的理念 <br />
 "Talk is cheap, show me the product!" 就应该是应用产品的开发氛围 <br />
 Linux各大社区都充满了太多太多的讨论， 讨论越多越好， 但是太多的讨论仅仅只是吐槽， 而没有实际动作 <br />
 Linux桌面以及应用要快速的成长需要的是有一批实干精神的开发者和爱好者实际行动起来解决各种问题 <br />
 如果你知道问题在什么地方而且有能力解决， 马上去做， 而不只是耍一下嘴皮子! <br />
-实干才能劈斩荆棘， 实干才能改变世界！   </p></li>
-</ol>
+实干才能劈斩荆棘， 实干才能改变世界！   </p>
 </blockquote>
 
 <p></blockquote></p>
@@ -338,14 +343,14 @@ Linux桌面以及应用要快速的成长需要的是有一批实干精神的开
 <p>这是很多大学生会问的第一个问题， 我有热情， 我有技术， 到底怎样才能构建用户喜欢的Linux应用程序呢？  </p>
 
 <blockquote>
-  <ol>
-<li><p>问一下自己， 用户为什么要选择你做的产品？  </p>
+  <p>1. 问一下自己， 用户为什么要选择你做的产品？  </p>
 
 <blockquote>
   <p>我们做产品之前， 一定要清楚的知道， 我们的产品到底有什么优势， 是否能比其他产品更好的解决用户面临的问题？ <br />
 只有我们对自己的产品的定位有一个清晰的认识， 我们才能在后面做产品的过程中遇到的问题进行理性的决断。</p>
-</blockquote></li>
-<li><p>对产品的交互流程进行详细的规划.  </p>
+</blockquote>
+
+<p>2. 对产品的交互流程进行详细的规划.  </p>
 
 <blockquote>
   <p>一旦定下产品的目标以后， 就要在交互的流程进行规划， 一个清晰的交互流程规划能极大的简化日后的编码和设计工作, 比如：  </p>
@@ -359,8 +364,9 @@ Linux桌面以及应用要快速的成长需要的是有一批实干精神的开
 </ul>
 </blockquote>
 
-<p></blockquote></p></li>
-<li><p>编码前通过草图进行框架思考.</p>
+<p></blockquote></p>
+
+<p>3. 编码前通过草图进行框架思考.</p>
 
 <blockquote>
   <p>定下目标和交互流程后， 就要考虑怎样用代码来实现我们的需求了， 很多同学犯了一个大忌， <br />
@@ -381,15 +387,17 @@ Linux桌面以及应用要快速的成长需要的是有一批实干精神的开
 </ul>
 </blockquote>
 
-<p></blockquote></p></li>
-<li><p>分解问题， 验证原型可行性：</p>
+<p></blockquote></p>
+
+<p>4. 分解问题， 验证原型可行性：</p>
 
 <blockquote>
   <p>所有需求和技术框架完成后， 我们就需要对所有的技术问题进行分解。 <br />
 分解的要求就是把问题分解到能在很短时间实现的小模块， 然后通过编码依次实现这些小模块进行可行性验证。 <br />
 如果有些模块当前技术无法实现， 是否需要修改原先的设计需求？  </p>
-</blockquote></li>
-<li><p>组合解决方案， 整体化框架实现。</p>
+</blockquote>
+
+<p>5. 组合解决方案， 整体化框架实现。</p>
 
 <blockquote>
   <p>完成任务分解验证代码后， 就要考虑整体化组合编码。 <br />
@@ -404,16 +412,18 @@ Linux桌面以及应用要快速的成长需要的是有一批实干精神的开
 </ul>
 </blockquote>
 
-<p></blockquote></p></li>
-<li><p>测试， 优化。</p>
+<p></blockquote></p>
+
+<p>6. 测试， 优化。</p>
 
 <blockquote>
   <p>整体功能流程测试， 这个阶段可以测试出单个模块测试不出的问题。 <br />
 UI 测试， 看看控件是否对齐， 字体、颜色等是否看着舒服。 <br />
 基于数据结果的优化， 运行一些测试程序， 测试出程序的内存和性能瓶颈， 针对性优化。
 不要做提前优化和基于猜测的优化。</p>
-</blockquote></li>
-<li><p>重构代码</p>
+</blockquote>
+
+<p>7. 重构代码</p>
 
 <blockquote>
   <p>在计算机界有这么一句名言： 程序要第二遍才能写好! <br />
@@ -422,11 +432,8 @@ UI 测试， 看看控件是否对齐， 字体、颜色等是否看着舒服。
 本书只是稍微提一下重构的意义和一些简单的注意点， 如果要系统的学习这方面的知识， <br />
 我建议阅读 《重构 - 改善既有代码的设计》 这本书。 <br />
 重构， 这个不起眼的词却对软件工程的质量进化起到了至关重要的意义。  </p>
-</blockquote></li>
-</ol>
 
-<blockquote>
-  <p>什么是重构？  </p>
+<p>什么是重构？  </p>
 
 <blockquote>
   <p>重构是在不改变代码行为的前提下， 对代码做出修改以改进程序内部结构。 <br />
@@ -577,14 +584,16 @@ Git 和其他版本控制最大的不同的大家都可以分布式离线工作�
 <p>为什么会选择 Python ， 主要有以下几点考虑：  </p>
 
 <blockquote>
-  <ol>
-<li><p>Python语言非常简单。 <br />
-任何人都非常容易入门并精通， 这能极大的减少应用开发者的学习和开发门槛。  </p></li>
-<li><p>Python语法非常简洁和规范。 <br />
-可读性非常高容易维护， 团队协作不会因为编程风格不同而产生沟通问题。  </p></li>
-<li><p>开发调试快。 <br />
-不用写复杂的Makefile， 不用等待编译时间， 开发完成马上就可以启动调试。  </p></li>
-<li><p>是一种功能强大的高级编程语言。  </p>
+  <p>1. Python语言非常简单。 <br />
+任何人都非常容易入门并精通， 这能极大的减少应用开发者的学习和开发门槛。  </p>
+
+<p>2. Python语法非常简洁和规范。 <br />
+可读性非常高容易维护， 团队协作不会因为编程风格不同而产生沟通问题。  </p>
+
+<p>3. 开发调试快。 <br />
+不用写复杂的Makefile， 不用等待编译时间， 开发完成马上就可以启动调试。  </p>
+
+<p>4. 是一种功能强大的高级编程语言。  </p>
 
 <blockquote>
   <ul>
@@ -595,25 +604,29 @@ Git 和其他版本控制最大的不同的大家都可以分布式离线工作�
 <li>内置工具为了对以上对象类型进行处理，Python 自带了许多强大的标准操作，包括合并、分片、排序和映射等。  </li>
 <li>Python 程序可以以多种方式轻易地调用与其他语言编写的组件。  </li>
 </ul>
-</blockquote></li>
-<li><p>可移植性。 <br />
-Python 的标准实现是由可移植的ANSI C 编写的，可以在目前所有的主流平台上编译和运行。</p></li>
-<li><p>丰富的第三方库支持。 <br />
-在Linux下开发， Python的库是最多的， 除了功能强大的Python标准库外， <br />
-Python 还拥有丰富的第三方库， 你在开发应用程序的时候只用搜索学习一下第三方库就能快速的完成任务。  </p></li>
-</ol>
 </blockquote>
+
+<p>5. 可移植性。 <br />
+Python 的标准实现是由可移植的ANSI C 编写的，可以在目前所有的主流平台上编译和运行。</p>
+
+<p>6. 丰富的第三方库支持。 <br />
+在Linux下开发， Python的库是最多的， 除了功能强大的Python标准库外， <br />
+Python 还拥有丰富的第三方库， 你在开发应用程序的时候只用搜索学习一下第三方库就能快速的完成任务。  </p>
+
+<p></blockquote></p>
 
 <p>为什么会选择 GTK+， 主要有以下几点考虑：   </p>
 
 <blockquote>
-  <ol>
-<li><p>GTK+ 非常的稳定可靠。  </p></li>
-<li><p>GTK+ 的API简单清晰， 比较容易定制。  </p></li>
-<li><p>GTK+ 的设计思想很简洁， 只实现图形编程相关的库。   </p></li>
-<li><p>GTK+ 有大量的应用程序实现可以提供学习。  </p></li>
-<li><p>GTK+ 结合 Python 可以非常高效的开发应用程序。  </p></li>
-</ol>
+  <p>1. GTK+ 非常的稳定可靠。  </p>
+
+<p>2. GTK+ 的API简单清晰， 比较容易定制。  </p>
+
+<p>3. GTK+ 的设计思想很简洁， 只实现图形编程相关的库。   </p>
+
+<p>4. GTK+ 有大量的应用程序实现可以提供学习。  </p>
+
+<p>5. GTK+ 结合 Python 可以非常高效的开发应用程序。  </p>
 </blockquote>
 
 <p></blockquote></p>
@@ -624,25 +637,27 @@ Python 还拥有丰富的第三方库， 你在开发应用程序的时候只用
   <p>有很多人对 PyGTK+ 有很多错误的认识：  </p>
 
 <blockquote>
-  <ol>
-<li><p>PyGTK+ 很慢。 <br />
+  <p>1. PyGTK+ 很慢。 <br />
 Python的执行速度虽然比不上C， 但是Python在实践编程中开发效率要远远高于C， <br />
 你不用做烦人的类型声明和无休止的细节， 你只需要把宝贵的时间放在真正需要解决的问题。 <br />
 而桌面应用开发最讲究的就是开发效率。  </p>
 
-<p>其实 PyGTK+ 对于桌面应用来说性能是完全足够的， 因为大多数真正耗性能的还是GTK+代码， <br />
-Python 逻辑控制在整个性能的占用都是微乎其微的， 而底层的GTK+仍然是C代码在实际运行， <br />
+<pre><code>其实 PyGTK+ 对于桌面应用来说性能是完全足够的， 因为大多数真正耗性能的还是GTK+代码，
+</code></pre>
+
+<p>Python 逻辑控制在整个性能的占用都是微乎其微的， 而底层的GTK+仍然是C代码在实际运行， <br />
 PyGTK+ 只是对 GTK+ C 库进行了一层封装来满足快速开发的需求。  </p>
 
-<p>大家可以做一个简单的性能测试： <br />
-<code>python -m cProfile -o output.profile YourProgram.py</code> <br />
+<pre><code>大家可以做一个简单的性能测试：
+</code></pre>
+
+<p><code>python -m cProfile -o output.profile YourProgram.py</code> <br />
 你会发现 PyGTK+ 应用程序 95% 以上的性能都消耗在 GTK+ 代码上的调用上， <br />
-真正的Python逻辑控制代码对性能的影响微乎其微。  </p></li>
-<li>Python 很慢。 <br />
+真正的Python逻辑控制代码对性能的影响微乎其微。 <br />
+2. Python 很慢。 <br />
 就像上面说的， 大多数情况， 如果只是用 Python 就行逻辑控制， 用户完全察觉不到性能的差别。 <br />
 如果真的在某些算法上Python执行效率不佳， 依然可以通过编写 C 扩展来提高性能。 <br />
-比如 Deepin-UI 有一个 cairo_blur.c 的模块专门用来处理高斯模糊算法的。   </li>
-</ol>
+比如 Deepin-UI 有一个 cairo_blur.c 的模块专门用来处理高斯模糊算法的。   </p>
 </blockquote>
 
 <p></blockquote></p>
@@ -690,8 +705,8 @@ PyGTK+ 只是对 GTK+ C 库进行了一层封装来满足快速开发的需求�
 
 <p># Copyright (C) 2011 ~ 2013 Wang Yong <br />
 # <br />
-# Author:     Wang Yong <a href="m&#97;&#x69;&#x6C;&#x74;&#111;:&#x77;an&#x67;&#x79;&#x6F;&#110;&#103;&#64;&#x6C;&#x69;&#110;&#x75;&#x78;d&#x65;&#101;&#x70;&#105;&#110;&#46;&#x63;&#111;&#109;">&#x77;an&#x67;&#x79;&#x6F;&#110;&#103;&#64;&#x6C;&#x69;&#110;&#x75;&#x78;d&#x65;&#101;&#x70;&#105;&#110;&#46;&#x63;&#111;&#109;</a> <br />
-# Maintainer: Wang Yong <a href="&#x6D;&#x61;&#x69;&#x6C;&#x74;&#x6F;:&#x77;&#97;&#110;&#x67;&#x79;o&#110;&#103;&#64;&#108;&#x69;&#110;&#x75;&#120;&#100;&#x65;&#101;&#112;&#x69;&#110;&#x2E;c&#x6F;&#x6D;">&#x77;&#97;&#110;&#x67;&#x79;o&#110;&#103;&#64;&#108;&#x69;&#110;&#x75;&#120;&#100;&#x65;&#101;&#112;&#x69;&#110;&#x2E;c&#x6F;&#x6D;</a> <br />
+# Author:     Wang Yong <a href="&#109;&#x61;&#105;&#108;&#116;&#x6F;:&#x77;&#97;&#110;&#103;&#121;o&#110;&#x67;&#64;&#x6C;&#105;&#110;&#117;&#x78;&#x64;&#x65;&#101;&#112;&#x69;&#110;&#x2E;co&#x6D;">&#x77;&#97;&#110;&#103;&#121;o&#110;&#x67;&#64;&#x6C;&#105;&#110;&#117;&#x78;&#x64;&#x65;&#101;&#112;&#x69;&#110;&#x2E;co&#x6D;</a> <br />
+# Maintainer: Wang Yong <a href="&#x6D;&#97;&#105;l&#116;&#111;:w&#x61;n&#x67;&#121;&#x6F;&#110;&#103;&#64;l&#x69;&#x6E;&#x75;&#x78;&#100;&#x65;&#x65;&#112;&#x69;&#x6E;&#x2E;&#99;&#111;&#109;">w&#x61;n&#x67;&#121;&#x6F;&#110;&#103;&#64;l&#x69;&#x6E;&#x75;&#x78;&#100;&#x65;&#x65;&#112;&#x69;&#x6E;&#x2E;&#99;&#111;&#109;</a> <br />
 # <br />
 # This program is free software: you can redistribute it and/or modify <br />
 # it under the terms of the GNU General Public License as published by <br />
@@ -709,68 +724,76 @@ PyGTK+ 只是对 GTK+ C 库进行了一层封装来满足快速开发的需求�
 import 语句有以下几个原则需要遵守：  </p>
 
 <blockquote>
-  <ol>
-<li><p>一行语句 import 一个模块。  </p>
+  <p>1. 一行语句 import 一个模块。  </p>
 
 <p><strong>Yes</strong>:  </p>
 
 <pre lang="python"><code>
-import os
-import sys
+    import os
+    import sys
 </code></pre>
 
 <p><strong>No</strong>:  </p>
 
 <pre lang="python"><code>
-import os, sys  
-</code></pre></li>
-<li>import 从行首开始写, 不要在import前面添加空格.  </li>
-<li>当从模块中 import 多个对象且超过一行时，使用如下断行法（此语法 py2.5 以上版本才支持）： <br />
-<pre lang="python"><code>
-from module import (obj1, obj2,
-                    obj3, obj4)
-</code></pre></li>
-<li>不要使用 <br />
-<pre lang="python"><code>
-from module import * <br />
+    import os, sys  
 </code></pre>
-除非是 import 常量定义模块或其它你确保不会出现命名空间冲突的模块。    </li>
-<li><p>如果从包导入模块, 你需要在包中的每一级目录中创建 __init__.py 文件, <br />
+
+<p>2. import 从行首开始写, 不要在import前面添加空格. <br />
+3. 当从模块中 import 多个对象且超过一行时，使用如下断行法（此语法 py2.5 以上版本才支持）：  </p>
+
+<pre lang="python"><code>
+    from module import (obj1, obj2,
+                        obj3, obj4)
+</code></pre>
+
+<p>4. 不要使用  </p>
+
+<pre lang="python"><code>
+    from module import *    
+</code></pre>
+
+<p>除非是 import 常量定义模块或其它你确保不会出现命名空间冲突的模块。 <br />
+5. 如果从包导入模块, 你需要在包中的每一级目录中创建 __init__.py 文件, <br />
 __init__.py 文件内容为空. <br />
 比如 import dtk.ui.application , <br />
 dtk/ 和 dtk/ui/ 目录下都需要建立 __init__.py , <br />
-否则 python 不能发现包中的模块, 下面是对 import dkt.ui.application 的目录结构图:  </p>
-
+否则 python 不能发现包中的模块, 下面是对 import dkt.ui.application 的目录结构图: <br />
 <pre>
 dtk/
 |
-|- __init__.py
+|- <strong>init</strong>.py
 |
 +- ui/
-|
-|- __init__.py
-|
-+- application.py
+ |
+ |- <strong>init</strong>.py
+ |
+ +- application.py</p>
 
+<p></pre>
+6. 导入模块的代码规范:  </p>
 
-</pre></li>
-<li>导入模块的代码规范: <br />
 <pre lang="python"><code>
-import foo
-</code></pre></li>
-<li>从模块中导入特定对象规范: <br />
+    import foo
+</code></pre>
+
+<p>7. 从模块中导入特定对象规范:  </p>
+
 <pre lang="python"><code>
-from foo import bar
-</code></pre></li>
-<li>从包中导入模块: <br />
+    from foo import bar
+</code></pre>
+
+<p>8. 从包中导入模块:  </p>
+
 <pre lang="python"><code>
-import dtk.ui.application
-</code></pre></li>
-<li>从包中导入特定对象规范: <br />
+    import dtk.ui.application
+</code></pre>
+
+<p>9. 从包中导入特定对象规范:  </p>
+
 <pre lang="python"><code>
-from foo.bar import hello
-</code></pre></li>
-</ol>
+    from foo.bar import hello
+</code></pre>
 </blockquote></li>
 <li><p><strong>缩进</strong>: <br />
 Python 依赖缩进来确定代码块的层次，行首空白符主要有两种： <br />
@@ -809,114 +832,120 @@ def long_function_name(var_one, var_two,
 </ul>
 
 <blockquote>
-  <ol>
-<li><p>在二元算术、逻辑运算符前后加空格：  </p>
+  <p>1. 在二元算术、逻辑运算符前后加空格：  </p>
 
 <p><strong>Yes</strong>: <br />
 <code>a = b + c</code></p>
 
 <p><strong>No</strong>: <br />
-<code>a=b+c</code></p></li>
-<li><p>在一元前缀运算符后不加空格: <br />
-<strong>Yes</strong>:     </p>
+<code>a=b+c</code></p>
+
+<p>2. 在一元前缀运算符后不加空格: <br />
+   <strong>Yes</strong>:     </p>
 
 <pre lang="python"><code>
-if !flg:
-    pass
+    if !flg:
+        pass
 </code></pre>
 
 <p><strong>No</strong>:     </p>
 
 <pre lang="python"><code>
-if ! flg:
-    pass
-</code></pre></li>
-<li><p>函数名和括号之间不能有空格: <br />
-<strong>Yes</strong>:     </p>
+    if ! flg:
+        pass
+</code></pre>
+
+<p>3. 函数名和括号之间不能有空格: <br />
+   <strong>Yes</strong>:     </p>
 
 <pre lang="python"><code>
-def foo():
-    pass
+    def foo():
+        pass
 </code></pre>
 
 <p><strong>No</strong>:     </p>
 
 <pre lang="python"><code>
-def foo ():
-    pass
-</code></pre></li>
-<li><p>: 用在行尾时前后皆不加空格，如分枝、循环、函数和类定义语言 <br />
-<strong>Yes</strong>:     </p>
+    def foo ():
+        pass
+</code></pre>
+
+<p>4. : 用在行尾时前后皆不加空格，如分枝、循环、函数和类定义语言 <br />
+   <strong>Yes</strong>:     </p>
 
 <pre lang="python"><code>
-if flag:
-    pass
+    if flag:
+        pass
 </code></pre>
 
 <p><strong>No</strong>:     </p>
 
 <pre lang="python"><code>
-if flag:
-    pass
-</code></pre></li>
-<li><p>: 用在非行尾时两端加空格，如 dict 对象的定义: <br />
-<strong>Yes</strong>:     </p>
+    if flag:
+        pass
+</code></pre>
+
+<p>5. : 用在非行尾时两端加空格，如 dict 对象的定义: <br />
+   <strong>Yes</strong>:     </p>
 
 <pre lang="python"><code>
-d = {‘key’ : ’value’}
+    d = {‘key’ : ’value’}
 </code></pre>
 
 <p><strong>No</strong>:     </p>
 
 <pre lang="python"><code>
-d = {'key':'value'}
-</code></pre></li>
-<li><p>括号（含圆括号、方括号和花括号）前后不加空格: <br />
-<strong>Yes</strong>:     </p>
+    d = {'key':'value'}
+</code></pre>
+
+<p>6. 括号（含圆括号、方括号和花括号）前后不加空格: <br />
+   <strong>Yes</strong>:     </p>
 
 <pre lang="python"><code>
-do_something(arg1, arg2)
+    do_something(arg1, arg2)
 </code></pre>
 
 <p><strong>No</strong>:     </p>
 
 <pre lang="python"><code>
-do_something( arg1, arg2 )
-</code></pre></li>
-<li><p>逗号后面加一个空格，前面不加空格  </p></li>
-<li><p>函数参数的等号两边不添加空格, 比如: <br />
-<strong>Yes</strong>:     </p>
+    do_something( arg1, arg2 )
+</code></pre>
+
+<p>7. 逗号后面加一个空格，前面不加空格  </p>
+
+<p>8. 函数参数的等号两边不添加空格, 比如: <br />
+   <strong>Yes</strong>:     </p>
 
 <pre lang="python"><code>
-def foo(arg1="hello",
-        arg2="world"):
-    ...
+    def foo(arg1="hello",
+            arg2="world"):
+        ...
 </code></pre>
 
 <p><strong>No</strong>:     </p>
 
 <pre lang="python"><code>
-def foo(arg1 = "hellow",
-        arg2 = "world"):
-    ...
-</code></pre></li>
-<li><p>不要为多行赋值语句添加过多的对齐空格, 快速的修改代码比局部的美观更重要: <br />
-<strong>Yes</strong>:     </p>
+    def foo(arg1 = "hellow",
+            arg2 = "world"):
+        ...
+</code></pre>
+
+<p>9. 不要为多行赋值语句添加过多的对齐空格, 快速的修改代码比局部的美观更重要: <br />
+   <strong>Yes</strong>:     </p>
 
 <pre lang="python"><code>
-var_a = 1
-var_long_a = 2
-var_long_long_a = 3
+    var_a = 1
+    var_long_a = 2
+    var_long_long_a = 3
 </code></pre>
 
 <p><strong>No</strong>:     </p>
 
 <pre lang="python"><code>
-var_a            = 1
-var_long_a       = 2
-var_long_long_a  = 3
-</code></pre></li>
-</ol>
+    var_a            = 1
+    var_long_a       = 2
+    var_long_long_a  = 3
+</code></pre>
 
 <p>上面的代码看似漂亮, 但你能保证以后没有更长的变量名? <br />
 更长的变量名添加以后是否要对在一块的代码都要统一加空格呢? 为什么要浪费时间按空格呢?  </p>
@@ -927,11 +956,9 @@ var_long_long_a  = 3
 适当的空行有利于增加代码的可读性，加空行可以参考如下几个准则：  </p>
 
 <blockquote>
-  <ol>
-<li>在类、函数的定义间加空行；  </li>
-<li>在 import 不同种类的模块间加工行；  </li>
-<li>在函数中的逻辑段落间加空行，即把相关的代码紧凑写在一起，作为一个逻辑段落，段落间以空行分隔；  </li>
-</ol>
+  <p>1. 在类、函数的定义间加空行； <br />
+2. 在 import 不同种类的模块间加工行； <br />
+3. 在函数中的逻辑段落间加空行，即把相关的代码紧凑写在一起，作为一个逻辑段落，段落间以空行分隔；  </p>
 </blockquote></li>
 <li><p><strong>命名</strong>:   </p>
 
@@ -1471,10 +1498,8 @@ Deepin-UI 还有皮肤的高级设置， 这个留到后面讲， 这里只需�
 这个搜索程序分两步：  </p>
 
 <blockquote>
-  <ol>
-<li>从网络上搜索　mp3</li>
-<li>用GTK+的方法呈现搜索结果。</li>
-</ol>
+  <p>1. 从网络上搜索　mp3
+2. 用GTK+的方法呈现搜索结果。</p>
 </blockquote>
 
 <p>这个例子中第一步网络搜索是非常耗时的，　 <br />
@@ -1614,7 +1639,7 @@ Deepin-UI 还有皮肤的高级设置， 这个留到后面讲， 这里只需�
 默认用 stroke 只能画出2像素的线， <br />
 画1像素的线有以下3种解决方案：  </p>
 
-<p>1 临时关闭反锯齿:  </p>
+<p>1. 临时关闭反锯齿:  </p>
 </blockquote>
 
 <p></blockquote></p>
@@ -1647,7 +1672,7 @@ Deepin-UI 还有皮肤的高级设置， 这个留到后面讲， 这里只需�
 
 <blockquote>
   <blockquote>
-  <p>2 在目标坐标上添加 0.5 像素的偏移量:  </p>
+  <p>2. 在目标坐标上添加 0.5 像素的偏移量:  </p>
 </blockquote>
 
 <p></blockquote></p>
@@ -1662,7 +1687,7 @@ Deepin-UI 还有皮肤的高级设置， 这个留到后面讲， 这里只需�
 
 <blockquote>
   <blockquote>
-  <p>3 用 cr.rectange() 和 cr.fill() 替代 cr.stroke():  </p>
+  <p>3. 用 cr.rectange() 和 cr.fill() 替代 cr.stroke():  </p>
 </blockquote>
 
 <p></blockquote></p>
@@ -2030,6 +2055,434 @@ PixbufCache 只在大小变化的时候才进行缩放， <br />
 <blockquote>
   <p>上面的例子主要为讲解多线程原理而简化, 实际应用中需要结合线程池来同时启用多个抓取线程.  </p>
 </blockquote>
+
+<h3 id="how-to-handle-i18n">多国语言处理</h3>
+
+<blockquote>
+  <ul>
+<li><strong>多国语言翻译的原理</strong>  </li>
+</ul>
+
+<blockquote>
+  <p>1. 在代码里面添加 _("") 来包括需要翻译的文档, <br />
+比如 _("Linux Deepin"), 字段里面默认是英文  </p>
+
+<p>2. 从代码里面扫描所有 _("") 字段, 并自动生成每个语言的 po 文件, <br />
+比如 <code>zh_CN.po</code>, <code>zh_TW.po</code>, <code>zh_HK.po</code> (英文默认是不用翻译和po文件的)  , <br />
+po 文件是供翻译者修改用的, 开发者应该只修改代码里面的字段并生成 po 就可以了, <br />
+下面是一个简单的 po 文件事例, <br />
+前面都是一些项目信息, <br />
+主要关键看下面的 msgid 和 msgstr, msgid 后面是代码中 _("") 扫描出来的字段, <br />
+msgstr 后面是针对某种语言的翻译文档  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                    # Chinese translations for PACKAGE package
+                    # PACKAGE 软件包的简体中文翻译.
+                    # Copyright (C) 2012 THE PACKAGE'S COPYRIGHT HOLDER
+                    # This file is distributed under the same license as the PACKAGE package.
+                    # Automatically generated, 2012.
+                    #
+                    msgid ""
+                    msgstr ""
+                    "Project-Id-Version: PACKAGE VERSION\n"
+                    "Report-Msgid-Bugs-To: \n"
+                    "POT-Creation-Date: 2012-08-04 10:06+0800\n"
+                    "PO-Revision-Date: 2012-07-13 07:14+0800\n"
+                    "Last-Translator: Automatically generated\n"
+                    "Language-Team: none\n"
+                    "Language: zh_CN\n"
+                    "MIME-Version: 1.0\n"
+                    "Content-Type: text/plain; charset=UTF-8\n"
+                    "Content-Transfer-Encoding: 8bit\n"
+
+                    #: ../ui/tab_window.py:312 ../ui/color_selection.py:183 ../ui/dialog.py:367
+                    #: ../ui/dialog.py:435
+                    msgid "Linux Deepin"
+                    msgstr "深度Linux"
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <p>3. po 文件完成后, 需要生成 mo 文件, <br />
+mo 文件是供程序运行时调用的, <br />
+程序运行时会根据 mo 的翻译字段自动替换相应的文档.  </p>
+</blockquote>
+
+<ul>
+<li><strong>多国语言翻译步骤详解</strong>  </li>
+</ul>
+
+<blockquote>
+  <p>1. 拷贝 <code>locales.py</code> 到源代码目录, <br />
+修改项目名称, 然后在需要翻译的模块添加下面代码:  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                from locales import _
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <p>在需要翻译的地方写上 _("Text need translate")  </p>
+
+<p>2. 拷贝 <code>locale_config.ini</code>, <code>create_po.py</code>, <code>update_po.py</code>, <code>generate_mo.py</code> 到同一个目录, <br />
+并修改 locale_config.ini 里面的 "项目名称" "源代码目录" "翻译目录" "翻译语种"  </p>
+
+<p>3. 第一次执行 <code>create_po.py</code> 生成 po 文件  </p>
+
+<p>4. 修改代码后执行 <code>update_po.py</code> 更新 po 文件  </p>
+
+<p>5. 确定po文档正确后, 执行 <code>generate_mo.py</code> 生成 mo 文件  </p>
+
+<p>注意事项:</p>
+
+<blockquote>
+  <p>1. 如果在相同代码位置改变 msgid 后执行 <code>update_po.py</code> <br />
+会导致 msgmerge 命令在 po 文件生成一下行来提醒差异性变动的地方:  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                    #, fuzzy
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <blockquote>
+  <p>如果发现这些行, 需要删除才能正常工作.</p>
+
+<p>2. msgid 里面不能包括除英文外的其他字符, 否则不能正常工作  </p>
+
+<p>3. 生成的 mo 文件需要拷贝到 /usr/share/locale 目录下, <br />
+才能正常切换语言, 源代码下面的相对路径只是用于测试开发板而用.  </p>
+</blockquote>
+
+<p>下面是翻译步骤所需的工具库, 最新版都包括在 deepin-ui/dtk/tools 目录里:  </p>
+
+<blockquote>
+  <p>1. locales.py (创建 _ 函数, 用于其他模块编写 _("") 代码):  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                    #! /usr/bin/env python
+                    # -*- coding: utf-8 -*-
+
+                    # Copyright (C) 2011 ~ 2012 Deepin, Inc.
+                    #               2011 ~ 2012 Wang Yong
+                    # 
+                    # Author:     Wang Yong <lazycat.manatee@gmail.com>
+                    # Maintainer: Wang Yong <lazycat.manatee@gmail.com>
+                    # 
+                    # This program is free software: you can redistribute it and/or modify
+                    # it under the terms of the GNU General Public License as published by
+                    # the Free Software Foundation, either version 3 of the License, or
+                    # any later version.
+                    # 
+                    # This program is distributed in the hope that it will be useful,
+                    # but WITHOUT ANY WARRANTY; without even the implied warranty of
+                    # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+                    # GNU General Public License for more details.
+                    # 
+                    # You should have received a copy of the GNU General Public License
+                    # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+                    # To test other language, use below method:
+                    #       env LANG=zh_CN LANGUAGE=zh_CN foo.py
+                    # 
+                    # WARNING: relative directory `locale` just for test.
+                    # Please copy *.mo files in directory `/usr/share/locale` 
+                    # and JUST read *.mo files from `/usr/share/locale`
+                    # 
+                    # Read *.mo files from relative directory will make translation string 
+                    # can't work, at least i test it can't work in Debian-base system.
+
+                    from deepin_utils.file import get_parent_dir
+                    import gettext
+                    import os
+
+                    LOCALE_DIR = os.path.join(get_parent_dir(__file__, 2), "locale")
+                    if not os.path.exists(LOCALE_DIR):
+                        LOCALE_DIR="/usr/share/locale"
+
+                    _ = None    
+                    try:
+                        _ = gettext.translation("deepin-ui", LOCALE_DIR).gettext
+                    except Exception, e:
+                        _ = lambda i : i
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <blockquote>
+  <p>2. <code>locale_config.ini</code> (翻译项目的信息):  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                    [locale]
+                    project_name = deepin-ui              # 项目名称
+                    source_dir = ../ui                    # 项目源码的目录
+                    locale_dir = ../locale                # 语言翻译文件存放目录, 包括 pot, po, mo 文件
+                    langs = ["zh_CN", "zh_TW", "zh_HK"]   # 翻译的语种, 默认包括简体中文(zh_CN), 台湾繁体中文(zh_TW), 香港繁体中文(zh_HK)
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <blockquote>
+  <p>3. <code>create_po.py</code> (用于扫描并自动生成 po 文件, 只用于第一次)  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                    #! /usr/bin/env python
+                    # -*- coding: utf-8 -*-
+
+                    # Copyright (C) 2011 ~ 2012 Deepin, Inc.
+                    #               2011 ~ 2012 Wang Yong
+                    # 
+                    # Author:     Wang Yong 
+                    # Maintainer: Wang Yong 
+                    # 
+                    # This program is free software: you can redistribute it and/or modify
+                    # it under the terms of the GNU General Public License as published by
+                    # the Free Software Foundation, either version 3 of the License, or
+                    # any later version.
+                    # 
+                    # This program is distributed in the hope that it will be useful,
+                    # but WITHOUT ANY WARRANTY; without even the implied warranty of
+                    # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+                    # GNU General Public License for more details.
+                    # 
+                    # You should have received a copy of the GNU General Public License
+                    # along with this program.  If not, see .
+
+                    import subprocess
+                    import os
+                    from ConfigParser import RawConfigParser as ConfigParser
+
+                    def remove_directory(path):
+                        """equivalent to command `rm -rf path`"""
+                        if os.path.exists(path):
+                            for i in os.listdir(path):
+                                full_path = os.path.join(path, i)
+                                if os.path.isdir(full_path):
+                                    remove_directory(full_path)
+                                else:
+                                    os.remove(full_path)
+                            os.rmdir(path)        
+
+                    def create_directory(directory, remove_first=False):
+                        '''Create directory.'''
+                        if remove_first and os.path.exists(directory):
+                            remove_directory(directory)
+
+                        if not os.path.exists(directory):
+                            os.makedirs(directory)
+
+                    if __name__ == "__main__":
+                        # Read config options.
+                        config_parser = ConfigParser()
+                        config_parser.read("locale_config.ini")
+                        project_name = config_parser.get("locale", "project_name")
+                        source_dir = config_parser.get("locale", "source_dir")
+                        locale_dir = os.path.abspath(config_parser.get("locale", "locale_dir"))
+                        langs = eval(config_parser.get("locale", "langs"))
+                        create_directory(locale_dir)
+
+                        # Get input arguments.
+                        source_files = []
+                        for root, dirs, files in os.walk(source_dir):
+                            for each_file in files:
+                                if each_file.endswith(".py") and not each_file.startswith("."):
+                                    source_files.append(os.path.join(root, each_file))
+
+                        pot_filepath = os.path.join(locale_dir, project_name + ".pot")
+
+                        # Generate pot file.
+                        subprocess.call(
+                            "xgettext -k_ -o %s %s" % (pot_filepath, ' '.join(source_files)),
+                            shell=True)
+
+                        # Generate po files.
+                        for lang in langs:
+                            subprocess.call(
+                                "msginit --no-translator -l %s.UTF-8 -i %s -o %s" % (lang, pot_filepath, os.path.join(locale_dir, "%s.po" % (lang))),
+                                shell=True
+                                )
+
+                        # Replace ASCII with UTF-8.
+                        for lang in langs:
+                            po_filepath = os.path.join(locale_dir, "%s.po" % (lang))
+                            read_file = open(po_filepath, "r")
+                            whole_thing = read_file.read()
+                            read_file.close()
+
+                            write_file = open(po_filepath, "w")
+                            whole_thing = whole_thing.replace("charset=ASCII", "charset=UTF-8");
+                            write_file.write(whole_thing);
+                            write_file.close()
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <blockquote>
+  <p>4. <code>update_po.py</code> (用于自动扫描并自动生成 po 文件, 用于 po 文件的增量差异更新, 第一次请使用 create_po.py )  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                    #! /usr/bin/env python
+                    # -*- coding: utf-8 -*-
+
+                    # Copyright (C) 2011 ~ 2012 Deepin, Inc.
+                    #               2011 ~ 2012 Wang Yong
+                    # 
+                    # Author:     Wang Yong 
+                    # Maintainer: Wang Yong 
+                    # 
+                    # This program is free software: you can redistribute it and/or modify
+                    # it under the terms of the GNU General Public License as published by
+                    # the Free Software Foundation, either version 3 of the License, or
+                    # any later version.
+                    # 
+                    # This program is distributed in the hope that it will be useful,
+                    # but WITHOUT ANY WARRANTY; without even the implied warranty of
+                    # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+                    # GNU General Public License for more details.
+                    # 
+                    # You should have received a copy of the GNU General Public License
+                    # along with this program.  If not, see .
+
+                    import subprocess
+                    import os
+                    from ConfigParser import RawConfigParser as ConfigParser
+
+                    if __name__ == "__main__":
+                        # Read config options.
+                        config_parser = ConfigParser()
+                        config_parser.read("locale_config.ini")
+                        project_name = config_parser.get("locale", "project_name")
+                        source_dir = config_parser.get("locale", "source_dir")
+                        locale_dir = os.path.abspath(config_parser.get("locale", "locale_dir"))
+                        langs = eval(config_parser.get("locale", "langs"))
+
+                        # Get input arguments.
+                        source_files = []
+                        for root, dirs, files in os.walk(source_dir):
+                            for each_file in files:
+                                if each_file.endswith(".py") and not each_file.startswith("."):
+                                    source_files.append(os.path.join(root, each_file))
+
+                        pot_filepath = os.path.join(locale_dir, project_name + ".pot")
+
+                        # Generate pot file.
+                        subprocess.call(
+                            "xgettext -k_ -o %s %s" % (pot_filepath, ' '.join(source_files)),
+                            shell=True)
+
+
+                        # Update po files from pot files.
+                        for lang in langs:
+                            subprocess.call(
+                                "msgmerge -U %s %s" % (
+                                    os.path.join(locale_dir, "%s.po" % (lang)),
+                                    os.path.join(locale_dir, "%s.pot" % (project_name))
+                                    ),
+                                shell=True
+                                )
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <blockquote>
+  <p>5. <code>generate_mo.py</code> (用于生成 mo 文件):  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                    #! /usr/bin/env python
+                    # -*- coding: utf-8 -*-
+
+                    # Copyright (C) 2011 ~ 2012 Deepin, Inc.
+                    #               2011 ~ 2012 Wang Yong
+                    # 
+                    # Author:     Wang Yong 
+                    # Maintainer: Wang Yong 
+                    # 
+                    # This program is free software: you can redistribute it and/or modify
+                    # it under the terms of the GNU General Public License as published by
+                    # the Free Software Foundation, either version 3 of the License, or
+                    # any later version.
+                    # 
+                    # This program is distributed in the hope that it will be useful,
+                    # but WITHOUT ANY WARRANTY; without even the implied warranty of
+                    # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+                    # GNU General Public License for more details.
+                    # 
+                    # You should have received a copy of the GNU General Public License
+                    # along with this program.  If not, see .
+
+                    import subprocess
+                    import os
+                    from ConfigParser import RawConfigParser as ConfigParser
+
+                    if __name__ == "__main__":
+                        # Read config options.
+                        config_parser = ConfigParser()
+                        config_parser.read("locale_config.ini")
+                        project_name = config_parser.get("locale", "project_name")
+                        source_dir = os.path.abspath(config_parser.get("locale", "source_dir"))
+                        locale_dir = os.path.abspath(config_parser.get("locale", "locale_dir"))
+                        langs = eval(config_parser.get("locale", "langs"))
+
+                        # Generate mo files.
+                        for lang in langs:
+                            subprocess.call(
+                                "mkdir -p %s" % (os.path.join(locale_dir, "%s/LC_MESSAGES/" % (lang))),
+                                shell=True
+                                )
+
+                            subprocess.call(
+                                "msgfmt -o %s %s" % (
+                                    os.path.join(locale_dir, "%s/LC_MESSAGES/%s.mo" % (lang, project_name)),
+                                    os.path.join(locale_dir, "%s.po" % (lang))),
+                                shell=True
+                                )
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <blockquote>
+  <p>生成 po 文件后, 需要运行 <code>generate_mo.py</code> 才能让应用程序翻译生效</p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
 
 </body>
 </html>
