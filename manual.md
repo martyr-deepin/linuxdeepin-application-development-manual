@@ -28,8 +28,7 @@ Linux Deepin 应用程序开发手册
     *    [为什么需要 Deepin-UI?](#why-we-need-deepin-ui)
     *    [Deepin-UI 原理](#principle-of-deepin-ui)
     *    [Deepin-UI hello world!](#deepin-ui-hello-world)
-    *    [Deepin-UI 简单控件使用](#usage-of-simple-widget)
-    *    [Deepin-UI 高级控件使用](#usage-of-advanced-widget)
+    *    [Deepin-UI 模块使用](#use-deepin-ui)
 	
 *    [应用程序开发经验和技巧](#application-development-experience-and-trick)
     *    [GTK+编程经验与技巧](#gtk-experience-and-trick)
@@ -1110,6 +1109,58 @@ Deepin-UI 还有皮肤的高级设置， 这个留到后面讲， 这里只需�
 </code></pre>
 
 > 这段代码用于启动应用程序。
+
+<h3 id="use-deepin-ui">Deepin-UI 模块使用</h3>
+
+> * **button**
+> * **label**
+> * **resizable_label**
+> * **entry**
+> * **combo**
+> * **spin**
+> * **net**
+> * **line**
+> * **box**
+> * **paned**
+> * **datetime**
+> * **progressbar**
+> * **volume_button**
+> * **scalebar**
+> * **panel**
+> * **dialog**
+> * **color_selection**
+
+> * **window**
+> * **titlebar**
+> * **statusbar**
+> * **scrolled_window**
+> * **slider**
+> * **slider_switcher**
+> * **tab_switcher**
+> * **breadcrumb**
+> * **navigatebar**
+> * **menu**
+> * **osd_tooltip**
+> * **tooltip**
+> * **iconview**
+> * **treeview**
+> * **star_view**
+> * **browser**
+> * **mplayer_view**
+> * **mplayer_window**
+
+> * **cache_pixbuf**
+> * **cycle_strip**
+> * **animation**
+> * **init_skin**
+> * **config**
+> * **events**
+> * **global_key**
+> * **keymap**
+> * **locales**
+> * **threads**
+> * **thread_pool**
+> * **unique_service**
 
 <h2 id="application-development-experience-and-trick">应用程序开发经验和技巧</h2>
 

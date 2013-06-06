@@ -49,8 +49,7 @@
 <li><a href="#why-we-need-deepin-ui">为什么需要 Deepin-UI?</a></li>
 <li><a href="#principle-of-deepin-ui">Deepin-UI 原理</a></li>
 <li><a href="#deepin-ui-hello-world">Deepin-UI hello world!</a></li>
-<li><a href="#usage-of-simple-widget">Deepin-UI 简单控件使用</a></li>
-<li><a href="#usage-of-advanced-widget">Deepin-UI 高级控件使用</a></li>
+<li><a href="#use-deepin-ui">Deepin-UI 模块使用</a></li>
 </ul></li>
 <li><p><a href="#application-development-experience-and-trick">应用程序开发经验和技巧</a></p>
 
@@ -59,7 +58,6 @@
 <li><a href="#python-experience-and-trick">Python编程经验与技巧</a></li>
 <li><a href="#understand-multithread-programming-in-gtk">深刻理解GTK+多线程</a></li>
 <li><a href="#build-application-with-multi-process-model">构建多进程框架的应用</a></li>
-<li><a href="#build-c-extension">编写 Python C 扩展</a></li>
 <li><a href="#how-to-handle-i18n">多国语言处理</a></li>
 </ul></li>
 <li><p><a href="#application-development-example">Deepin-UI 应用开发实例讲解</a></p>
@@ -705,8 +703,8 @@ PyGTK+ 只是对 GTK+ C 库进行了一层封装来满足快速开发的需求�
 
 <p># Copyright (C) 2011 ~ 2013 Wang Yong <br />
 # <br />
-# Author:     Wang Yong <a href="&#109;&#97;&#x69;&#108;&#x74;&#x6F;:&#x77;&#97;n&#103;&#x79;&#111;&#110;&#x67;&#64;&#108;&#x69;&#x6E;&#x75;x&#x64;&#x65;&#x65;&#112;&#x69;&#x6E;&#46;&#99;&#x6F;&#x6D;">&#x77;&#97;n&#103;&#x79;&#111;&#110;&#x67;&#64;&#108;&#x69;&#x6E;&#x75;x&#x64;&#x65;&#x65;&#112;&#x69;&#x6E;&#46;&#99;&#x6F;&#x6D;</a> <br />
-# Maintainer: Wang Yong <a href="&#x6D;&#97;&#105;l&#x74;&#111;:&#x77;&#x61;&#110;&#x67;&#x79;&#111;&#110;g&#64;&#108;&#x69;&#x6E;&#x75;&#x78;&#100;&#x65;&#101;p&#x69;&#x6E;&#x2E;&#x63;&#111;&#109;">&#x77;&#x61;&#110;&#x67;&#x79;&#111;&#110;g&#64;&#108;&#x69;&#x6E;&#x75;&#x78;&#100;&#x65;&#101;p&#x69;&#x6E;&#x2E;&#x63;&#111;&#109;</a> <br />
+# Author:     Wang Yong <a href="ma&#105;&#108;&#116;&#x6F;:&#119;&#97;&#x6E;&#x67;&#121;&#111;&#110;&#x67;&#64;l&#x69;&#110;&#117;&#120;&#100;&#101;&#x65;&#112;&#105;&#110;&#x2E;&#x63;&#111;&#x6D;">&#119;&#97;&#x6E;&#x67;&#121;&#111;&#110;&#x67;&#64;l&#x69;&#110;&#117;&#120;&#100;&#101;&#x65;&#112;&#105;&#110;&#x2E;&#x63;&#111;&#x6D;</a> <br />
+# Maintainer: Wang Yong <a href="&#x6D;&#x61;&#x69;&#x6C;&#116;&#x6F;:&#x77;&#x61;&#x6E;g&#x79;&#111;&#x6E;&#x67;&#64;&#108;&#105;&#x6E;u&#x78;&#100;&#101;&#101;p&#x69;&#x6E;&#x2E;&#99;&#111;&#109;">&#x77;&#x61;&#x6E;g&#x79;&#111;&#x6E;&#x67;&#64;&#108;&#105;&#x6E;u&#x78;&#100;&#101;&#101;p&#x69;&#x6E;&#x2E;&#99;&#111;&#109;</a> <br />
 # <br />
 # This program is free software: you can redistribute it and/or modify <br />
 # it under the terms of the GNU General Public License as published by <br />
@@ -1461,6 +1459,60 @@ Deepin-UI 还有皮肤的高级设置， 这个留到后面讲， 这里只需�
 
 <blockquote>
   <p>这段代码用于启动应用程序。</p>
+</blockquote>
+
+<h3 id="use-deepin-ui">Deepin-UI 模块使用</h3>
+
+<blockquote>
+  <ul>
+<li><strong>button</strong></li>
+<li><strong>label</strong></li>
+<li><strong>resizable_label</strong></li>
+<li><strong>entry</strong></li>
+<li><strong>combo</strong></li>
+<li><strong>spin</strong></li>
+<li><strong>net</strong></li>
+<li><strong>line</strong></li>
+<li><strong>box</strong></li>
+<li><strong>paned</strong></li>
+<li><strong>datetime</strong></li>
+<li><strong>progressbar</strong></li>
+<li><strong>volume_button</strong></li>
+<li><strong>scalebar</strong></li>
+<li><strong>panel</strong></li>
+<li><strong>dialog</strong></li>
+<li><p><strong>color_selection</strong></p></li>
+<li><p><strong>window</strong></p></li>
+<li><strong>titlebar</strong></li>
+<li><strong>statusbar</strong></li>
+<li><strong>scrolled_window</strong></li>
+<li><strong>slider</strong></li>
+<li><strong>slider_switcher</strong></li>
+<li><strong>tab_switcher</strong></li>
+<li><strong>breadcrumb</strong></li>
+<li><strong>navigatebar</strong></li>
+<li><strong>menu</strong></li>
+<li><strong>osd_tooltip</strong></li>
+<li><strong>tooltip</strong></li>
+<li><strong>iconview</strong></li>
+<li><strong>treeview</strong></li>
+<li><strong>star_view</strong></li>
+<li><strong>browser</strong></li>
+<li><strong>mplayer_view</strong></li>
+<li><p><strong>mplayer_window</strong></p></li>
+<li><p><strong>cache_pixbuf</strong></p></li>
+<li><strong>cycle_strip</strong></li>
+<li><strong>animation</strong></li>
+<li><strong>init_skin</strong></li>
+<li><strong>config</strong></li>
+<li><strong>events</strong></li>
+<li><strong>global_key</strong></li>
+<li><strong>keymap</strong></li>
+<li><strong>locales</strong></li>
+<li><strong>threads</strong></li>
+<li><strong>thread_pool</strong></li>
+<li><strong>unique_service</strong></li>
+</ul>
 </blockquote>
 
 <h2 id="application-development-experience-and-trick">应用程序开发经验和技巧</h2>
