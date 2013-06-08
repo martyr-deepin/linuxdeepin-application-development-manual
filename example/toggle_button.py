@@ -6,6 +6,7 @@ init_theme()
 from dtk.ui.application import Application
 from dtk.ui.button import ToggleButton
 from dtk.ui.theme import ui_theme
+from dtk.ui.dialog import ConfirmDialog
 import gtk
 
 if __name__ == "__main__":
@@ -19,6 +20,12 @@ if __name__ == "__main__":
         button_label="This is toggle button",
         padding_x=5,
         )
+    toggle_button.connect(
+        "toggled", 
+        lambda w: ConfirmDialog(
+            "反馈对话框",
+            "按钮开启" if w.get_active() else "按钮关闭",
+            ).show_all())
     
     toggle_button_align = gtk.Alignment()
     toggle_button_align.set(0.5, 0.5, 0, 0)

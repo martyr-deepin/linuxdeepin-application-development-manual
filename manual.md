@@ -1113,7 +1113,6 @@ Deepin-UI 还有皮肤的高级设置， 这个留到后面讲， 这里只需�
 <h3 id="use-deepin-ui">Deepin-UI 模块使用</h3>
 > 这一章， 我们针对 Deepin-UI 的每一个模块进行详细的讲解,   
 我们暂时只对每个控件的创建进行讲解，   
-每个控件具体的信号以及一些高级技巧我会在下一张应用程序实战中给大家详细讲解。  
 通过这一章的学习后， 就可以直接拿 Deepin-UI 进行应用开发了。  
 
 > * **button**  
@@ -1141,6 +1140,7 @@ DisableButton, LinkButton, ComboButton, SwitchButton,
                     init_theme()
                     from dtk.ui.application import Application
                     from dtk.ui.button import Button
+                    from dtk.ui.dialog import ConfirmDialog
                     import gtk
                     
                     if __name__ == "__main__":
@@ -1149,6 +1149,11 @@ DisableButton, LinkButton, ComboButton, SwitchButton,
                         application.add_titlebar(title="Button example!")
                         
                         button = Button("Linux Deepin", 12)
+                        button.connect(
+						    "clicked", lambda w: ConfirmDialog(
+                                title="反馈对忽框",
+                                message="点击按钮",
+                                ).show_all())
                     
                         button_align = gtk.Alignment()
                         button_align.set(0.5, 0.5, 0, 0)
@@ -1187,6 +1192,11 @@ DisableButton, LinkButton, ComboButton, SwitchButton,
                         button_align = gtk.Alignment()
                         button_align.set(0.5, 0.5, 0, 0)
 </code></pre>
+
+>>>> 如果想在点击按钮的时候有反馈，  
+可以通过添加回调函数到 Button 的 `clicked` 信号来实现。  
+当前的例子是在点击按钮的时候弹出一个对话框。  
+这里只是一个例子， 在应用开发需要添加你自己的回调函数。  
 
 >>>> 下面的代码把 Button 添加到窗口中:  
 需要注意的是 application 的属性 `main_box` 是一个顶级容器，  
@@ -1235,6 +1245,12 @@ DisableButton, LinkButton, ComboButton, SwitchButton,
                             scale_x=False,
                             content=None,
                             )
+                        image_button.connect(
+                            "clicked", 
+                            lambda w: ConfirmDialog(
+                                title="反馈对忽框",
+                                message="点击播放按钮",
+                                ).show_all())
                     
                         image_button_align = gtk.Alignment()
                         image_button_align.set(0.5, 0.5, 0, 0)
@@ -1275,20 +1291,20 @@ Deepin-UI 默认的主题对象是 `ui_theme`， 提供 Deepin-UI 默认控件�
 >>> `init_skin` 函数的作用是初始化皮肤和主题资源， 并返回 `app_theme` 对象。  
 `init_skin` 的参数分别是：   
 
->>>> project_name:				项目名   
->>>> project_version:			项目版本号   
->>>> skin_name:					皮肤目录的名字  
->>>> application_skin_dir:		应用程序的皮肤目录  
->>>> application_theme_dir:		应用程序的主题目录  
+>>>> `project_name`: 项目名   
+>>>> `project_version`:	项目版本号   
+>>>> `skin_name`: 皮肤目录的名字  
+>>>> `application_skin_dir`: 应用程序的皮肤目录  
+>>>> `application_theme_dir`: 应用程序的主题目录  
 
 >>> ImageButton构造函数参数讲解：  
 
->>>> normal_dpixbuf:			按钮正常时的 DyanmicPixbuf 对象  
->>>> hover_dpixbuf:				鼠标掠过时的 DyanmicPixbuf 对象  
->>>> press_dpixbuf:				鼠标按下时的 DyanmicPixbuf 对象  
->>>> insensitive_dpixbuf:		按钮禁用时的 DyanmicPixbuf 对象, 默认为 None (没有禁用状态)  
->>>> scale_x:					是否根据ImageButton的宽度对图片进行拉伸， 默认为 None (不缩放)  
->>>> content:					是否在按钮上绘制文字， 默认为 "" (不进行字体绘制）  
+>>>> `normal_dpixbuf`: 按钮正常时的 DyanmicPixbuf 对象  
+>>>> `hover_dpixbuf`: 鼠标掠过时的 DyanmicPixbuf 对象  
+>>>> `press_dpixbuf`: 鼠标按下时的 DyanmicPixbuf 对象  
+>>>> `insensitive_dpixbuf`: 按钮禁用时的 DyanmicPixbuf 对象, 默认为 None (没有禁用状态)  
+>>>> `scale_x`: 是否根据ImageButton的宽度对图片进行拉伸， 默认为 None (不缩放)  
+>>>> `content`: 是否在按钮上绘制文字， 默认为 "" (不进行字体绘制）  
 
 <pre lang="python"><code>
                     image_button = ImageButton(
@@ -1329,6 +1345,12 @@ Deepin-UI 默认的主题对象是 `ui_theme`， 提供 Deepin-UI 默认控件�
                             button_label="This is toggle button",
                             padding_x=5,
                             )
+                        toggle_button.connect(
+                            "toggled", 
+                            lambda w: ConfirmDialog(
+                                "反馈对话框",
+                                "按钮开启" if w.get_active() else "按钮关闭",
+                                ).show_all())
                         
                         toggle_button_align = gtk.Alignment()
                         toggle_button_align.set(0.5, 0.5, 0, 0)
@@ -1345,10 +1367,24 @@ Deepin-UI 默认的主题对象是 `ui_theme`， 提供 Deepin-UI 默认控件�
 >>> 代码讲解：  
 `ToggleButton` 构造函数参数讲解：  
 
->>>> inactive_normal_dpixbuf: 按钮非激活状态的 DynamicPixbuf  
->>>> active_normal_dpixbuf: 按钮激活状态的 DynamicPixbuf  
->>>> button_label: 按钮右边的文字内容, 默认为 None  
->>>> padding_x: 按钮和文字自己的间距， 默认是 0 像素  
+>>>> `inactive_normal_dpixbuf`: 按钮非激活状态的 DynamicPixbuf  
+>>>> `active_normal_dpixbuf`: 按钮激活状态的 DynamicPixbuf  
+>>>> `button_label`: 按钮右边的文字内容, 默认为 None  
+>>>> `padding_x`: 按钮和文字自己的间距， 默认是 0 像素  
+
+>>> 顺带教一个小技巧：  
+Python 中等同于三元操作符 `condition ? result_a : result_b` 的写法是：  
+`result_a if condition else result_b`  
+就像下面的代码一样， 如果 ToggleButton 当前的状态是激活就返回 "按钮开启" 字符串， 否则显示 "按钮关闭" 字符串。  
+
+<pre lang="python"><code>
+                        toggle_button.connect(
+                            "toggled", 
+                            lambda w: ConfirmDialog(
+                                "反馈对话框",
+                                "按钮开启" if w.get_active() else "按钮关闭",
+                                ).show_all())
+</code></pre>
 
 >> * **CheckButton**:   
 
@@ -1406,8 +1442,11 @@ Deepin-UI 默认的主题对象是 `ui_theme`， 提供 Deepin-UI 默认控件�
 >>> 代码讲解：  
 `CheckButton` 构造函数参数讲解：  
 
->>>> label_text: 按钮右边的文字内容, 默认为 None  
->>>> padding_x: 按钮和文字自己的间距， 默认是 0 像素  
+>>>> `label_text`: 按钮右边的文字内容, 默认为 None  
+>>>> `padding_x`: 按钮和文字自己的间距， 默认是 0 像素  
+
+>>> CheckButton 继承于 ToggleButton, 所以信号的使用是一样的，  
+都是通过 `toggled` 信号来添加回调函数。  
 
 >> * **CheckAllButton**:   
 >> * **RadioButton**:   

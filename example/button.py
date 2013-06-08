@@ -5,6 +5,7 @@ from dtk.ui.init_skin import init_theme
 init_theme()
 from dtk.ui.application import Application
 from dtk.ui.button import Button
+from dtk.ui.dialog import ConfirmDialog
 import gtk
 
 if __name__ == "__main__":
@@ -13,6 +14,11 @@ if __name__ == "__main__":
     application.add_titlebar(title="Button example!")
     
     button = Button("Linux Deepin", 12)
+    button.connect(
+        "clicked", lambda w: ConfirmDialog(
+            title="反馈对忽框",
+            message="点击按钮",
+            ).show_all())
 
     button_align = gtk.Alignment()
     button_align.set(0.5, 0.5, 0, 0)

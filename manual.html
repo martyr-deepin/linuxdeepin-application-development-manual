@@ -703,8 +703,8 @@ PyGTK+ 只是对 GTK+ C 库进行了一层封装来满足快速开发的需求�
 
 <p># Copyright (C) 2011 ~ 2013 Wang Yong <br />
 # <br />
-# Author:     Wang Yong <a href="&#109;&#x61;&#x69;&#108;t&#111;:&#119;&#x61;&#x6E;g&#x79;&#x6F;&#x6E;&#103;&#64;&#108;&#x69;&#x6E;&#x75;&#x78;&#100;&#x65;&#101;&#112;&#x69;&#x6E;&#46;&#99;&#111;m">&#119;&#x61;&#x6E;g&#x79;&#x6F;&#x6E;&#103;&#64;&#108;&#x69;&#x6E;&#x75;&#x78;&#100;&#x65;&#101;&#112;&#x69;&#x6E;&#46;&#99;&#111;m</a> <br />
-# Maintainer: Wang Yong <a href="&#x6D;&#x61;&#x69;&#108;&#x74;&#111;:&#x77;&#97;&#110;&#103;&#121;&#111;&#110;&#x67;&#64;&#x6C;&#x69;&#110;&#x75;&#x78;&#100;&#101;&#x65;&#112;&#105;&#110;&#46;&#x63;&#x6F;&#109;">&#x77;&#97;&#110;&#103;&#121;&#111;&#110;&#x67;&#64;&#x6C;&#x69;&#110;&#x75;&#x78;&#100;&#101;&#x65;&#112;&#105;&#110;&#46;&#x63;&#x6F;&#109;</a> <br />
+# Author:     Wang Yong <a href="&#109;&#x61;&#x69;&#x6C;&#x74;o:&#119;&#x61;&#110;&#103;&#x79;&#111;&#x6E;&#x67;&#64;&#x6C;&#x69;&#x6E;u&#x78;&#x64;ee&#x70;&#x69;&#110;&#x2E;&#x63;&#x6F;&#x6D;">&#119;&#x61;&#110;&#103;&#x79;&#111;&#x6E;&#x67;&#64;&#x6C;&#x69;&#x6E;u&#x78;&#x64;ee&#x70;&#x69;&#110;&#x2E;&#x63;&#x6F;&#x6D;</a> <br />
+# Maintainer: Wang Yong <a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;:&#119;&#97;&#110;&#103;y&#x6F;&#x6E;&#x67;&#64;&#108;in&#117;xd&#x65;&#x65;&#x70;i&#110;.&#99;&#x6F;&#x6D;">&#119;&#97;&#110;&#103;y&#x6F;&#x6E;&#x67;&#64;&#108;in&#117;xd&#x65;&#x65;&#x70;i&#110;.&#99;&#x6F;&#x6D;</a> <br />
 # <br />
 # This program is free software: you can redistribute it and/or modify <br />
 # it under the terms of the GNU General Public License as published by <br />
@@ -1466,7 +1466,6 @@ Deepin-UI 还有皮肤的高级设置， 这个留到后面讲， 这里只需�
 <blockquote>
   <p>这一章， 我们针对 Deepin-UI 的每一个模块进行详细的讲解, <br />
 我们暂时只对每个控件的创建进行讲解， <br />
-每个控件具体的信号以及一些高级技巧我会在下一张应用程序实战中给大家详细讲解。 <br />
 通过这一章的学习后， 就可以直接拿 Deepin-UI 进行应用开发了。  </p>
 
 <ul>
@@ -1505,6 +1504,7 @@ DisableButton, LinkButton, ComboButton, SwitchButton,   </p>
                     init_theme()
                     from dtk.ui.application import Application
                     from dtk.ui.button import Button
+                    from dtk.ui.dialog import ConfirmDialog
                     import gtk
 
                     if __name__ == "__main__":
@@ -1513,6 +1513,11 @@ DisableButton, LinkButton, ComboButton, SwitchButton,   </p>
                         application.add_titlebar(title="Button example!")
 
                         button = Button("Linux Deepin", 12)
+                        button.connect(
+                            "clicked", lambda w: ConfirmDialog(
+                                title="反馈对忽框",
+                                message="点击按钮",
+                                ).show_all())
 
                         button_align = gtk.Alignment()
                         button_align.set(0.5, 0.5, 0, 0)
@@ -1583,7 +1588,12 @@ yscale: 是否纵向拉伸子控件, 0 表示不拉伸子控件， 1 表示完�
   <blockquote>
   <blockquote>
   <blockquote>
-  <p>下面的代码把 Button 添加到窗口中: <br />
+  <p>如果想在点击按钮的时候有反馈， <br />
+可以通过添加回调函数到 Button 的 <code>clicked</code> 信号来实现。 <br />
+当前的例子是在点击按钮的时候弹出一个对话框。 <br />
+这里只是一个例子， 在应用开发需要添加你自己的回调函数。  </p>
+
+<p>下面的代码把 Button 添加到窗口中: <br />
 需要注意的是 application 的属性 <code>main_box</code> 是一个顶级容器， <br />
 所有 Deepin-UI 的控件都需要添加到 <code>main_box</code> 中。</p>
 </blockquote>
@@ -1647,6 +1657,12 @@ yscale: 是否纵向拉伸子控件, 0 表示不拉伸子控件， 1 表示完�
                             scale_x=False,
                             content=None,
                             )
+                        image_button.connect(
+                            "clicked", 
+                            lambda w: ConfirmDialog(
+                                title="反馈对忽框",
+                                message="点击播放按钮",
+                                ).show_all())
 
                         image_button_align = gtk.Alignment()
                         image_button_align.set(0.5, 0.5, 0, 0)
@@ -1699,22 +1715,22 @@ Deepin-UI 默认的主题对象是 <code>ui_theme</code>， 提供 Deepin-UI 默
 <code>init_skin</code> 的参数分别是：   </p>
 
 <blockquote>
-  <p>project<em>name:              项目名 <br />
-project</em>version:           项目版本号 <br />
-skin<em>name:                 皮肤目录的名字 <br />
-application</em>skin<em>dir:      应用程序的皮肤目录 <br />
-application</em>theme_dir:     应用程序的主题目录  </p>
+  <p><code>project_name</code>: 项目名 <br />
+<code>project_version</code>: 项目版本号 <br />
+<code>skin_name</code>: 皮肤目录的名字 <br />
+<code>application_skin_dir</code>: 应用程序的皮肤目录 <br />
+<code>application_theme_dir</code>: 应用程序的主题目录  </p>
 </blockquote>
 
 <p>ImageButton构造函数参数讲解：  </p>
 
 <blockquote>
-  <p>normal<em>dpixbuf:            按钮正常时的 DyanmicPixbuf 对象 <br />
-hover</em>dpixbuf:             鼠标掠过时的 DyanmicPixbuf 对象 <br />
-press<em>dpixbuf:             鼠标按下时的 DyanmicPixbuf 对象 <br />
-insensitive</em>dpixbuf:       按钮禁用时的 DyanmicPixbuf 对象, 默认为 None (没有禁用状态) <br />
-scale_x:                   是否根据ImageButton的宽度对图片进行拉伸， 默认为 None (不缩放) <br />
-content:                   是否在按钮上绘制文字， 默认为 "" (不进行字体绘制）  </p>
+  <p><code>normal_dpixbuf</code>: 按钮正常时的 DyanmicPixbuf 对象 <br />
+<code>hover_dpixbuf</code>: 鼠标掠过时的 DyanmicPixbuf 对象 <br />
+<code>press_dpixbuf</code>: 鼠标按下时的 DyanmicPixbuf 对象 <br />
+<code>insensitive_dpixbuf</code>: 按钮禁用时的 DyanmicPixbuf 对象, 默认为 None (没有禁用状态) <br />
+<code>scale_x</code>: 是否根据ImageButton的宽度对图片进行拉伸， 默认为 None (不缩放) <br />
+<code>content</code>: 是否在按钮上绘制文字， 默认为 "" (不进行字体绘制）  </p>
 </blockquote>
 
 <p></blockquote></p>
@@ -1772,6 +1788,12 @@ content:                   是否在按钮上绘制文字， 默认为 "" (不�
                             button_label="This is toggle button",
                             padding_x=5,
                             )
+                        toggle_button.connect(
+                            "toggled", 
+                            lambda w: ConfirmDialog(
+                                "反馈对话框",
+                                "按钮开启" if w.get_active() else "按钮关闭",
+                                ).show_all())
 
                         toggle_button_align = gtk.Alignment()
                         toggle_button_align.set(0.5, 0.5, 0, 0)
@@ -1792,15 +1814,35 @@ content:                   是否在按钮上绘制文字， 默认为 "" (不�
 <code>ToggleButton</code> 构造函数参数讲解：  </p>
 
 <blockquote>
-  <p>inactive<em>normal</em>dpixbuf: 按钮非激活状态的 DynamicPixbuf <br />
-active<em>normal</em>dpixbuf: 按钮激活状态的 DynamicPixbuf <br />
-button<em>label: 按钮右边的文字内容, 默认为 None <br />
-padding</em>x: 按钮和文字自己的间距， 默认是 0 像素  </p>
+  <p><code>inactive_normal_dpixbuf</code>: 按钮非激活状态的 DynamicPixbuf <br />
+<code>active_normal_dpixbuf</code>: 按钮激活状态的 DynamicPixbuf <br />
+<code>button_label</code>: 按钮右边的文字内容, 默认为 None <br />
+<code>padding_x</code>: 按钮和文字自己的间距， 默认是 0 像素  </p>
 </blockquote>
+
+<p>顺带教一个小技巧： <br />
+Python 中等同于三元操作符 <code>condition ? result_a : result_b</code> 的写法是： <br />
+<code>result_a if condition else result_b</code> <br />
+就像下面的代码一样， 如果 ToggleButton 当前的状态是激活就返回 "按钮开启" 字符串， 否则显示 "按钮关闭" 字符串。  </p>
 
 <p></blockquote></p>
 
-<ul>
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                        toggle_button.connect(
+                            "toggled", 
+                            lambda w: ConfirmDialog(
+                                "反馈对话框",
+                                "按钮开启" if w.get_active() else "按钮关闭",
+                                ).show_all())
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <ul>
 <li><strong>CheckButton</strong>:   </li>
 </ul>
 
@@ -1868,9 +1910,12 @@ padding</em>x: 按钮和文字自己的间距， 默认是 0 像素  </p>
 <code>CheckButton</code> 构造函数参数讲解：  </p>
 
 <blockquote>
-  <p>label<em>text: 按钮右边的文字内容, 默认为 None <br />
-padding</em>x: 按钮和文字自己的间距， 默认是 0 像素  </p>
+  <p><code>label_text</code>: 按钮右边的文字内容, 默认为 None <br />
+<code>padding_x</code>: 按钮和文字自己的间距， 默认是 0 像素  </p>
 </blockquote>
+
+<p>CheckButton 继承于 ToggleButton, 所以信号的使用是一样的， <br />
+都是通过 <code>toggled</code> 信号来添加回调函数。  </p>
 
 <p></blockquote></p>
 

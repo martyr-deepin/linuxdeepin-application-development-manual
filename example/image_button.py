@@ -13,6 +13,7 @@ app_theme = init_skin(
         )
 from dtk.ui.application import Application
 from dtk.ui.button import ImageButton
+from dtk.ui.dialog import ConfirmDialog
 import gtk
 
 if __name__ == "__main__":
@@ -28,6 +29,12 @@ if __name__ == "__main__":
         scale_x=False,
         content=None,
         )
+    image_button.connect(
+        "clicked", 
+        lambda w: ConfirmDialog(
+            title="反馈对忽框",
+            message="点击播放按钮",
+            ).show_all())
 
     image_button_align = gtk.Alignment()
     image_button_align.set(0.5, 0.5, 0, 0)
