@@ -1,11 +1,18 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from dtk.ui.init_skin import init_theme
-init_theme()
+from dtk.ui.init_skin import init_skin
+import os
+from deepin_utils.file import get_parent_dir, get_current_dir
+app_theme = init_skin(
+        "deepin-ui",
+        "1.0",
+        "default",
+        os.path.join(get_parent_dir(__file__, 2), "skin"),
+        os.path.join(get_current_dir(__file__), "app_theme"),
+        )
 from dtk.ui.application import Application
 from dtk.ui.button import ImageButton
-from dtk.ui.theme import ui_theme
 import gtk
 
 if __name__ == "__main__":
@@ -14,10 +21,10 @@ if __name__ == "__main__":
     application.add_titlebar(title="ImageButton example!")
     
     image_button = ImageButton(
-        normal_dpixbuf=ui_theme.get_pixbuf("button/radio_button_active_normal.png"),
-        hover_dpixbuf=ui_theme.get_pixbuf("button/radio_button_active_hover.png"),
-        press_dpixbuf=ui_theme.get_pixbuf("button/radio_button_active_press.png"),
-        insensitive_dpixbuf=ui_theme.get_pixbuf("button/radio_button_active_disable.png"),
+        normal_dpixbuf=app_theme.get_pixbuf("action/play_normal.png"),
+        hover_dpixbuf=app_theme.get_pixbuf("action/play_hover.png"),
+        press_dpixbuf=app_theme.get_pixbuf("action/play_press.png"),
+        insensitive_dpixbuf=None,
         scale_x=False,
         content=None,
         )

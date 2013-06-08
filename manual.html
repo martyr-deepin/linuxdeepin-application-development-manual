@@ -703,8 +703,8 @@ PyGTK+ 只是对 GTK+ C 库进行了一层封装来满足快速开发的需求�
 
 <p># Copyright (C) 2011 ~ 2013 Wang Yong <br />
 # <br />
-# Author:     Wang Yong <a href="&#x6D;&#x61;&#105;&#108;&#116;&#111;:&#x77;&#x61;&#110;g&#121;&#111;&#110;&#x67;&#64;&#108;&#105;n&#117;&#x78;&#100;&#101;&#x65;&#x70;&#x69;&#x6E;&#46;&#x63;&#x6F;&#x6D;">&#x77;&#x61;&#110;g&#121;&#111;&#110;&#x67;&#64;&#108;&#105;n&#117;&#x78;&#100;&#101;&#x65;&#x70;&#x69;&#x6E;&#46;&#x63;&#x6F;&#x6D;</a> <br />
-# Maintainer: Wang Yong <a href="&#x6D;&#x61;&#x69;l&#x74;o:&#119;&#97;&#x6E;&#x67;&#121;o&#110;&#103;&#64;&#x6C;&#105;&#110;&#117;&#x78;&#x64;&#101;&#101;&#x70;&#105;&#x6E;&#x2E;c&#x6F;&#x6D;">&#119;&#97;&#x6E;&#x67;&#121;o&#110;&#103;&#64;&#x6C;&#105;&#110;&#117;&#x78;&#x64;&#101;&#101;&#x70;&#105;&#x6E;&#x2E;c&#x6F;&#x6D;</a> <br />
+# Author:     Wang Yong <a href="&#x6D;&#97;&#105;&#x6C;&#x74;&#x6F;:&#x77;&#x61;&#x6E;&#103;&#121;&#111;&#x6E;&#103;&#64;&#108;&#105;&#x6E;&#117;&#120;&#100;&#101;&#x65;&#x70;i&#110;&#46;&#99;&#x6F;&#x6D;">&#x77;&#x61;&#x6E;&#103;&#121;&#111;&#x6E;&#103;&#64;&#108;&#105;&#x6E;&#117;&#120;&#100;&#101;&#x65;&#x70;i&#110;&#46;&#99;&#x6F;&#x6D;</a> <br />
+# Maintainer: Wang Yong <a href="&#x6D;&#x61;i&#x6C;&#116;&#x6F;:&#119;&#x61;&#x6E;&#x67;&#x79;&#x6F;&#x6E;&#x67;&#64;&#108;&#105;n&#x75;&#x78;&#100;&#101;&#x65;&#112;&#x69;&#x6E;&#x2E;&#99;&#x6F;m">&#119;&#x61;&#x6E;&#x67;&#x79;&#x6F;&#x6E;&#x67;&#64;&#108;&#105;n&#x75;&#x78;&#100;&#101;&#x65;&#112;&#x69;&#x6E;&#x2E;&#99;&#x6F;m</a> <br />
 # <br />
 # This program is free software: you can redistribute it and/or modify <br />
 # it under the terms of the GNU General Public License as published by <br />
@@ -1465,7 +1465,9 @@ Deepin-UI 还有皮肤的高级设置， 这个留到后面讲， 这里只需�
 
 <blockquote>
   <p>这一章， 我们针对 Deepin-UI 的每一个模块进行详细的讲解, <br />
-通过这一章的学习后， 就可以直接拿 Deepin-UI 进行应用开发了。</p>
+我们暂时只对每个控件的创建进行讲解， <br />
+每个控件具体的信号以及一些高级技巧我会在下一张应用程序实战中给大家详细讲解。 <br />
+通过这一章的学习后， 就可以直接拿 Deepin-UI 进行应用开发了。  </p>
 
 <ul>
 <li><strong>button</strong>  </li>
@@ -1598,7 +1600,220 @@ yscale: 是否纵向拉伸子控件, 0 表示不拉伸子控件， 1 表示完�
 </code></pre>
 
 <blockquote>
+  <blockquote>
   <ul>
+<li><strong>ImageButton</strong>:  </li>
+</ul>
+
+<blockquote>
+  <p>ImageButton 和 Button 的用法是一样的， <br />
+惟一的不同是 ImageButton 提供给开发者自定义 Button 背景图片的能力。</p>
+
+<p><a href="example/image_button.py">ImageButton 实例代码</a>  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                    #! /usr/bin/env python
+                    # -*- coding: utf-8 -*-
+
+                    from dtk.ui.init_skin import init_skin
+                    import os
+                    from deepin_utils.file import get_parent_dir, get_current_dir
+                    app_theme = init_skin(
+                            "deepin-ui",
+                            "1.0",
+                            "default",
+                            os.path.join(get_parent_dir(__file__, 2), "skin"),
+                            os.path.join(get_current_dir(__file__), "app_theme"),
+                            )
+                    from dtk.ui.application import Application
+                    from dtk.ui.button import ImageButton
+                    import gtk
+
+                    if __name__ == "__main__":
+                        application = Application()
+                        application.set_default_size(600, 450)
+                        application.add_titlebar(title="ImageButton example!")
+
+                        image_button = ImageButton(
+                            normal_dpixbuf=app_theme.get_pixbuf("action/play_normal.png"),
+                            hover_dpixbuf=app_theme.get_pixbuf("action/play_hover.png"),
+                            press_dpixbuf=app_theme.get_pixbuf("action/play_press.png"),
+                            insensitive_dpixbuf=None,
+                            scale_x=False,
+                            content=None,
+                            )
+
+                        image_button_align = gtk.Alignment()
+                        image_button_align.set(0.5, 0.5, 0, 0)
+
+                        image_button_align.add(image_button)
+                        application.main_box.add(image_button_align)
+
+                        application.run()
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <blockquote>
+  <p>效果图如下： <br />
+                <div style="float: top"><img src="image/image_button.png" /></div></p>
+
+<p>代码讲解：  </p>
+
+<p>大家会发现在 <a href="example/image_button.py">image_button.py</a> 中有一段和 <a href="example/button.py">button.py</a> 不一样的代码：</p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                    from dtk.ui.init_skin import init_skin
+                    import os
+                    from deepin_utils.file import get_parent_dir, get_current_dir
+                    app_theme = init_skin(
+                            "deepin-ui",
+                            "1.0",
+                            "default",
+                            os.path.join(get_parent_dir(__file__, 2), "skin"),
+                            os.path.join(get_current_dir(__file__), "app_theme"),
+                            )
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <blockquote>
+  <p>这段代码主要的意义是创建 <code>app_theme</code> 这个对象， <br />
+Deepin-UI 默认的主题对象是 <code>ui_theme</code>， 提供 Deepin-UI 默认控件的主题文件， <br />
+<code>app_theme</code> 的意思是应用程序的主题， 用于提供应用程序特有的控件资源文件。
+<code>ui_theme</code> 和 <code>app_theme</code> 提供动态主题的功能， <br />
+不论用户添加什么图片， Deepin-UI 都会自动算出图片的主色， <br />
+并动态地从 <code>ui_theme</code> 和 <code>app_theme</code> 中选择最佳颜色搭配的主题文件进行加载。  </p>
+
+<p><code>init_skin</code> 函数的作用是初始化皮肤和主题资源， 并返回 <code>app_theme</code> 对象。 <br />
+<code>init_skin</code> 的参数分别是：   </p>
+
+<blockquote>
+  <p>project<em>name:              项目名 <br />
+project</em>version:           项目版本号 <br />
+skin<em>name:                 皮肤目录的名字 <br />
+application</em>skin<em>dir:      应用程序的皮肤目录 <br />
+application</em>theme_dir:     应用程序的主题目录  </p>
+</blockquote>
+
+<p>ImageButton构造函数参数讲解：  </p>
+
+<blockquote>
+  <p>normal<em>dpixbuf:            按钮正常时的 DyanmicPixbuf 对象 <br />
+hover</em>dpixbuf:             鼠标掠过时的 DyanmicPixbuf 对象 <br />
+press<em>dpixbuf:             鼠标按下时的 DyanmicPixbuf 对象 <br />
+insensitive</em>dpixbuf:       按钮禁用时的 DyanmicPixbuf 对象, 默认为 None (没有禁用状态) <br />
+scale_x:                   是否根据ImageButton的宽度对图片进行拉伸， 默认为 None (不缩放) <br />
+content:                   是否在按钮上绘制文字， 默认为 "" (不进行字体绘制）  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                    image_button = ImageButton(
+                        normal_dpixbuf=app_theme.get_pixbuf("action/play_normal.png"),
+                        hover_dpixbuf=app_theme.get_pixbuf("action/play_hover.png"),
+                        press_dpixbuf=app_theme.get_pixbuf("action/play_press.png"),
+                        insensitive_dpixbuf=None,
+                        scale_x=False,
+                        content=None,
+                        )
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <ul>
+<li><strong>ToggleButton</strong>:   </li>
+</ul>
+
+<blockquote>
+  <p>ToggleButton 一般用于具有开关切换性质的按钮。  </p>
+
+<p><a href="example/toggle_button.py">ToggleButton 实例代码</a>  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                    #! /usr/bin/env python
+                    # -*- coding: utf-8 -*-
+
+                    from dtk.ui.init_skin import init_theme
+                    init_theme()
+                    from dtk.ui.application import Application
+                    from dtk.ui.button import ToggleButton
+                    from dtk.ui.theme import ui_theme
+                    import gtk
+
+                    if __name__ == "__main__":
+                        application = Application()
+                        application.set_default_size(600, 450)
+                        application.add_titlebar(title="ToggleButton example!")
+
+                        toggle_button = ToggleButton(
+                            inactive_normal_dpixbuf=ui_theme.get_pixbuf("switchbutton/off.png"),
+                            active_normal_dpixbuf=ui_theme.get_pixbuf("switchbutton/on.png"),
+                            button_label="This is toggle button",
+                            padding_x=5,
+                            )
+
+                        toggle_button_align = gtk.Alignment()
+                        toggle_button_align.set(0.5, 0.5, 0, 0)
+
+                        toggle_button_align.add(toggle_button)
+                        application.main_box.add(toggle_button_align)
+
+                        application.run()
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <blockquote>
+  <p>效果图如下： <br />
+                <div style="float: top"><img src="image/toggle_button.png" /></div></p>
+
+<p>代码讲解： <br />
+<code>ToggleButton</code> 构造函数参数讲解：  </p>
+
+<blockquote>
+  <p>inactive<em>normal</em>dpixbuf: 按钮非激活状态的 DynamicPixbuf <br />
+active<em>normal</em>dpixbuf: 按钮激活状态的 DynamicPixbuf <br />
+button<em>label: 按钮右边的文字内容, 默认为 None <br />
+padding</em>x: 按钮和文字自己的间距， 默认是 0 像素  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<ul>
+<li><strong>ActionButton</strong>:   </li>
+<li><strong>CheckButton</strong>:   </li>
+<li><strong>CheckAllButton</strong>:   </li>
+<li><strong>RadioButton</strong>:   </li>
+<li><strong>DisableButton</strong>:   </li>
+<li><strong>LinkButton</strong>:   </li>
+<li><strong>ComboButton</strong>:   </li>
+<li><strong>SwitchButton</strong>:   </li>
+</ul>
+
+<p></blockquote></p>
+
+<ul>
 <li><strong>label</strong></li>
 <li><strong>resizable_label</strong></li>
 <li><strong>entry</strong></li>
@@ -1646,7 +1861,8 @@ yscale: 是否纵向拉伸子控件, 0 表示不拉伸子控件， 1 表示完�
 <li><strong>thread_pool</strong></li>
 <li><strong>unique_service</strong></li>
 </ul>
-</blockquote>
+
+<p></blockquote></p>
 
 <h2 id="application-development-experience-and-trick">应用程序开发经验和技巧</h2>
 
