@@ -703,8 +703,8 @@ PyGTK+ 只是对 GTK+ C 库进行了一层封装来满足快速开发的需求�
 
 <p># Copyright (C) 2011 ~ 2013 Wang Yong <br />
 # <br />
-# Author:     Wang Yong <a href="ma&#105;&#108;&#116;&#x6F;:&#119;&#97;&#x6E;&#x67;&#121;&#111;&#110;&#x67;&#64;l&#x69;&#110;&#117;&#120;&#100;&#101;&#x65;&#112;&#105;&#110;&#x2E;&#x63;&#111;&#x6D;">&#119;&#97;&#x6E;&#x67;&#121;&#111;&#110;&#x67;&#64;l&#x69;&#110;&#117;&#120;&#100;&#101;&#x65;&#112;&#105;&#110;&#x2E;&#x63;&#111;&#x6D;</a> <br />
-# Maintainer: Wang Yong <a href="&#x6D;&#x61;&#x69;&#x6C;&#116;&#x6F;:&#x77;&#x61;&#x6E;g&#x79;&#111;&#x6E;&#x67;&#64;&#108;&#105;&#x6E;u&#x78;&#100;&#101;&#101;p&#x69;&#x6E;&#x2E;&#99;&#111;&#109;">&#x77;&#x61;&#x6E;g&#x79;&#111;&#x6E;&#x67;&#64;&#108;&#105;&#x6E;u&#x78;&#100;&#101;&#101;p&#x69;&#x6E;&#x2E;&#99;&#111;&#109;</a> <br />
+# Author:     Wang Yong <a href="&#109;a&#105;&#x6C;&#x74;&#x6F;:&#x77;&#x61;&#x6E;&#103;&#x79;&#111;&#x6E;&#103;&#64;&#108;i&#110;&#117;&#120;&#x64;&#x65;&#101;&#112;&#x69;&#x6E;&#46;c&#x6F;&#x6D;">&#x77;&#x61;&#x6E;&#103;&#x79;&#111;&#x6E;&#103;&#64;&#108;i&#110;&#117;&#120;&#x64;&#x65;&#101;&#112;&#x69;&#x6E;&#46;c&#x6F;&#x6D;</a> <br />
+# Maintainer: Wang Yong <a href="&#109;&#97;i&#x6C;&#116;&#x6F;:&#119;&#97;&#x6E;&#103;&#121;&#111;n&#103;&#64;l&#x69;n&#x75;&#120;d&#101;&#x65;&#x70;&#x69;&#110;&#x2E;&#x63;&#x6F;&#109;">&#119;&#97;&#x6E;&#103;&#121;&#111;n&#103;&#64;l&#x69;n&#x75;&#120;d&#101;&#x65;&#x70;&#x69;&#110;&#x2E;&#x63;&#x6F;&#109;</a> <br />
 # <br />
 # This program is free software: you can redistribute it and/or modify <br />
 # it under the terms of the GNU General Public License as published by <br />
@@ -1464,8 +1464,150 @@ Deepin-UI 还有皮肤的高级设置， 这个留到后面讲， 这里只需�
 <h3 id="use-deepin-ui">Deepin-UI 模块使用</h3>
 
 <blockquote>
+  <p>这一章， 我们针对 Deepin-UI 的每一个模块进行详细的讲解, <br />
+通过这一章的学习后， 就可以直接拿 Deepin-UI 进行应用开发了。</p>
+
+<ul>
+<li><strong>button</strong>  </li>
+</ul>
+
+<blockquote>
+  <p>在 dtk.ui.button 模块中主要提供这几个简单的控件： <br />
+Button, ImageButton, ToggleButton, ActionButton, <br />
+CheckButton, CheckAllButton, RadioButton, <br />
+DisableButton, LinkButton, ComboButton, SwitchButton,   </p>
+
+<p>我们接下来分别对这些控件进行详细解析.  </p>
+
+<ul>
+<li><strong>Button</strong>:  </li>
+</ul>
+
+<blockquote>
+  <p>Button 这个控件应该是应用最广泛的控件， <br />
+只要是需要用文字提示用户并需要用户点击反馈的地方都需要按钮， <br />
+比如确定、取消、保存、更改等等。  </p>
+
+<p><a href="example/button.py">Button 实例代码</a>  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                    #! /usr/bin/env python
+                    # -*- coding: utf-8 -*-
+
+                    from dtk.ui.init_skin import init_theme
+                    init_theme()
+                    from dtk.ui.application import Application
+                    from dtk.ui.button import Button
+                    import gtk
+
+                    if __name__ == "__main__":
+                        application = Application()
+                        application.set_default_size(600, 450)
+                        application.add_titlebar(title="Button example!")
+
+                        button = Button("Linux Deepin", 12)
+
+                        button_align = gtk.Alignment()
+                        button_align.set(0.5, 0.5, 0, 0)
+
+                        button_align.add(button)
+                        application.main_box.add(button_align)
+
+                        application.run()
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <blockquote>
+  <p>效果图如下：  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<div style="float: top"><img src="image/button.png" /></div>
+
+<blockquote>
+  <blockquote>
+  <blockquote>
+  <p>代码讲解：  </p>
+
+<blockquote>
+  <p>Button实例的创建， Button这个类由两个参数， <br />
+第一个参数是 Button 的名字， 第二个参数是 Button 的名字字体大小, 默认字体大小是 9 。  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                        button = Button("Linux Deepin", 12)
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <blockquote>
+  <blockquote>
+  <p>gtk.Alignment 这个容器主要用于控制字控件的对齐, <br />
+<code>set</code> 函数的4个参数分别表示：  </p>
+
+<blockquote>
+  <p>xalign: 纵向填充比例， 0 表示顶部填充， 1 表示底部填充， 0.5 表示纵向居中填充 <br />
+yalign: 横向填充比例， 0 表示左边填充， 1 表示右边填充， 0.5 表示横向居中填充 <br />
+xscale: 是否横向拉伸子控件, 0 表示不拉伸子控件， 1 表示完全拉伸子控件和容器一样宽 <br />
+        ui<em>theme.get</em>pixbuf("button/window<em>close</em>normal.png"),
+        ui<em>theme.get</em>pixbuf("button/window<em>close</em>hover.png"),
+        ui<em>theme.get</em>pixbuf("button/window<em>close</em>press.png"),
+        False,
+        "Linux Deepin",
+        ui<em>theme.get</em>pixbuf("button/window<em>close</em>press.png"),
+yscale: 是否纵向拉伸子控件, 0 表示不拉伸子控件， 1 表示完全拉伸子控件和容器一样高  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                        button_align = gtk.Alignment()
+                        button_align.set(0.5, 0.5, 0, 0)
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <blockquote>
+  <blockquote>
+  <p>下面的代码把 Button 添加到窗口中: <br />
+需要注意的是 application 的属性 <code>main_box</code> 是一个顶级容器， <br />
+所有 Deepin-UI 的控件都需要添加到 <code>main_box</code> 中。</p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                        button_align.add(button)
+                        application.main_box.add(button_align)
+</code></pre>
+
+<blockquote>
   <ul>
-<li><strong>button</strong></li>
 <li><strong>label</strong></li>
 <li><strong>resizable_label</strong></li>
 <li><strong>entry</strong></li>
