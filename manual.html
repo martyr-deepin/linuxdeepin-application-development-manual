@@ -703,8 +703,8 @@ PyGTK+ 只是对 GTK+ C 库进行了一层封装来满足快速开发的需求�
 
 <p># Copyright (C) 2011 ~ 2013 Wang Yong <br />
 # <br />
-# Author:     Wang Yong <a href="&#x6D;&#97;&#105;&#x6C;&#x74;&#x6F;:&#x77;&#x61;&#x6E;&#103;&#121;&#111;&#x6E;&#103;&#64;&#108;&#105;&#x6E;&#117;&#120;&#100;&#101;&#x65;&#x70;i&#110;&#46;&#99;&#x6F;&#x6D;">&#x77;&#x61;&#x6E;&#103;&#121;&#111;&#x6E;&#103;&#64;&#108;&#105;&#x6E;&#117;&#120;&#100;&#101;&#x65;&#x70;i&#110;&#46;&#99;&#x6F;&#x6D;</a> <br />
-# Maintainer: Wang Yong <a href="&#x6D;&#x61;i&#x6C;&#116;&#x6F;:&#119;&#x61;&#x6E;&#x67;&#x79;&#x6F;&#x6E;&#x67;&#64;&#108;&#105;n&#x75;&#x78;&#100;&#101;&#x65;&#112;&#x69;&#x6E;&#x2E;&#99;&#x6F;m">&#119;&#x61;&#x6E;&#x67;&#x79;&#x6F;&#x6E;&#x67;&#64;&#108;&#105;n&#x75;&#x78;&#100;&#101;&#x65;&#112;&#x69;&#x6E;&#x2E;&#99;&#x6F;m</a> <br />
+# Author:     Wang Yong <a href="&#109;&#x61;&#x69;&#108;t&#111;:&#119;&#x61;&#x6E;g&#x79;&#x6F;&#x6E;&#103;&#64;&#108;&#x69;&#x6E;&#x75;&#x78;&#100;&#x65;&#101;&#112;&#x69;&#x6E;&#46;&#99;&#111;m">&#119;&#x61;&#x6E;g&#x79;&#x6F;&#x6E;&#103;&#64;&#108;&#x69;&#x6E;&#x75;&#x78;&#100;&#x65;&#101;&#112;&#x69;&#x6E;&#46;&#99;&#111;m</a> <br />
+# Maintainer: Wang Yong <a href="&#x6D;&#x61;&#x69;&#108;&#x74;&#111;:&#x77;&#97;&#110;&#103;&#121;&#111;&#110;&#x67;&#64;&#x6C;&#x69;&#110;&#x75;&#x78;&#100;&#101;&#x65;&#112;&#105;&#110;&#46;&#x63;&#x6F;&#109;">&#x77;&#97;&#110;&#103;&#121;&#111;&#110;&#x67;&#64;&#x6C;&#x69;&#110;&#x75;&#x78;&#100;&#101;&#x65;&#112;&#105;&#110;&#46;&#x63;&#x6F;&#109;</a> <br />
 # <br />
 # This program is free software: you can redistribute it and/or modify <br />
 # it under the terms of the GNU General Public License as published by <br />
@@ -1475,7 +1475,7 @@ Deepin-UI 还有皮肤的高级设置， 这个留到后面讲， 这里只需�
 
 <blockquote>
   <p>在 dtk.ui.button 模块中主要提供这几个简单的控件： <br />
-Button, ImageButton, ToggleButton, ActionButton, <br />
+Button, ImageButton, ToggleButton, <br />
 CheckButton, CheckAllButton, RadioButton, <br />
 DisableButton, LinkButton, ComboButton, SwitchButton,   </p>
 
@@ -1801,8 +1801,80 @@ padding</em>x: 按钮和文字自己的间距， 默认是 0 像素  </p>
 <p></blockquote></p>
 
 <ul>
-<li><strong>ActionButton</strong>:   </li>
 <li><strong>CheckButton</strong>:   </li>
+</ul>
+
+<blockquote>
+  <p>CheckButton 一般用于由多个选项需要用户勾选的应用场景。  </p>
+
+<p><a href="example/check_button.py">CheckButton 实例代码</a>  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<p></blockquote></p>
+
+<pre lang="python"><code>
+                    #! /usr/bin/env python
+                    # -*- coding: utf-8 -*-
+
+                    from dtk.ui.init_skin import init_theme
+                    init_theme()
+                    from dtk.ui.application import Application
+                    from dtk.ui.button import CheckButton
+                    import gtk
+
+                    if __name__ == "__main__":
+                        application = Application()
+                        application.set_default_size(600, 450)
+                        application.add_titlebar(title="CheckButton example!")
+
+                        check_button_1 = CheckButton(
+                            label_text="科幻片",
+                            padding_x=5,
+                            )
+
+                        check_button_2 = CheckButton(
+                            label_text="动作片",
+                            padding_x=5,
+                            )
+
+                        check_button_3 = CheckButton(
+                            label_text="悬疑片",
+                            padding_x=5,
+                            )
+
+                        check_button_box = gtk.VBox()
+
+                        check_button_align = gtk.Alignment()
+                        check_button_align.set(0.5, 0.5, 0, 0)
+
+                        check_button_box.pack_start(check_button_1)
+                        check_button_box.pack_start(check_button_2)
+                        check_button_box.pack_start(check_button_3)
+                        check_button_align.add(check_button_box)
+                        application.main_box.add(check_button_align)
+
+                        application.run()
+</code></pre>
+
+<blockquote>
+  <blockquote>
+  <blockquote>
+  <p>效果图如下： <br />
+                <div style="float: top"><img src="image/check_button.png" /></div></p>
+
+<p>代码讲解： <br />
+<code>CheckButton</code> 构造函数参数讲解：  </p>
+
+<blockquote>
+  <p>label<em>text: 按钮右边的文字内容, 默认为 None <br />
+padding</em>x: 按钮和文字自己的间距， 默认是 0 像素  </p>
+</blockquote>
+
+<p></blockquote></p>
+
+<ul>
 <li><strong>CheckAllButton</strong>:   </li>
 <li><strong>RadioButton</strong>:   </li>
 <li><strong>DisableButton</strong>:   </li>

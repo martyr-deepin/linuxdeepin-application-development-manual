@@ -1119,7 +1119,7 @@ Deepin-UI 还有皮肤的高级设置， 这个留到后面讲， 这里只需�
 > * **button**  
 
 >> 在 dtk.ui.button 模块中主要提供这几个简单的控件：  
-Button, ImageButton, ToggleButton, ActionButton,  
+Button, ImageButton, ToggleButton,   
 CheckButton, CheckAllButton, RadioButton,  
 DisableButton, LinkButton, ComboButton, SwitchButton,   
 
@@ -1350,8 +1350,65 @@ Deepin-UI 默认的主题对象是 `ui_theme`， 提供 Deepin-UI 默认控件�
 >>>> button_label: 按钮右边的文字内容, 默认为 None  
 >>>> padding_x: 按钮和文字自己的间距， 默认是 0 像素  
 
->> * **ActionButton**:   
 >> * **CheckButton**:   
+
+>>> CheckButton 一般用于由多个选项需要用户勾选的应用场景。  
+
+>>> [CheckButton 实例代码](example/check_button.py)  
+
+<pre lang="python"><code>
+                    #! /usr/bin/env python
+                    # -*- coding: utf-8 -*-
+                    
+                    from dtk.ui.init_skin import init_theme
+                    init_theme()
+                    from dtk.ui.application import Application
+                    from dtk.ui.button import CheckButton
+                    import gtk
+                    
+                    if __name__ == "__main__":
+                        application = Application()
+                        application.set_default_size(600, 450)
+                        application.add_titlebar(title="CheckButton example!")
+                        
+                        check_button_1 = CheckButton(
+                            label_text="科幻片",
+                            padding_x=5,
+                            )
+                    
+                        check_button_2 = CheckButton(
+                            label_text="动作片",
+                            padding_x=5,
+                            )
+                    
+                        check_button_3 = CheckButton(
+                            label_text="悬疑片",
+                            padding_x=5,
+                            )
+                        
+                        check_button_box = gtk.VBox()
+                        
+                        check_button_align = gtk.Alignment()
+                        check_button_align.set(0.5, 0.5, 0, 0)
+                        
+                        check_button_box.pack_start(check_button_1)
+                        check_button_box.pack_start(check_button_2)
+                        check_button_box.pack_start(check_button_3)
+                        check_button_align.add(check_button_box)
+                        application.main_box.add(check_button_align)
+                        
+                        application.run()
+</code></pre>
+
+>>> 效果图如下：  
+>>>					<div style="float: top"><img src="image/check_button.png" /></div>
+
+>>> 代码讲解：  
+`CheckButton` 构造函数参数讲解：  
+
+>>>> label_text: 按钮右边的文字内容, 默认为 None  
+>>>> padding_x: 按钮和文字自己的间距， 默认是 0 像素  
+
 >> * **CheckAllButton**:   
 >> * **RadioButton**:   
 >> * **DisableButton**:   
