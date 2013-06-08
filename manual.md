@@ -1158,7 +1158,7 @@ DisableButton, LinkButton, ComboButton, SwitchButton,
 </code></pre>
 
 >>> 效果图如下：  
-<div style="float: top"><img src="image/button.png" /></div>
+>>>					<div style="float: top"><img src="image/button.png" /></div>
 
 >>> 代码讲解：  
 
@@ -1846,8 +1846,7 @@ socket.py
 </code></pre>
 
 >> 下面是代码运行的效果图:   
-
-<div style="float: top"><img src="image/multi-process-example.png" /></div>
+>>				<div style="float: top"><img src="image/multi-process-example.png" /></div>
 
 <h3 id="how-to-handle-i18n">多国语言处理</h3>
 > * **多国语言翻译的原理**  
